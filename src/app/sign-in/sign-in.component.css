@@ -1,0 +1,65 @@
+.container{
+    margin: 80px auto 0 auto;
+    width: 340px;
+    background-color: white;
+    border-radius: 0.5rem;
+    padding-top: 15px;
+}
+.form-control{
+    width: 150px;
+}
+small{
+    color:red;
+}
+input.ng-touched.ng-invalid {border:solid red 1.5px;}
+input.ng-touched.ng-valid {border:solid green 1.5px;}
+.form-input{
+    width: 310px
+}
+.or-sign-in{
+    text-transform: uppercase;
+    text-align: center;
+    color: #7d97a4;
+    margin-top: 30px;
+    margin-bottom: 20px;
+    position: relative;
+
+}
+.or-sign-in span{
+    background-color: white;
+    position: relative;
+    z-index: 20;
+    padding-left: 12px;
+    padding-right: 12px;
+}
+.line{
+    position: absolute;
+    content: '';
+    z-index: 10;
+    height: 2px;
+    width: 100%;
+    background-color: #ecf0f2;
+    top:calc(50% - 1px);
+}
+.sign-in-other{
+    width: 310px;
+    height: 45px;
+    background-color: #3b5998;
+    border-radius: 6px;
+    text-align: center;
+    padding-top: 10px;
+}
+.sign-in-other:hover{
+    background-color: #36a3ff;
+}
+.sign-in-other-a{
+    text-decoration: none;
+}
+.sign-in-other span{
+    color: white;
+    font-size: 16px;
+}
+
+.sign-in-other-vk{
+    background-color: #507299;
+}

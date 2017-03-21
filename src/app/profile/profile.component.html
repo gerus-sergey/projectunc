@@ -1,0 +1,23 @@
+<div class="container">
+    <div class="row">
+        <div class="profile-menu col-md-3 col-xs-6">
+            <div class="sidebar-img">
+            <img class="img-circle image">
+                <form>
+                </form>
+                <h3 class="text-center">{{userProfile.lastname}} {{userProfile.firstname}}</h3>
+            </div>
+                <div  class="sidebar-profile">
+                <ul class="nav nav-pills nav-stacked">
+                    <li class="active"><a routerLink="/profile/3/account">Account</a></li>
+                    <li><a routerLink="/profile/3/password">Password</a></li>
+                    <li><a routerLink="/profile/3/email">Email</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="profile-info col-md-9 col-xs-6">
+            <router-outlet></router-outlet>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,18 @@
+<div class="container-fluid">
+    <div class="row ">
+        <div class="flex">
+            <div class="flex-itm" *ngFor="let album of (albums | slice:albums.length - albums.length)">
+                <div class="panel trip-panel">
+                    <div class="trip-pic">
+                        <div class="trippic-wrapper">
+                            <img class="img-responsive" src="{{album?.img}}" alt="">
+                        </div>
+                    </div>
+                    <h3><a href="#">{{album?.name}}</a></h3>
+                    <h4>{{album?.date_of_creation}}</h4>
+                    <p>{{album?.description}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,81 @@
+
+{
+  "albums":
+  [{
+    "id": 1,
+    "img": "assets/img/trips/1.jpg",
+    "name": "Concert",
+    "date_of_creation": "03.02.2017",
+    "description": "On a clear day with blue sky you might like to take a boat tour on the Bosphorus, a cruise which gives another splendid view "
+  },
+    {
+      "id": 2,
+      "img": "assets/img/trips/2.jpg",
+      "name": "Album 6",
+      "date_of_creation": "02.02.2014",
+      "description": "On a clear day with blue sky you might like to take a boat tour on the Bosphorus, a cruise which gives another splendid view On a clear day with blue sky you might like to take a boat tour on the Bosphorus, a cruise which gives another splendid view "
+    },
+    {
+      "id": 3,
+      "img": "assets/img/trips/3.jpg",
+      "name": "Album 5",
+      "date_of_creation": "20.01.2017",
+      "description": "On a clear day with blue sky you might like to take a boat tour on the Bosphorus, a cruise which gives another splendid view "
+    },
+    {
+      "id": 4,
+      "img": "assets/img/trips/4.jpg",
+      "name": "Album 4",
+      "date_of_creation": "20.06.2017",
+      "description": "On a clear day with blue sky you might like to take a boat tour on the Bosphorus, a cruise which gives another splendid view On a clear day with blue sky you might like to take a boat tour on the Bosphorus, a cruise which gives another splendid view "
+    },
+    {
+      "id": 5,
+      "img": "assets/img/trips/5.jpg",
+      "name": "Album 3",
+      "date_of_creation": "20.01.2017",
+      "description": "On a clear day with blue sky you might like to take a boat tour on the Bosphorus, a cruise which gives another splendid view "
+    },
+    {
+      "id": 6,
+      "img": "assets/img/trips/6.jpg",
+      "name": "Album 2",
+      "date_of_creation": "20.05.2017",
+      "description": "On a clear day with blue sky you might"
+    },
+    {
+      "id": 7,
+      "img": "assets/img/trips/7.jpg",
+      "name": "Summer album",
+      "date_of_creation": "20.06.2017",
+      "description": "On a clear day with blue sky you might like to take a boat tour on the Bosphorus, a cruise which gives another splendid view On a clear day with blue sky you might like to take a boat tour on the Bosphorus, a cruise which gives another splendid view On a clear day with blue sky you might like to take a boat tour on the Bosphorus, a cruise which gives another splendid view "
+    },
+    {
+      "id": 8,
+      "img": "assets/img/trips/8.jpg",
+      "name": "Just an album",
+      "date_of_creation": "20.10.2017",
+      "description": "On a clear day with blue sky you might like to take a boat tour on the Bosphorus, a cruise which gives another splendid view On a clear day with blue sky you might like to take a boat tour on the Bosphorus, a cruise which gives another splendid view "
+    },
+    {
+      "id": 9,
+      "img": "assets/img/trips/9.jpg",
+      "name": "Another album",
+      "date_of_creation": "20.10.2017",
+      "description": "On a clear day with blue sky you might like to take a boat tour on the Bosphorus, a cruise which gives another splendid view "
+    },
+    {
+      "id": 10,
+      "img": "assets/img/trips/10.jpg",
+      "name": "Go to Scotland",
+      "date_of_creation": "20.10.2017",
+      "description": "On a clear day with blue sky you might like to take a boat tour on the Bosphorus, a cruise which gives another splendid view "
+    },
+    {
+      "id": 11,
+      "img": "assets/img/trips/11.jpg",
+      "name": "Album 1",
+      "date_of_creation": "20.10.2017",
+      "description": "On a clear day with blue sky you might like to take a boat tour on the Bosphorus, a cruise which gives another splendid view On a clear day with blue sky you might like to "
+    }]
+}

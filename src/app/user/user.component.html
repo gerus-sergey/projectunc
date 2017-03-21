@@ -1,0 +1,24 @@
+<div class="container">
+    <div class="row">
+            <div class="profile-menu col-md-3">
+                <div class="sidebar-img">
+                    <img class="img-circle image">
+                    <form>
+
+                    </form>
+                    <h3 class="text-center">{{user.lastname}} {{user.firstname}}</h3>
+                </div>
+                <div class="sidebar-profile">
+                    <ul class="nav nav-pills nav-stacked">
+                        <li class="active"><a routerLink="/user/3/user-account">Account</a></li>
+                        <li><a routerLink="/user/3/user-trips">Trips</a></li>
+                        <li><a routerLink="/user/3/user-albums">Albums</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="profile-info col-md-9">
+                <router-outlet></router-outlet>
+            </div>
+    </div>
+</div>

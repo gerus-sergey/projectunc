@@ -1,0 +1,92 @@
+
+{
+  "travels":
+    [{
+      "id": 1,
+      "img": "assets/img/trips/1.jpg",
+      "name": "Concert",
+      "start_date": "03.02.2017",
+      "end_date": "05.02.2017",
+      "info": "On a clear day with blue sky you might like to take a boat tour on the Bosphorus, a cruise which gives another splendid view "
+    },
+    {
+    "id": 2,
+    "img": "assets/img/trips/2.jpg",
+    "name": "WinterTrip",
+    "start_date": "02.02.2014",
+    "end_date":"15.02.2014",
+    "info": "On a clear day with blue sky you might like to take a boat tour on the Bosphorus, a cruise which gives another splendid view On a clear day with blue sky you might like to take a boat tour on the Bosphorus, a cruise which gives another splendid view "
+    },
+    {
+    "id": 3,
+    "img": "assets/img/trips/3.jpg",
+    "name": "SomeTrip",
+    "start_date": "20.01.2017",
+    "end_date": "30.01.2017",
+    "info": "On a clear day with blue sky you might like to take a boat tour on the Bosphorus, a cruise which gives another splendid view "
+    },
+    {
+    "id": 4,
+    "img": "assets/img/trips/4.jpg",
+    "name": "SeaTrip",
+    "start_date": "20.06.2017",
+    "end_date": "01.07.2017",
+    "info": "On a clear day with blue sky you might like to take a boat tour on the Bosphorus, a cruise which gives another splendid view On a clear day with blue sky you might like to take a boat tour on the Bosphorus, a cruise which gives another splendid view "
+    },
+    {
+    "id": 5,
+    "img": "assets/img/trips/5.jpg",
+    "name": "BestTrip",
+    "start_date": "20.01.2017",
+    "end_date": "30.01.2017",
+    "info": "On a clear day with blue sky you might like to take a boat tour on the Bosphorus, a cruise which gives another splendid view "
+    },
+    {
+    "id": 6,
+    "img": "assets/img/trips/6.jpg",
+    "name": "SunnyTrip",
+    "start_date": "20.05.2017",
+    "end_date": "31.07.2017",
+    "info": "On a clear day with blue sky you might"
+    },
+    {
+    "id": 7,
+    "img": "assets/img/trips/7.jpg",
+    "name": "SummerTrip",
+    "start_date": "20.06.2017",
+    "end_date": "01.07.2017",
+    "info": "On a clear day with blue sky you might like to take a boat tour on the Bosphorus, a cruise which gives another splendid view On a clear day with blue sky you might like to take a boat tour on the Bosphorus, a cruise which gives another splendid view On a clear day with blue sky you might like to take a boat tour on the Bosphorus, a cruise which gives another splendid view "
+    },
+    {
+    "id": 8,
+    "img": "assets/img/trips/8.jpg",
+    "name": "JustATrip",
+    "start_date": "20.10.2017",
+    "end_date": "30.10.2017",
+    "info": "On a clear day with blue sky you might like to take a boat tour on the Bosphorus, a cruise which gives another splendid view On a clear day with blue sky you might like to take a boat tour on the Bosphorus, a cruise which gives another splendid view "
+    },
+    {
+    "id": 9,
+    "img": "assets/img/trips/9.jpg",
+    "name": "AnotherTrip",
+    "start_date": "20.10.2017",
+    "end_date": "30.10.2017",
+    "info": "On a clear day with blue sky you might like to take a boat tour on the Bosphorus, a cruise which gives another splendid view "
+    },
+    {
+    "id": 10,
+    "img": "assets/img/trips/10.jpg",
+    "name": "GoToScotland",
+    "start_date": "20.10.2017",
+    "end_date": "30.10.2017",
+    "info": "On a clear day with blue sky you might like to take a boat tour on the Bosphorus, a cruise which gives another splendid view "
+    },
+    {
+    "id": 11,
+    "img": "assets/img/trips/11.jpg",
+    "name": "Trip",
+    "start_date": "20.10.2017",
+    "end_date": "30.10.2017",
+    "info": "On a clear day with blue sky you might like to take a boat tour on the Bosphorus, a cruise which gives another splendid view On a clear day with blue sky you might like to "
+    }]
+}

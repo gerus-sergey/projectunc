@@ -1,0 +1,70 @@
+<div class="container-fluid">
+    <form class="form-horizontal">
+        <div class="form-group">
+            <h4 class=" profile-label">Lastname</h4>
+            <div class="input-group profile-input">
+                <input type="text" maxlength="20" disabled required class="form-control" name="lastname"
+                       [(ngModel)]="userProfile.lastname">
+                <div class="input-group-btn profile-input-button">
+                    <button class="btn btn-default profile-button-edit" type="button"
+                            onclick="this.form.lastname.disabled = 0"><i class="fa fa-pencil fa-lg icon-edit"
+                                                                         aria-hidden="true"></i></button>
+                </div>
+            </div><!-- /input-group -->
+        </div>
+        <div class="form-group">
+            <h4 class=" profile-label">Firstname</h4>
+            <div class="input-group profile-input">
+                <input type="text" maxlength="20" disabled required class="form-control" name="firstname"
+                       [(ngModel)]="userProfile.firstname">
+                <div class="input-group-btn profile-input-button">
+                    <button class="btn btn-default profile-button-edit" type="button"
+                            onclick="this.form.firstname.disabled = 0"><i class="fa fa-pencil fa-lg icon-edit"
+                                                                          aria-hidden="true"></i></button>
+                </div>
+            </div><!-- /input-group -->
+        </div>
+        <div class="form-group">
+            <h4 class=" profile-label">Day of birth</h4>
+            <div class="input-group profile-input">
+                <input type="date" disabled required class="form-control" name="dateOfBirth"
+                       [(ngModel)]="userProfile.dateOfBirth">
+                <div class="input-group-btn profile-input-button">
+                    <button class="btn btn-default profile-button-edit" type="button"
+                            onclick="this.form.dateOfBirth.disabled = 0"><i class="fa fa-pencil fa-lg icon-edit"
+                                                                            aria-hidden="true"></i></button>
+                </div>
+            </div><!-- /input-group -->
+        </div>
+        <div class="form-group">
+            <h4 class=" profile-label">Sex</h4>
+            <div class="input-group profile-input">
+                <select disabled required name="Sex" class="form-control form-input">
+                    <option>Man</option>
+                    <option>Women</option>
+                </select>
+                <div class="input-group-btn profile-input-button">
+                    <button class="btn btn-default profile-button-edit" type="button"
+                            onclick="this.form.Sex.disabled = 0"><i class="fa fa-pencil fa-lg icon-edit"
+                                                                    aria-hidden="true"></i></button>
+                </div>
+            </div><!-- /input-group -->
+        </div>
+        <div class="form-group">
+            <h4 class=" profile-label">Info</h4>
+            <div class="input-group profile-input">
+                        <textarea disabled required class="form-control" rows="7" maxlength="150"
+                                  style="width: 400px; resize: none" name="info" [(ngModel)]="userProfile.info">
+                            </textarea>
+                <div class="input-group-btn profile-input-button">
+                    <button class="btn btn-default profile-button-edit" type="button"
+                            onclick="this.form.info.disabled = 0" style="height: 148.5px"><i
+                            class="fa fa-pencil fa-lg icon-edit" aria-hidden="true"></i></button>
+                </div>
+            </div><!-- /input-group -->
+        </div>
+        <div class="form-group" style="padding-top: 10px">
+            <button type="button" class="btn btn-primary">Save changes</button>
+        </div>
+    </form>
+</div>
