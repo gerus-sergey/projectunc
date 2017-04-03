@@ -1,0 +1,27 @@
+.trip-sights div.form-group {
+    display: inline-block;
+}
+
+.trip-sights select.form-control {
+    width: 192px;
+}
+
+.list-of-sights li {
+    display: inline-block;
+}
+
+.list-of-sights i.fa-2x {
+    font-size: 1em;
+    margin: 1px;
+}
+.list-of-sights button {
+    width: 35px;
+    height: 25px;
+    padding: 1px;
+    margin-left: 320px;
+}
+
+.list-of-sights {
+    max-height: 200px;
+    overflow-y: scroll;
+}

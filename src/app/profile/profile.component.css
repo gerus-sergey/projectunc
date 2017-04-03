@@ -1,33 +1,59 @@
-.container{
+.container {
     background-color: white;
     margin-top: 80px;
-    padding-bottom: 15px;
     width: 90%;
     margin-bottom: 20px;
     z-index: 10;
     border-radius: 0.5rem;
     height: 100%;
-}
-.profile-menu{
-    padding-top: 40px;
-    padding-left: 40px;
-}
-.profile-info{
-    margin-top: 40px;
-    padding-right: 40px;
-}
-.sidebar-profile{
-   width: 200px;
-    padding-top: 20px;
-}
-.sidebar-img{
-    width: 200px;
-}
-.image{
-    width: 140px;
-    height:140px;
-    background-color: grey;
-    margin-left: 15%
+    padding: 40px;
 }
 
+.profile-info {
+    padding-right: 40px;
+}
+
+.sidebar-profile {
+    width: 200px;
+    padding-top: 20px;
+}
+
+.sidebar-img {
+    width: 200px;
+    display: inline-block;
+    text-align: center;
+}
+
+.image {
+    width: 100%;
+    height: 100%;
+}
+
+.user-avatar {
+    -webkit-border-radius: 100%;
+    -moz-border-radius: 100%;
+    border-radius: 100%;
+    width: 140px;
+    height: 140px;
+    background-color: grey;
+    position: relative;
+    overflow: hidden;
+}
+
+.user-avatar span {
+    display: none;
+}
+
+.user-avatar:hover span {
+    position: absolute;
+    background-color: rgba(0,0,0,0.4);
+    color: #fff;
+    font-size: 12px;
+    text-align: center;
+    top: 0;
+    left: 0;
+    right: 0;
+    line-height: 140px;
+    display: block;
+}
 

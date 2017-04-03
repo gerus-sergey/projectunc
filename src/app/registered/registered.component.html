@@ -17,10 +17,13 @@
             </div>
             <div class="form-group">
                 <input class="form-control form-input" name="email" type="email" placeholder="Email"
-                       required [(ngModel)]="userRegistered.email" #email="ngModel"
-                       pattern="^([a-z0-9_-]+\.)*[a-z0-9_-]+@[a-z0-9_-]+(\.[a-z0-9_-]+)*\.[a-z]{2,6}$"/>
+                       required  [(ngModel)]="userRegistered.email" #email="ngModel" (change)="checkEmail(email.valid )"
+                       pattern="^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$"/>
                 <small [hidden]="email.valid || (email.pristine && !f.submitted)">
                     Email is required and format should be <i>john@doe.com</i>.
+                </small>
+                <small [hidden]="freeEmail">
+                    Email in use by another user.
                 </small>
             </div>
 

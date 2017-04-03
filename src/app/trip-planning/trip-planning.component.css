@@ -1,0 +1,68 @@
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+.page {
+    min-height: 100%;
+    margin-bottom: -50px;
+}
+* html .page {
+    height: 100%;
+}
+.buffer {
+    height: 50px;
+}
+.planning {
+    margin: 70px;
+}
+
+.planning ul{
+    max-height: 376px;
+    overflow-y: scroll;
+}
+
+.panel {
+    height: 420px;
+    margin-left: 45px;
+}
+.planning i{
+    float: right;
+}
+.nav-stacked li {
+    background: #fff none repeat scroll 0 0;
+    float: none;
+    height: 50px;
+    padding: 15px;
+    text-align: center;
+    width: 170px;
+}
+.nav-stacked li:hover {
+    background-color: #5f6f81;
+}
+.nav-stacked li a {
+    text-decoration: none;
+    color: #5f6f81;
+    margin-top: -10px;
+}
+.nav-stacked li:hover a {
+    color: #fff;
+    text-decoration: none;
+    background-color: #5f6f81;
+}
+
+.planning button {
+    background: #5f6f81;
+    color: #fff;
+    margin-top: 10px;
+    width: 170px;
+}
+
+.fa.fa-caret-right {
+    margin: 3px 15px 0 12px;
+}
+app-sidebar .gn-menu-main[_ngcontent-agv-8] {
+    background: dodgerblue;
+}
+
+

@@ -1,0 +1,26 @@
+.full button span {
+    background-color: limegreen;
+    border-radius: 32px;
+    color: black;
+}
+.partially button span {
+    background-color: orange;
+    border-radius: 32px;
+    color: black;
+}
+
+.fa.fa-calendar {
+    margin: 3px 15px 0 12px;
+}
+
+.dp.input-group {
+    text-align: center;
+    width: 300px;
+}
+
+.modal-sm {
+    width: 350px;
+}
+.modal-dialog {
+    margin: 50px auto;
+}

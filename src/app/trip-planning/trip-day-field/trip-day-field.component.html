@@ -1,0 +1,135 @@
+<div>
+  <div class="trippanel">
+    <div class="panel">
+        <button class="btn btn-primary pull-right" (click)="staticModal.show()">
+          New event
+          <span class="caret"></span>
+        </button>
+      <div class="newEvent">
+        <div class="modal fade" bsModal #staticModal="bs-modal" [config]="{backdrop: false}" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabl" aria-hidden="true" >
+
+          <div class="model-dialog modal-sm">
+            <div class="modal-content">
+            <div class="btn-group-vertical">
+              <button class="btn" (click)="showFlightDialog = !showFlightDialog; staticModal.hide()">Flight</button>
+              <button class="btn" (click)="showRailDialog = !showRailDialog; staticModal.hide()">Rail</button>
+              <button class="btn" (click)="showBusDialog = !showBusDialog; staticModal.hide()">Bus</button>
+              <button class="btn" (click)="showCarDialog = !showCarDialog; staticModal.hide()">Car Rental</button>
+              <button class="btn" (click)="showLodgingDialog = !showLodgingDialog; staticModal.hide()">Lodging</button>
+              <button class="btn" (click)="showSightsDialog = !showSightsDialog; staticModal.hide()">Sights</button>
+            </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!--Flight-->
+        <app-dialog [(visible)]="showFlightDialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" (click)="showFlightDialog = !showFlightDialog">
+                <i class="fa fa-2x fa-close"></i>
+              </button>
+              <h4>Flight</h4>
+            </div>
+            <div class="modal-body">
+              <app-flight-dialog></app-flight-dialog>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-primary" data-dismiss="modal">Submit</button>
+            </div>
+          </div>
+        </app-dialog>
+
+      <!--Rail-->
+      <app-dialog [(visible)]="showRailDialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" (click)="showRailDialog = !showRailDialog">
+              <i class="fa fa-2x fa-close"></i>
+            </button>
+            <h4>Rail</h4>
+          </div>
+          <div class="modal-body">
+            <app-rail-dialog></app-rail-dialog>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-primary" data-dismiss="modal">Submit</button>
+          </div>
+        </div>
+      </app-dialog>
+
+      <!--Bus-->
+      <app-dialog [(visible)]="showBusDialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" (click)="showBusDialog = !showBusDialog">
+              <i class="fa fa-2x fa-close"></i>
+            </button>
+            <h4>Bus</h4>
+          </div>
+          <div class="modal-body">
+            <app-bus-dialog></app-bus-dialog>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-primary" data-dismiss="modal">Submit</button>
+          </div>
+        </div>
+      </app-dialog>
+
+      <!--Car-->
+      <app-dialog [(visible)]="showCarDialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" (click)="showCarDialog = !showCarDialog">
+              <i class="fa fa-2x fa-close"></i>
+            </button>
+            <h4>Car Rental</h4>
+          </div>
+          <div class="modal-body">
+            <app-car-dialog></app-car-dialog>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-primary" data-dismiss="modal">Submit</button>
+          </div>
+        </div>
+      </app-dialog>
+
+        <!--Hotels-->
+
+        <app-dialog [(visible)]="showLodgingDialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" (click)="showLodgingDialog = !showLodgingDialog">
+                <i class="fa fa-2x fa-close"></i>
+              </button>
+              <h4> Lodging</h4>
+            </div>
+            <div class="modal-body">
+              <app-lodging></app-lodging>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-primary" data-dismiss="modal">Submit</button>
+            </div>
+          </div>
+        </app-dialog>
+        <!--Sights-->
+
+        <app-dialog [(visible)]="showSightsDialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" (click)="showSightsDialog = !showSightsDialog">
+                <i class="fa fa-2x fa-close"></i>
+              </button>
+              <h4>Sights</h4>
+            </div>
+            <div class="modal-body">
+              <app-sights></app-sights>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-primary" data-dismiss="modal">Submit</button>
+            </div>
+          </div>
+        </app-dialog>
+    </div>
+    </div>
+  </div>

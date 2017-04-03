@@ -28,6 +28,7 @@
         "styles.css"
       ],
       "scripts": [
+        "js/jquery-3.2.0.min.js",
         "js/classie.js",
         "js/gnmenu.js",
         "js/modernizr.custom.js",

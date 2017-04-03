@@ -1,0 +1,33 @@
+.trippanel{
+    top: 0;
+    left: 150px;
+    width:700px;
+    height: 800px;
+    position: fixed;
+    margin-top: 120px;
+    margin-left: 80px;
+}
+
+.panel {
+    height: 420px;
+    margin-left: 30px;
+}
+
+textarea {
+    overflow: auto;
+    vertical-align: top;
+    width: 667px;
+}
+
+app-datepicker {
+    margin: 10px;
+}
+
+.input-group.info {
+    margin-top: 50px;
+}
+
+app-datepicker .modal-sm {
+    width: 350px;
+    margin: 140px 140px 140px 400px;
+}

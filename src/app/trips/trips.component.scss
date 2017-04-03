@@ -1,0 +1,37 @@
+.container {
+  background-color: white;
+  margin-top: 80px;
+  width: 90%;
+  margin-bottom: 20px;
+  z-index: 10;
+  border-radius: 0.5rem;
+  height: 100%;
+  padding: 20px 40px 40px 40px;
+}
+.panel.trip-panel {
+  padding: 7px;
+  margin: 2px 2px 10px 2px;
+  background-color: #edeef0;
+}
+
+.trip-pic img {
+  border-radius: 2px;
+}
+.img-trips{
+  width: 100px;
+  height: 100px;
+}
+.title{
+  text-align: center;
+  margin-top: 0;
+  margin-bottom: 20px;
+}
+.btn-trips{
+  padding-left: 0px;
+  padding-right: 0px;
+  width: 40px;
+  visibility: hidden;
+}
+.trip-panel:hover .btn-trips{
+ visibility: visible;
+}

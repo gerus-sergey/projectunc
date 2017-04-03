@@ -1,0 +1,15 @@
+.form-group {
+    display: inline-block;
+}
+
+.form-group.to {
+    float: right;
+}
+
+input.form-control {
+    width: 250px;
+}
+
+.address {
+    margin-top: 20px;
+}

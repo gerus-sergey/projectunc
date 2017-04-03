@@ -1,0 +1,23 @@
+.form-group {
+    display: inline-block;
+}
+
+.form-group.to {
+    float: right;
+}
+
+.from-to input.form-control {
+    width: 250px;
+}
+
+.airport input.form-control {
+    width: 290px;
+}
+
+.price-dist input.form-control {
+    width: 290px;
+}
+
+.airport {
+    margin-top: 20px;
+}

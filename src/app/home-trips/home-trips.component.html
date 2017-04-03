@@ -1,0 +1,18 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="flex">
+      <div class="flex-itm" *ngFor="let trip of (homeTrips | slice:homeTrips.length - homeTrips.length)">
+        <div class="panel trip-panel">
+          <div class="trip-pic">
+            <div class="trippic-wrapper">
+              <img class="img-responsive" src="{{trip?.img}}" alt="">
+            </div>
+          </div>
+          <h3><a href="#">{{trip?.name}}</a></h3>
+          <h4>{{trip?.start_date}} - {{trip?.end_date}}</h4>
+          <p>{{trip?.info}}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

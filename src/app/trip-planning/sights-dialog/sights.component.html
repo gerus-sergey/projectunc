@@ -1,0 +1,45 @@
+<div class="trip-sights">
+    <div class="form-group">
+        <label>Country</label>
+        <select class="form-control" name="country" [(ngModel)]="place.country">
+            <option  *ngFor="let contr of countries" [value]="contr">
+                {{contr}}
+            </option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label>State</label>
+        <select class="form-control" name="state" [(ngModel)]="place.state">
+            <option  *ngFor="let st of states" [value]="st">
+                {{st}}
+            </option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label>City</label>
+        <select class="form-control" name="city" [(ngModel)]="place.city">
+            <option  *ngFor="let ct of cities" [value]="ct">
+                {{ct}}
+            </option>
+        </select>
+    </div>
+</div>
+<div class="form-group">
+    <label>Sight</label>
+    <select class="form-control" name="sight" [(ngModel)]="place.sight">
+        <option  *ngFor="let sght of sights" [value]="sght">
+            {{sght}}
+        </option>
+    </select>
+</div>
+<div class="form-group">
+    <button class="btn btn-primary pull-right" (click)="addPlace()">Add place</button>
+</div>
+<h3>Sights</h3>
+<div class="list-of-sights">
+    <ul *ngFor="let p of places">
+        <li>{{p.country}}, {{p.state}}, {{p.city}} - {{p.sight}}
+            <button class="btn btn-primary pull-right"><i class="fa fa-2x fa-remove"></i></button>
+        </li>
+    </ul>
+</div>

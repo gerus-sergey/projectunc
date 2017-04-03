@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import {Response} from "@angular/http";
-import {Trip} from "./trip.interface";
-import {HttpService} from "../registered/http.service";
+import {Trip} from "../models/user-trip.interface";
+import {HttpService} from "../services/http.service";
+import {ActivatedRoute} from "@angular/router";
+import {Subscription} from "rxjs/Rx";
 
 
 @Component({
@@ -12,18 +14,24 @@ import {HttpService} from "../registered/http.service";
 })
 export class UserTripsComponent implements OnInit {
 
-  trips: Trip[]=[];
+    public trips: Trip[]=[];
+    private id:number;
+    private routeSubscription:Subscription;
 
-  constructor(private httpService: HttpService){}
-  ngOnInit(){
-
-    this.httpService.getData()
+    constructor(private route:ActivatedRoute, private httpService:HttpService) {
+        this.routeSubscription = route.params.subscribe(params=>this.id = params['id']);
+    }
+    ngOnDestroy() {
+        this.routeSubscription.unsubscribe();
+    }
+    ngOnInit(){
+    this.httpService.getTravelsToUser(this.route.parent.snapshot.params["id"])
         .subscribe((resp: Response) => {
-          let tripList = resp.json().travels;
+          let tripList = resp.json();
           for(let index in tripList){
             console.log(tripList[index]);
             let trip = tripList[index];
-            this.trips.push({id: trip.id, img: trip.img, name: trip.name, start_date: trip.start_date, end_date: trip.end_date, info: trip.info});
+            this.trips.push(trip);
           }
         });
   }

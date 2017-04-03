@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {Album} from "./album.interface";
-import {HttpService} from "../registered/http.service";
+import {Album} from "../models/album.interface";
+import {HttpService} from "../services/http.service";
 import {Response} from "@angular/http";
 
 @Component({
@@ -22,7 +22,7 @@ export class UserAlbumsComponent implements OnInit {
           for(let index in albumList){
             console.log(albumList[index]);
             let album = albumList[index];
-            this.albums.push({id: album.id, img: album.img, name: album.name, date_of_creation: album.date_of_creation, description: album.description});
+            this.albums.push(album);
           }
         });
   }

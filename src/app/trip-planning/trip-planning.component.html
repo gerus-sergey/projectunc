@@ -1,0 +1,29 @@
+<div class="page">
+    <app-sidebar></app-sidebar>
+    <div class="col-md-4 col-xs-3">
+        <div class="planning" style="margin-top: 120px">
+            <ul class="nav nav-stacked">
+                <li class="active"><a routerLink="/trip-planning/trip-info">Trip info
+                    <i class="fa fa-caret-right"></i>
+                </a></li>
+                <li *ngFor="let day of days; let index = i">
+                    <a routerLink="/trip-planning/day/{{day.id}}">
+                        Day {{day.id}}
+                        <i class="fa fa-caret-right"></i>
+                    </a>
+                </li>
+            </ul>
+            <div >
+            <button class="btn btn-default" (click)="addDay()">
+                Add day
+            </button>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-5 col-xs-9">
+        <router-outlet></router-outlet>
+    </div>
+    <div class="col-md-3 col-xs-12">
+      <!-- <app-chat></app-chat>-->
+    </div>
+</div>

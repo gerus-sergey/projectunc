@@ -1,52 +1,68 @@
 <div class="container-fluid">
-<form class="form-horizontal">
-  <div class="form-group">
-    <h4 class=" profile-label">Lastname</h4>
-    <div class="profile-input">
-      <input type="text" disabled class="form-control" name="lastname"
-             [(ngModel)]="user.lastname">
-    </div><!-- /input-group -->
-  </div>
+    <form class="form-horizontal">
+        <div class="form-group">
+            <h4 class=" profile-label">Last name</h4>
+            <div class="profile-input">
+                <input type="text" disabled class="form-control" name="lastName"
+                       [(ngModel)]="user.lastName">
+            </div><!-- /input-group -->
+        </div>
 
-  <div class="form-group">
-    <h4 class=" profile-label">Firstname</h4>
-    <div class="profile-input">
-      <input type="text" disabled class="form-control" name="firstname"
-             [(ngModel)]="user.firstname">
-    </div><!-- /input-group -->
-  </div>
+        <div class="form-group">
+            <h4 class=" profile-label">First name</h4>
+            <div class="profile-input">
+                <input type="text" disabled class="form-control" name="firstName"
+                       [(ngModel)]="user.firstName">
+            </div><!-- /input-group -->
+        </div>
 
-  <div class="form-group">
-    <h4 class=" profile-label">Day of birth</h4>
-    <div class="profile-input">
-      <input type="text" disabled class="form-control" name="dateOfBirth"
-             [(ngModel)]="user.dateOfBirth">
-    </div><!-- /input-group -->
-  </div>
+        <div class="form-group">
+            <h4 class=" profile-label">Day of birth</h4>
+            <div class="profile-input">
+                <input type="text" disabled class="form-control" name="birthday"
+                       [(ngModel)]="user.birthday">
+            </div><!-- /input-group -->
+        </div>
 
-  <div class="form-group">
-    <h4 class=" profile-label">Sex</h4>
-    <div class="profile-input">
-      <input type="text" disabled class="form-control" name="Sex"
-             [(ngModel)]="user.sex">
-    </div><!-- /input-group -->
-  </div>
+        <div class="form-group">
+            <h4 class=" profile-label">Gender</h4>
+            <div class="profile-input">
+                <input type="text" disabled class="form-control" name="Sex"
+                       [(ngModel)]="user.gender">
+            </div><!-- /input-group -->
+        </div>
 
-  <div class="form-group">
-    <h4 class=" profile-label">City</h4>
-    <div class="profile-input">
-      <input type="text" disabled class="form-control" name="city"
-             [(ngModel)]="user.city">
-    </div><!-- /input-group -->
-  </div>
+        <div class="form-group">
+            <h4 class=" profile-label">Country</h4>
+            <div class="profile-input">
+                <input type="text" disabled class="form-control" name="country"
+                       [(ngModel)]="user.firstName">
+            </div><!-- /input-group -->
+        </div>
 
-  <div class="form-group">
-    <h4 class=" profile-label">Info</h4>
-    <div class="profile-input">
+        <div class="form-group">
+            <h4 class=" profile-label">State</h4>
+            <div class="profile-input">
+                <input type="text" disabled class="form-control" name="state"
+                       [(ngModel)]="user.lastName">
+            </div><!-- /input-group -->
+        </div>
+
+        <div class="form-group">
+            <h4 class=" profile-label">City</h4>
+            <div class="profile-input">
+                <input type="text" disabled class="form-control" name="city"
+                       [(ngModel)]="user.city.name">
+            </div><!-- /input-group -->
+        </div>
+
+        <div class="form-group">
+            <h4 class=" profile-label">Info</h4>
+            <div class="profile-input">
                         <textarea disabled class="form-control" rows="7" maxlength="150"
                                   style="width: 400px; resize: none" name="info" [(ngModel)]="user.info">
                             </textarea>
-    </div><!-- /input-group -->
-  </div>
-</form>
+            </div><!-- /input-group -->
+        </div>
+    </form>
 </div>

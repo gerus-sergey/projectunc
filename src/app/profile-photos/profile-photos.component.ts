@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {Album} from "../user-albums/album.interface";
-import {HttpService} from "../registered/http.service";
+import {Album} from "../models/album.interface";
+import {HttpService} from "../services/http.service";
 import {Response} from "@angular/http";
 import {Subscription} from "rxjs/Rx";
 import {ActivatedRoute} from "@angular/router";
@@ -29,7 +29,7 @@ export class ProfilePhotosComponent implements OnInit {
           for(let index in albumList){
             console.log(albumList[index]);
             let album = albumList[index];
-            this.albums.push({id: album.id, img: album.img, name: album.name, date_of_creation: album.date_of_creation, description: album.description});
+            this.albums.push(album);
           }
         });
   }
