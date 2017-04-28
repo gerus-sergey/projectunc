@@ -6,11 +6,12 @@
         <div class="gn-scroller">
           <ul class="gn-menu">
             <li><a href="#"> <i class="fa fa-home fa-2x i-position" aria-hidden="true" style="position: relative"></i>Home</a></li>
-            <li><a routerLink="/profile/1/account"><i class="fa fa-user fa-2x i-position" aria-hidden="true" style=" margin:0 18px 0 17px;"></i>Profile</a></li>
-            <li><a routerLink="/trips/3"><i class="fa fa-map-marker fa-2x i-position" aria-hidden="true" style=" margin:0 20px 0 20px;"></i>Trips</a></li>
-            <li><a href="#"><i class="fa fa-map fa-2x i-position" aria-hidden="true" style="margin-right: 15px;" ></i>Map</a></li>
-            <li><a routerLink="/album/3"><i class="fa fa-picture-o fa-2x i-position" aria-hidden="true"></i>Photos</a></li>
+            <li><a routerLink="/account/{{id}}/profile/account"><i class="fa fa-user fa-2x i-position" aria-hidden="true" style=" margin:0 18px 0 17px;"></i>Profile</a></li>
+            <li><a routerLink="account/{{id}}/trips/"><i class="fa fa-map-marker fa-2x i-position" aria-hidden="true" style=" margin:0 20px 0 20px;"></i>Trips</a></li>
+            <li><a routerLink="map"><i class="fa fa-map fa-2x i-position" aria-hidden="true" style="margin-right: 15px;" ></i>Map</a></li>
+            <li><a routerLink="account/{{id}}/album"><i class="fa fa-picture-o fa-2x i-position" aria-hidden="true"></i>Photos</a></li>
             <li><a routerLink="/user/3/user-account"><i class="fa fa-envelope fa-2x i-position" aria-hidden="true"></i>Messages</a></li>
+            <li><a (click)="logout()"><i class="fa fa-sign-out fa-2x i-position" aria-hidden="true"></i>Log out</a></li>
           </ul>
         </div><!-- /gn-scroller -->
       </nav>

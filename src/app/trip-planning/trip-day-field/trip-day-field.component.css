@@ -27,6 +27,7 @@
 .btn-group-vertical>.btn {
     position: relative;
     background: transparent;
+    width: 170px;
 }
 
 .trippanel i.fa-close {

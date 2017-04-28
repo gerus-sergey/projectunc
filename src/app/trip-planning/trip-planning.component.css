@@ -1,68 +1,88 @@
-html, body {
-    height: 100%;
-    margin: 0;
-    padding: 0;
-}
-.page {
-    min-height: 100%;
-    margin-bottom: -50px;
-}
-* html .page {
-    height: 100%;
-}
-.buffer {
-    height: 50px;
-}
-.planning {
-    margin: 70px;
+.container {
+  background-color: white;
+  margin-top: 80px;
+  width: 90%;
+  margin-bottom: 20px;
+  z-index: 10;
+  border-radius: 0.5rem;
+  height: 100%;
+  padding: 40px;
 }
 
-.planning ul{
-    max-height: 376px;
-    overflow-y: scroll;
+.planning-info {
+  padding-right: 40px;
 }
 
-.panel {
-    height: 420px;
-    margin-left: 45px;
+.sidebar-planning {
+  max-height: 280px;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  padding-top: 20px;
+  width: 200px
 }
-.planning i{
-    float: right;
+
+.sidebar-planning::-webkit-scrollbar{
+  width: 2px;
 }
+
+.sidebar-planning::-webkit-scrollbar-thumb {
+  border: none;
+  background-color: transparent;
+  max-height: 5px;
+}
+
+.sidebar-planning:hover::-webkit-scrollbar-thumb{
+  border: none;
+  background-color: blue;
+  max-height: 20px;
+}
+
+.sidebar-planning::-webkit-scrollbar-track{
+  border: none;
+  background-color: transparent;
+}
+
+
+.sidebar-img {
+  width: 200px;
+  display: inline-block;
+  text-align: center;
+}
+
+.image {
+  width: 100%;
+  height: 100%;
+}
+
+.trip-avatar {
+  -webkit-border-radius: 100%;
+  -moz-border-radius: 100%;
+  border-radius: 100%;
+  width: 140px;
+  height: 140px;
+  background-color: grey;
+  position: relative;
+  overflow: hidden;
+}
+
+.trip-avatar span {
+  display: none;
+}
+
+.trip-avatar:hover span {
+  position: absolute;
+  background-color: rgba(0,0,0,0.4);
+  color: #fff;
+  font-size: 12px;
+  text-align: center;
+  top: 0;
+  left: 0;
+  right: 0;
+  line-height: 140px;
+  display: block;
+}
+
 .nav-stacked li {
-    background: #fff none repeat scroll 0 0;
-    float: none;
-    height: 50px;
-    padding: 15px;
-    text-align: center;
-    width: 170px;
+  float: none;
+  text-align: center;
 }
-.nav-stacked li:hover {
-    background-color: #5f6f81;
-}
-.nav-stacked li a {
-    text-decoration: none;
-    color: #5f6f81;
-    margin-top: -10px;
-}
-.nav-stacked li:hover a {
-    color: #fff;
-    text-decoration: none;
-    background-color: #5f6f81;
-}
-
-.planning button {
-    background: #5f6f81;
-    color: #fff;
-    margin-top: 10px;
-    width: 170px;
-}
-
-.fa.fa-caret-right {
-    margin: 3px 15px 0 12px;
-}
-app-sidebar .gn-menu-main[_ngcontent-agv-8] {
-    background: dodgerblue;
-}
-
-

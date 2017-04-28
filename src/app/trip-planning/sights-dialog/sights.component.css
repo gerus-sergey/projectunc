@@ -3,7 +3,7 @@
 }
 
 .trip-sights select.form-control {
-    width: 192px;
+    width: 196.5px;
 }
 
 .list-of-sights li {
@@ -24,4 +24,25 @@
 .list-of-sights {
     max-height: 200px;
     overflow-y: scroll;
+}
+
+.list-of-sights::-webkit-scrollbar{
+  width: 2px;
+}
+
+.list-of-sights::-webkit-scrollbar-thumb {
+  border: none;
+  background-color: transparent;
+  max-height: 5px;
+}
+
+.list-of-sights:hover::-webkit-scrollbar-thumb{
+  border: none;
+  background-color: blue;
+  max-height: 20px;
+}
+
+.list-of-sights::-webkit-scrollbar-track{
+  border: none;
+  background-color: transparent;
 }

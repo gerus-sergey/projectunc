@@ -1,0 +1,68 @@
+<div class="container-fluid">
+    <form class="form-horizontal" *ngIf="userAccount">
+        <div class="form-group">
+            <h4 class=" profile-label">Last name</h4>
+            <div class="profile-input">
+                <input type="text" disabled class="form-control" name="lastName"
+                       [(ngModel)]="userAccount.lastName">
+            </div><!-- /input-group -->
+        </div>
+
+        <div class="form-group">
+            <h4 class=" profile-label">First name</h4>
+            <div class="profile-input">
+                <input type="text" disabled class="form-control" name="firstName"
+                       [(ngModel)]="userAccount.firstName">
+            </div><!-- /input-group -->
+        </div>
+
+        <div class="form-group">
+            <h4 class=" profile-label">Day of birth</h4>
+            <div class="profile-input">
+                <input type="text" disabled class="form-control" name="birthday"
+                       [(ngModel)]="userAccount.birthday">
+            </div><!-- /input-group -->
+        </div>
+
+        <div class="form-group">
+            <h4 class=" profile-label">Gender</h4>
+            <div class="profile-input">
+                <input type="text" disabled class="form-control" name="Sex"
+                       [(ngModel)]="userAccount.gender.gender">
+            </div><!-- /input-group -->
+        </div>
+
+        <div class="form-group">
+            <h4 class=" profile-label">Country</h4>
+            <div class="profile-input">
+                <input type="text" disabled class="form-control" name="country"
+                       [(ngModel)]="userAccount.city.state.country.name">
+            </div><!-- /input-group -->
+        </div>
+
+        <div class="form-group">
+            <h4 class=" profile-label">State</h4>
+            <div class="profile-input">
+                <input type="text" disabled class="form-control" name="state"
+                       [(ngModel)]="userAccount.city.state.name">
+            </div><!-- /input-group -->
+        </div>
+
+        <div class="form-group">
+            <h4 class=" profile-label">City</h4>
+            <div class="profile-input">
+                <input type="text" disabled class="form-control" name="city"
+                       [(ngModel)]="userAccount.city.name">
+            </div><!-- /input-group -->
+        </div>
+
+        <div class="form-group">
+            <h4 class=" profile-label">Info</h4>
+            <div class="profile-input">
+                        <textarea disabled class="form-control" rows="7" maxlength="150"
+                                  style="width: 400px; resize: none" name="info" [(ngModel)]="userAccount.info">
+                            </textarea>
+            </div><!-- /input-group -->
+        </div>
+    </form>
+</div>

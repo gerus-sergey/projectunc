@@ -1,13 +1,7 @@
 
 <div class="dp input-group">
-    <pre class="form-control"><em *ngIf="dt">{{ getDate() | date:'fullDate'}}</em></pre>
+    <pre class="form-control" (click)="staticModal.show()"><em *ngIf="dt">{{ getDate() | date:'fullDate'}}</em></pre>
 
-    <div class="input-group-btn">
-        <button type="button" class="btn btn-primary" (click)="staticModal.show()">
-        <i class="fa fa-calendar"></i>
-    </button>
-
-    </div>
 
 </div>
 
@@ -29,6 +23,6 @@
         </div>
     </div>
 
-
+</div>
 
 

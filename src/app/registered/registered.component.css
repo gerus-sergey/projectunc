@@ -62,3 +62,6 @@ input.ng-touched.ng-valid {border:solid green 1.5px;}
 .sign-up-other-vk{
     background-color: #507299
 }
+.location{
+  margin-top: 15px;
+}

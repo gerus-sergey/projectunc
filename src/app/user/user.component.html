@@ -6,13 +6,13 @@
                         <img src="assets/img/trips/2.jpg" class="img-circle image" >
 
                     </label>
-                    <h3 class="text-center">{{user.lastName}} {{user.firstName}}</h3>
+                    <h3 class="text-center" *ngIf="user">{{user.lastName}} {{user.firstName}}</h3>
                 </div>
                 <div class="sidebar-profile">
                     <ul class="nav nav-pills nav-stacked">
-                        <li class="active"><a routerLink="/user/3/user-account">Account</a></li>
-                        <li><a routerLink="/user/3/user-trips">Trips</a></li>
-                        <li><a routerLink="/user/3/user-albums">Albums</a></li>
+                        <li class="active"><a routerLink="/user/{{id}}/user-account">Account</a></li>
+                        <li><a routerLink="/user/{{id}}/user-trips">Trips</a></li>
+                        <li><a routerLink="/user/{{id}}/user-albums">Albums</a></li>
                     </ul>
                 </div>
             </div>

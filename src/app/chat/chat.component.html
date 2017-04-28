@@ -1,0 +1,6 @@
+<div *ngFor="let message of messages">
+  {{message.text}}
+  {{myDate | amTimeAgo}}
+</div>
+<input [(ngModel)]="message"  (keyup.enter)="sendMessage()" /><button (click)="sendMessage()">Send</button>
+

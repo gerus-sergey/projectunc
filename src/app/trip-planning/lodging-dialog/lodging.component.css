@@ -2,7 +2,8 @@
     display: inline-block;
 }
 
-.form-group.to {
+.form-group.to,
+.form-group.hotel-address {
     float: right;
 }
 
@@ -10,6 +11,6 @@ input.form-control {
     width: 250px;
 }
 
-.address {
+.from-to {
     margin-top: 20px;
 }

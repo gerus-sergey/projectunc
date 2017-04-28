@@ -1,11 +1,10 @@
-<div>
-  <div class="trippanel">
-    <div class="panel">
+<div class="container-fluid">
+    <div *ngFor="let tr of travels">
+      <h3>{{tr.name}}</h3>
       <app-datepicker></app-datepicker>
       <div class="input-group info">
-        <textarea name="" id="" cols="30" rows="10" (keypress)="taChanged=true"></textarea>
+        <textarea class="form-control" (keypress)="taChanged=true" style="width: 400px; resize: none" name="info">{{tr.info}}</textarea>
         <button class="btn btn-primary" [disabled]="!taChanged" (click)="taChanged=!taChanged">Save</button>
       </div>
     </div>
-  </div>
 </div>

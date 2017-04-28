@@ -1,6 +1,6 @@
-<div class="container">
+  <div class="container">
     <div class="col-md-12">
-        <form class="form-horizontal" #f="ngForm" novalidate>
+        <form class="form-horizontal" #f="ngForm" novalidate (ngSubmit)="signInUser(f.value, f.valid)">
             <div class="form-group">
                 <input class="form-control form-input" name="email" type="email" placeholder="Email"
                        required [(ngModel)]="userSignIn.email" #email="ngModel"

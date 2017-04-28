@@ -1,4 +1,4 @@
-<div [@dialog] *ngIf="visible" class="dialog">
+<div [@dialog] *ngIf="visible" class="dialog" style="padding: 10px">
   <ng-content></ng-content>
 </div>
-<div *ngIf="visible" class="overlay" (click)="close()"></div>
+<div *ngIf="visible" class="overlay"></div>

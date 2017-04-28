@@ -43,11 +43,6 @@ export class DatepickerComponent implements OnInit {
     this.dt = new Date();
   }
 
-  public d20090824(): void {
-    this.dt = moment('2009-08-24', 'YYYY-MM-DD')
-        .toDate();
-  }
-
   public disableTomorrow(): void {
     this.dateDisabled = [{date: this.tomorrow, mode: 'day'}];
   }
