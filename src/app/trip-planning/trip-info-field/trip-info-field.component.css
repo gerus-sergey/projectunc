@@ -26,10 +26,16 @@ app-datepicker {
 }
 
 .input-group.info {
-    margin-top: 50px;
+
 }
 
 app-datepicker .modal-sm {
     width: 350px;
     margin: 140px 140px 140px 400px;
+}
+.trip-label{
+    float: left;
+}
+.trip-input{
+    margin-left: 100px;
 }

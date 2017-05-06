@@ -13,12 +13,15 @@ import {Trip} from "../../models/trips.interface";
     styleUrls: ['./trips.component.scss'],
     providers: [HttpService]
 })
-export class TripsComponent implements OnInit {
+export class TripsComponent implements OnInit, OnDestroy {
 
     profileTripsActive:Trip[] = [];
     profileTripsComplited:Trip[] = [];
-    public id: number = this.route.parent.snapshot.params["id"];
+    public id: number;
+    private routeSubscription:Subscription;
+    
     constructor(private route:ActivatedRoute, private httpService:HttpService) {
+        this.routeSubscription = route.params.subscribe(params=>this.id = params['id']);
     }
   
     ngOnInit() {
@@ -34,6 +37,9 @@ export class TripsComponent implements OnInit {
                         this.profileTripsComplited.push(trip);
                 }
             });
+    }
+    ngOnDestroy() {
+        this.routeSubscription.unsubscribe();
     }
 
 }

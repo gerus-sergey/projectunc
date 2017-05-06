@@ -1,10 +1,32 @@
 <div class="container-fluid">
-    <div *ngFor="let tr of travels">
-      <h3>{{tr.name}}</h3>
-      <app-datepicker></app-datepicker>
-      <div class="input-group info">
-        <textarea class="form-control" (keypress)="taChanged=true" style="width: 400px; resize: none" name="info">{{tr.info}}</textarea>
-        <button class="btn btn-primary" [disabled]="!taChanged" (click)="taChanged=!taChanged">Save</button>
-      </div>
+    <div>
+        <form class="form-horizontal" #f="ngForm" *ngIf="trip" novalidate (ngSubmit)="addOrUpdateTrip(f.value, f.valid)">
+            <div class="form-group">
+                <h4 class="trip-label">Trip name</h4>
+                <div class="trip-input">
+                    <input type="text" style="width: 70%" maxlength="30" required class="form-control" name="name" placeholder="Trip name"
+                           [(ngModel)]="trip.name">
+                </div>
+            </div>
+            <div class="form-group">
+                <h4 class=" trip-label">Date</h4>
+                <div class="trip-input">
+                    <input type="date" style="width: 70%" required class="form-control" name="startDate"
+                           [(ngModel)]="trip.startDate">
+                </div><!-- /input-group -->
+            </div>
+
+            <div class="form-group">
+                <h4 class=" trip-label">Info</h4>
+                <div class="trip-input">
+                    <textarea class="form-control" rows="7" maxlength="150" placeholder="Info"
+                              style="width: 400px; resize: none" name="info" [(ngModel)]="trip.info">
+                    </textarea>
+                </div><!-- /input-group -->
+            </div>
+            <div class="input-group info">
+                <button type="submit" class="btn btn-primary">Save</button>
+            </div>
+        </form>
     </div>
 </div>

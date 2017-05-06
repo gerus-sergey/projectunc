@@ -1,0 +1,28 @@
+
+
+.list-of-msg {
+  max-height: 200px;
+  height: 200px;
+  overflow-y: scroll;
+}
+
+.list-of-msg::-webkit-scrollbar{
+  width: 2px;
+}
+
+.list-of-msg::-webkit-scrollbar-thumb {
+  border: none;
+  background-color: transparent;
+  max-height: 5px;
+}
+
+.list-of-msg:hover::-webkit-scrollbar-thumb{
+  border: none;
+  background-color: blue;
+  max-height: 20px;
+}
+
+.list-of-msg::-webkit-scrollbar-track{
+  border: none;
+  background-color: transparent;
+}

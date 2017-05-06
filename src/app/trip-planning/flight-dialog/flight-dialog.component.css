@@ -10,14 +10,10 @@
     width: 250px;
 }
 
-.airport input.form-control {
-    width: 290px;
-}
-
 .price-dist input.form-control {
     width: 290px;
 }
 
-.airport {
+.flight-info {
     margin-top: 20px;
 }

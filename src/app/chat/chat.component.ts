@@ -1,37 +1,42 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import {Subscription} from "rxjs/Rx";
-import {ActivatedRoute} from "@angular/router";
+import { ChatService } from './chat.service';
+import {Subscription} from 'rxjs/Rx';
+import {ActivatedRoute} from '@angular/router';
+import {User} from '../models/user.interface';
+import {HttpService} from '../services/http.service';
+import {Response} from '@angular/http';
 
 
-import {Response} from "@angular/http";
-import {ChatService} from "./chat.service";
-import {User} from "../models/user.interface";
-import {HttpService} from "../services/http.service";
 
 @Component({
   selector: 'app-chat',
   templateUrl: './chat.component.html',
+  styleUrls: ['./chat.component.css'],
   providers: [ChatService, HttpService]
 })
 export class ChatComponent implements OnInit, OnDestroy {
   messages = [];
   connection;
   message;
-  public userProfile:User;
-  private id:number;
-  private routeSubscription:Subscription;
-  myDate: Date;
+  public userProfile: User;
+  private id: number;
+  private routeSubscription: Subscription;
+  date: Date;
+
+  //message: Message = new Message('', '');
+  //messages: Message[] = [];
 
   constructor(private chatService: ChatService, private route: ActivatedRoute, private httpService: HttpService) {
-    this.routeSubscription = route.params.subscribe(params=>this.id = params['id']);
+    this.routeSubscription = route.params.subscribe(params => this.id = params['id']);
+    this.date = new Date();
   }
 
 
-  sendMessage(){
+  sendMessage() {
     this.chatService.sendMessage(this.message);
-
     this.message = '';
-    this.myDate = new Date();
+    //this.message.myDate = this.date.toString();
+    //this.messages.push({msg: this.message.msg, myDate: this.message.myDate});
   }
 
   ngOnInit() {
@@ -41,7 +46,7 @@ export class ChatComponent implements OnInit, OnDestroy {
 
     this.httpService.getUser(this.id)
       .subscribe((resp: Response) => {
-        let user = resp.json();
+        const user = resp.json();
         if (user)
           this.userProfile = user;
       });

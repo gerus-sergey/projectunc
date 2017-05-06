@@ -89,7 +89,7 @@
           <small [hidden]="state.pristine ">
             <select class="form-control form-input location" name="city"
                     [(ngModel)]="form.city" #city="ngModel" required>
-              <option value="" hidden selected>State</option>
+              <option value="" hidden selected>City</option>
               <option value="{{city?.id}}"
                       *ngFor="let city of (listCityesOfTheState | slice:listCityesOfTheState.length - listCityesOfTheState.length)">
                 {{city?.name}}

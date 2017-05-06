@@ -1,9 +1,10 @@
     <div>
     <ul class="nav nav-tabs nav-justified">
-      <li class="active" (click)="showFlight = !showFlight" style="cursor: pointer"><a routerLink="/account/{{accountId}}/trips/trip-planning/{{tripPlanId}}/day/{{id}}/transport/flight"><span>Flight</span></a></li>
-      <li style="cursor: pointer"><a routerLink="/account/{{accountId}}/trips/trip-planning/{{tripPlanId}}/day/{{id}}/transport/rail"><span>Rail</span></a></li>
-      <li style="cursor: pointer"><a routerLink="/account/{{accountId}}/trips/trip-planning/{{tripPlanId}}/day/{{id}}/transport/bus"><span>Bus</span></a></li>
-      <li style="cursor: pointer"><a routerLink="/account/{{accountId}}/trips/trip-planning/{{tripPlanId}}/day/{{id}}/transport/car"><span>Car Rental</span></a></li>
+      <li class="active" style="cursor: pointer"><a routerLink="/trip-planning/{{tripPlanId}}/day/{{id}}/transport/flight"><span>Flight</span></a></li>
+      <li style="cursor: pointer"><a routerLink="/trip-planning/{{tripPlanId}}/day/{{id}}/transport/rail"><span>Rail</span></a></li>
+      <li style="cursor: pointer"><a routerLink="/trip-planning/{{tripPlanId}}/day/{{id}}/transport/bus"><span>Bus</span></a></li>
+      <li style="cursor: pointer"><a routerLink="/trip-planning/{{tripPlanId}}/day/{{id}}/transport/car"><span>Car Rental</span></a></li>
+      <li style="cursor: pointer"><a routerLink="/trip-planning/{{tripPlanId}}/day/{{id}}/transport/car"><span>Other</span></a></li>
     </ul>
     </div>
     <div class="modal-body">

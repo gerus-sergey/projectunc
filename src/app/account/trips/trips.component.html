@@ -3,7 +3,7 @@
     <div  class="row">
         <div class="col-md-6">
             <div>
-                <button routerLink="/account/{{id}}/trips/trip-planning/3" style="position: absolute; margin-left: 8px" type="button" class="btn btn-primary  btn-lg">New trip</button>
+                <button routerLink="/trip-planning/0/trip-info" style="position: absolute; margin-left: 8px" type="button" class="btn btn-primary  btn-lg">New trip</button>
                  <h2 class="title">Active trips</h2>
             </div>
             <div *ngFor="let trip of (profileTripsActive | slice:profileTripsActive.length - profileTripsActive.length)">
@@ -14,7 +14,7 @@
                         </div>
                     </div>
                     <div class="col-md-7">
-                        <h3><a href="#">{{trip?.name}}</a></h3>
+                        <h3><a routerLink="/trip-planning/{{trip?.id}}/trip-info">{{trip?.name}}</a></h3>
                         <h4>{{trip?.startDate}} - {{trip?.endDate}}</h4>
                     </div>
                     <div class="col-md-2" style="text-align: center; padding-top: 35px;">
@@ -35,7 +35,7 @@
                         </div>
                     </div>
                     <div class="col-md-7">
-                        <h3><a href="#">{{trip?.name}}</a></h3>
+                        <h3><a routerLink="/trip-planning/{{trip?.id}}/trip-info">{{trip?.name}}</a></h3>
                         <h4>{{trip?.startDate}} - {{trip?.endDate}}</h4>
                     </div>
                     <div class="col-md-2" style="text-align: center; padding-top: 35px;">
@@ -49,5 +49,5 @@
 
     </div>
 </div>
-<router-outlet></router-outlet>
+
 

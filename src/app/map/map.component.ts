@@ -11,18 +11,14 @@ declare var google: any;
 })
 export class MapComponent {
   constructor(private localStorageService: LocalStorageService){}
-  
-  name:void;
+  name:string;
 
-  addSight(): void{
+  addSight(){
     console.log("sd");
   }
 
-
   ngOnInit() {
-
     var sight: any;
-
     var map = new google.maps.Map(document.getElementById('googleMap'), {
       center: {lat: 51.6754966, lng: 39.20888230000003},
       zoom: 11,
@@ -39,6 +35,7 @@ export class MapComponent {
       searchBox.setBounds(map.getBounds());
     });
 
+    
     var markers = [];
     // Listen for the event fired when the user selects a prediction and retrieve
     // more details for that place.
@@ -73,15 +70,19 @@ export class MapComponent {
         })
 
         var infowindow = new google.maps.InfoWindow();
+        var ad = sight.name;
         var content = '<div><strong>' +
           place.name +
           '</strong><br>' +
-          place.formatted_address + '</br>' +
+          place.formatted_address + '<br>' +
           '<input type="button" value="Add sight" onclick="addSight()"></div>'
+        
+        alert(sight.name);
+        alert(sight.geometry.location);
+        
         infowindow.setContent(content);
         infowindow.open(map, marker);
         markers.push(marker);
-
         if (place.geometry.viewport) {
           // Only geocodes have viewport.
           bounds.union(place.geometry.viewport);

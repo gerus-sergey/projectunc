@@ -1,23 +1,23 @@
 .form-group {
-    display: inline-block;
+  display: inline-block;
 }
 
 .form-group.to {
-    float: right;
+  float: right;
 }
 
 .from-to input.form-control {
-    width: 250px;
+  width: 250px;
 }
 
 .station input.form-control {
-    width: 290px;
+  width: 290px;
 }
 
 .price-dist input.form-control {
-    width: 290px;
+  width: 290px;
 }
 
 .station {
-    margin-top: 20px;
+  margin-top: 20px;
 }

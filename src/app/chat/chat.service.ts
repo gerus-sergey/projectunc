@@ -1,10 +1,8 @@
 import { Observable } from 'rxjs/Observable';
 import * as io from 'socket.io-client';
-import * as moment from 'moment';
-
-
 
 export class ChatService {
+
   private url = 'http://localhost:5000';
   private socket;
 

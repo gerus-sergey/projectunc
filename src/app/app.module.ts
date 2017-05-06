@@ -45,7 +45,8 @@ import { LocalStorageModule } from 'angular-2-local-storage';
 import {MainGuard} from "./guards/main.guard";
 import {LoginGuard} from "./guards/login.guard";
 import { MapComponent } from './map/map.component';
-
+import { MessagesComponent } from './messages/messages.component';
+import {TripService} from "./services/trip.service";
 
 const userRoutes: Routes = [
   { path: 'user-account', component: UserAccountComponent},
@@ -72,11 +73,6 @@ const tripRoutes: Routes = [
   { path: 'day/:id', component: TripDayFieldComponent, children: eventRoutes}
 ];
 
-
-const tripPlaningRoutes: Routes = [
-  { path: 'trip-planning/:id', component: TripPlanningComponent, children: tripRoutes },
-];
-
 const profileRoutes: Routes = [
   { path: 'account', component: ProfileAccountComponent},
   { path: 'password', component: ProfilePasswordComponent},
@@ -85,7 +81,7 @@ const profileRoutes: Routes = [
 
 const accountRoutes: Routes = [
   { path: 'profile', component: ProfileComponent, children: profileRoutes, canActivate: [MainGuard, LoginGuard]},
-  { path: 'trips', component: TripsComponent, children: tripPlaningRoutes, canActivate: [MainGuard, LoginGuard]},
+  { path: 'trips', component: TripsComponent, canActivate: [MainGuard, LoginGuard]},
   { path: 'album', component: ProfilePhotosComponent, canActivate: [MainGuard, LoginGuard]}
 ];
 
@@ -93,11 +89,11 @@ const appRoutes: Routes =[
   { path: '', component: HomeComponent},
   { path: 'account/:id', component: AccountComponent, children: accountRoutes},
   { path: 'registered', component: RegisteredComponent},
+  { path: 'trip-planning/:id', component: TripPlanningComponent, children: tripRoutes },
   { path: 'map', component: MapComponent},
   { path: 'login', component: SignInComponent},
   { path: 'user/:id', component: UserComponent,children:userRoutes},
   { path: '**', component: NotFoundComponent },
-
 ];
 
 @NgModule({
@@ -135,7 +131,8 @@ const appRoutes: Routes =[
     TransportationComponent,
     ChatComponent,
     AccountComponent,
-    MapComponent
+    MapComponent,
+    MessagesComponent
   ],
   imports: [
     BrowserModule,
@@ -151,7 +148,7 @@ const appRoutes: Routes =[
       storageType: 'sessionStorage'
     })
   ],
-  providers: [MainGuard, LoginGuard],
+  providers: [MainGuard, LoginGuard,TripService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

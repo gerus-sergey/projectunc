@@ -1,46 +1,49 @@
-import {Component, OnInit,OnDestroy} from '@angular/core';
+import {Component, OnInit, OnDestroy} from '@angular/core';
 import {Subscription} from "rxjs/Subscription";
 import {HttpService} from "../services/http.service";
 import {ActivatedRoute} from "@angular/router";
-export class Days {
-  id:number;
-  name:string;
-}
+import {TripService} from "../services/trip.service";
+import {Trip} from "../models/trips.interface";
+import {Day} from "../models/day.interface";
+import {Activities} from "../models/activities.interface";
 
 @Component({
-  selector: 'app-trip-planning',
-  templateUrl: './trip-planning.component.html',
-  styleUrls: ['./trip-planning.component.css'],
-  providers: [HttpService]
+    selector: 'app-trip-planning',
+    templateUrl: './trip-planning.component.html',
+    styleUrls: ['./trip-planning.component.css'],
+    providers: [HttpService]
 })
 export class TripPlanningComponent implements OnInit, OnDestroy {
-  showDialog = false;
-  public days:Days[];
-  public i:number = 1;
+    showDialog = false;
+    
+    public days:Day[];
+    public i:number = 1;
+    private id:number;
+    private routeSubscription:Subscription;
 
-  private id:number;
-  private profileId:number = this.route.parent.parent.snapshot.params["id"];
-  private routeSubscription:Subscription;
+    nameDay:Date = new Date();
 
-  constructor(private route:ActivatedRoute, private httpService:HttpService) {
-    this.routeSubscription = route.params.subscribe(params=>this.id = params['id']);
-    this.days = [{
-      id: 1,
-      name: 'Day 1'
-    }];
-  }
+    ngOnInit() {
+    }
 
-  ngOnDestroy() {
-    this.routeSubscription.unsubscribe();
-  }
+    constructor(private route:ActivatedRoute, private httpService:HttpService, private tripService:TripService) {
+        this.days = [new Day(1, new Date(),[])];
+        this.routeSubscription = route.params.subscribe(params=>this.id = params['id']);
+        tripService.nameDay$.subscribe(
+            nameDay => {    
+                this.days[0].name = new Date(nameDay);
+                this.nameDay = new Date(nameDay);
+            });
+    }
 
-  addDay() {
-    this.i = this.i + 1;
-    this.days.push({id: this.i, name: "Day" + this.i});
-  }
+    addDay() {
+        this.i += 1;
+        this.nameDay.setDate(this.nameDay.getDate()+1);
+        this.days.push({id: this.i, name: this.nameDay, activities:[]});
+        this.tripService.addDay(this.i, this.nameDay);
+    }
 
-  ngOnInit() {
-
-  }
-
+    ngOnDestroy() {
+        this.routeSubscription.unsubscribe();
+    }
 }

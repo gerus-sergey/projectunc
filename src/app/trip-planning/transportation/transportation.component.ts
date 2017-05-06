@@ -10,7 +10,6 @@ import {ActivatedRoute} from "@angular/router";
 })
 export class TransportationComponent implements OnInit {
 
-  private accountId:number = this.route.parent.parent.parent.parent.snapshot.params["id"];
   private tripPlanId:number = this.route.parent.parent.snapshot.params["id"];
   private id:number = this.route.parent.snapshot.params["id"];
   private routeSubscription:Subscription;

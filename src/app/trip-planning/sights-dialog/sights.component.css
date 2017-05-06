@@ -1,29 +1,29 @@
 .trip-sights div.form-group {
-    display: inline-block;
+  display: inline-block;
 }
 
 .trip-sights select.form-control {
-    width: 196.5px;
+  width: 196.5px;
 }
 
 .list-of-sights li {
-    display: inline-block;
+  display: inline-block;
 }
 
 .list-of-sights i.fa-2x {
-    font-size: 1em;
-    margin: 1px;
+  font-size: 1em;
+  margin: 1px;
 }
 .list-of-sights button {
-    width: 35px;
-    height: 25px;
-    padding: 1px;
-    margin-left: 320px;
+  width: 35px;
+  height: 25px;
+  padding: 1px;
+  margin-left: 320px;
 }
 
 .list-of-sights {
-    max-height: 200px;
-    overflow-y: scroll;
+  max-height: 200px;
+  overflow-y: scroll;
 }
 
 .list-of-sights::-webkit-scrollbar{

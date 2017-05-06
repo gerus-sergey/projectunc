@@ -36,7 +36,7 @@ export class RegisteredComponent implements OnInit {
   listCities: Country[]=[];
   listStateOfTheCountry: State[]=[];
   listCityesOfTheState: City[]=[];
-  form:Form;
+  form:Form = new Form();
   remember:boolean = false;
 
   constructor(private route:Router, private httpService:HttpService,private localStorageService: LocalStorageService) {
@@ -116,6 +116,7 @@ export class RegisteredComponent implements OnInit {
         .subscribe((data) => {
          this.receivedUser = data;
           this.done = true;
+          console.log( this.receivedUser);
           this.route.navigateByUrl("/account/" + this.receivedUser.id + "/profile/account");
           if(this.remember) {
             localStorage.setItem('id', this.receivedUser.id.toString());
