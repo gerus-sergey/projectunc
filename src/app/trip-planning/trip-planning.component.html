@@ -1,18 +1,22 @@
-<div class="container">
+<div class="container" style="min-height: 600px">
     <div class="row">
 
         <div class="planning col-md-3">
             <div class="sidebar-img">
                 <label for="photo" class="trip-avatar trip-avatar">
                     <img src="{{pathToPhoto}}" class="img-circle image">
-                    <span>Click here to upload</span>
+                    <span [hidden]="flagOne" >Click here to upload</span>
                 </label>
             </div>
 
 
             <div>
                 <button (click)="setVisible()" style="height: 40px;" class="btn btn-primary button-menu">Trip info
-                    <i class="fa fa-caret-right" style="float: right;padding-top: 4px;"></i></button>
+                    <i class="fa fa-caret-right" style="float: right;padding-top: 4px;"></i>
+                </button>
+                <button style="width: 198px; height: 40px; margin-top: 2px;" class="btn btn-primary" (click)="showUsersDialog = !showUsersDialog" data-toggle="modal">
+                    Participants of trip
+                </button>
                 <div class="sidebar-planning">
                     <ul class="nav nav-pills nav-stacked">
                         <div *ngFor="let day of days;">
@@ -36,7 +40,7 @@
                 </button>
             </div>
             <form style="visibility: hidden">
-                <input type="file" id="photo" (change)="upload()">
+                <input [disabled]="flagOne" type="file" id="photo" (change)="upload()">
             </form>
         </div>
 
@@ -129,6 +133,7 @@
                                             <a data-toggle="collapse" data-parent="#accordion" href="#{{i+1}}">
                                                 Start time: {{action?.startTime | date :'HH:mm'}}
                                                 Name: {{action?.name}}
+                                                id:{{action.id}}
                                             </a>
 
                                         </h4>
@@ -183,7 +188,7 @@
                                                 </div>
                                                 <div class="col-md-9">
                                                     <div style="padding-left: 15px">
-                                                        <datetime [(ngModel)]="action.endTime" id="endTime"
+                                                        <datetime  [(ngModel)]="action.endTime" id="endTime"
                                                                   name="endTime"
                                                                   [timepicker]="{ icon: 'fa fa-clock-o' }"
                                                                   [datepicker]="{ icon: 'fa fa-calendar' }"></datetime>
@@ -373,9 +378,6 @@
             </div>
         </div>
         <div class="col-md-3 col-xs-12">
-            <button class="btn btn-primary" (click)="showUsersDialog = !showUsersDialog" data-toggle="modal">
-                Participants of trip
-            </button>
             <app-chat></app-chat>
         </div>
     </div>

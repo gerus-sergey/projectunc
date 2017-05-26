@@ -2,10 +2,10 @@
     <div class="chat">
         <header style="color: blue; text-align: center; font-size: x-large; padding: 10px">Discussion</header>
         <div class="msg-body">
-            <ul #list class="list" [scrollTop]="list.scrollHeight">
+            <ul #list class="list" [scrollTop]="list.scrollHeight" style="padding-left: 0px">
                 <li id="sender" *ngFor="let message of messages" style="list-style-type: none" >
                   <div style="margin-top: 30px; padding-bottom: 10px;">
-                    <div style="margin-top: 10px"><span><img src="assets/img/user_pic.jpg" class="img-circle image" style="max-height: 20px;max-width: 20px;-webkit-border-radius: 100%; -moz-border-radius: 100%; border-radius: 100%;width: 100%;height: 100%"></span>
+                    <div style="margin-top: 10px"><span><img src="{{message.sender.userPhoto}}" class="img-circle image" style="max-height: 20px;max-width: 20px;-webkit-border-radius: 100%; -moz-border-radius: 100%; border-radius: 100%;width: 100%;height: 100%"></span>
                   {{message.sender.lastName}} {{message.sender.firstName}}</div>
                   <div style="margin-top: 10px">{{message.body}}</div>
                   <small style="color: dimgray; text-align: center">{{message.sendTime | amCalendar : referenceTime : formats }}</small><br></div>

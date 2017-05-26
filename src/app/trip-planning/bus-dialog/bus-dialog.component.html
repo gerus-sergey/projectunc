@@ -8,8 +8,11 @@
                        [(ngModel)]="bus.start_address"/>
 
                 <label>Departure Time</label>
-                <input class="form-control" name="startTime" type="datetime-local" required
-                       placeholder="2017-05-29T10:25:OOZ" [(ngModel)]="bus.start_time"/>
+                
+                <datetime [(ngModel)]="bus.start_time" id="startTime"
+                          name="startTime" required
+                          [timepicker]="{ icon: 'fa fa-clock-o' }"
+                          [datepicker]="{ icon: 'fa fa-calendar' }"></datetime>
             </div>
             <div class="form-group to">
 

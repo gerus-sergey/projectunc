@@ -81,7 +81,7 @@ export class ChatComponent implements OnInit, OnDestroy {
               document.getElementById('sender').style.background = 'palegoldenrod';
             }
           }
-
+    
           console.log(this.message.sender.id + ' ' + parseInt(localStorage.getItem('id')));
 
 

@@ -11,7 +11,7 @@ import {Coordinates} from "../../models/coordinates.interface";
 })
 export class FlightDialogComponent implements OnInit {
     flight:Movement;
-
+    date:Date;
     constructor(private tripService:TripService) {
     }
 

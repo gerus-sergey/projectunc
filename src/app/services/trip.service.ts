@@ -9,7 +9,8 @@ import {Participant} from "../models/participant.interface";
 import {LocalStorageService} from 'angular-2-local-storage';
 import {Sight} from "../models/sight";
 import {Album} from "../models/album.interface";
-
+import {Observable} from "rxjs/Observable";
+import {Router} from "@angular/router";
 /**
  * Created by Сергей on 30.04.2017.
  */
@@ -21,7 +22,7 @@ export class TripService {
     role:number;
     idUser:number = parseInt(localStorage.getItem('id'));
 
-    constructor(private httpService:HttpService, private localStorageService:LocalStorageService) {
+    constructor(private route:Router,private httpService:HttpService, private localStorageService:LocalStorageService) {
     }
 
     addTrip(addTrip:Trip) {
@@ -87,11 +88,17 @@ export class TripService {
     }
 
     addRole(idTrip:number) {
+        console.log(this.idUser + " " + idTrip);
         this.httpService.getRoleInTrip(this.idUser, idTrip)
+            .catch((error:any) => {
+                this.setRole(-1);
+                return Observable.throw(error);
+            })
             .subscribe((data) => {
                 console.log("idUser: " + this.idUser + "idTrip: " + idTrip + "role" + data.role.id);
                 this.setRole(data.role.id);
-            });
+            })
+            
     }
 
 
@@ -99,14 +106,15 @@ export class TripService {
         this.httpService.addOrUpdateTrip(trip, this.idUser)
             .subscribe((data) => {
                 this.trip.id = data.id;
-                console.log( data);
-                console.log(this.trip);
+                //console.log(this.trip);
+                this.route.navigateByUrl("/trip-planning/" + this.trip.id);
                 this.httpService.addAlbum(new Album(null, this.trip.name, this.trip.startDate, "album for " + this.trip.name, this.trip))
                     .subscribe((data) => {
                         this.trip.album = data;
-                        console.log(this.trip);
+                        //console.log(this.trip);
                     })
             });
+
     }
 
     

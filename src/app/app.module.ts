@@ -49,6 +49,7 @@ import {DatepickerModule} from 'ng2-bootstrap';
 import { NKDatetimeModule } from 'ng2-datetime/ng2-datetime';
 import { TripInfoComponent } from './user/trip-info/trip-info.component';
 import { FilterComponent } from './filter/filter.component';
+import {TripGuard} from "./guards/trip.guard";
 
 const transportRoutes: Routes = [
   { path: 'flight', component: FlightDialogComponent},
@@ -74,7 +75,7 @@ const appRoutes: Routes =[
   { path: '', component: HomeComponent},
   { path: 'account/:id', component: AccountComponent, children: accountRoutes},
   { path: 'registered', component: RegisteredComponent},
-  { path: 'trip-planning/:id', component: TripPlanningComponent, children: tripRoutes },
+  { path: 'trip-planning/:id', component: TripPlanningComponent, children: tripRoutes, canActivate: [TripGuard]},
   { path: 'map', component: MapComponent},
   { path: 'login', component: SignInComponent},
   { path: 'trip-info/:id', component: TripInfoComponent},
@@ -139,7 +140,7 @@ let providers = {
     FacebookModule.forRoot(),
     Angular2SocialLoginModule
   ],
-  providers: [MainGuard, LoginGuard,TripService, HttpService],
+  providers: [MainGuard, LoginGuard,TripService, HttpService, TripGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
