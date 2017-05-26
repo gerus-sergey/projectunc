@@ -52,6 +52,8 @@ export class TripPlanningComponent implements OnInit, OnDestroy {
     selectedDay:Day;
     visible:boolean = true;
     visible2:boolean = false;
+    activityToDelete:Activities;
+    movementToDelete:Movement;
     activity:Activities[] = [];
     movement:Movement[] = [];
     private pathToPhoto:string;
@@ -140,14 +142,19 @@ export class TripPlanningComponent implements OnInit, OnDestroy {
 
         this.subTwo = tripService.activity$.subscribe(
             activity => {
-                this.tripService.setActivities(activity);
-                if (new Date(activity.startTime).getDate() + new Date(activity.startTime).getMonth() ==
-                    this.selectedDay.name.getDate() + this.selectedDay.name.getMonth()) {
-                    this.selectedDay.action.push(activity);
-                    this.selectedDay.action.sort(function (a, b) {
-                        return (a.startTime.valueOf() + 24 * 60 * 60 * 1000) - (b.startTime.valueOf() + 24 * 60 * 60 * 1000);
+                //
+                this.httpService.addActivity(activity, this.trip.id)
+                    .subscribe((data) => {
+                        console.log(data);
+                        activity.id = data.id;
+                        if (new Date(activity.startTime).getDate() + new Date(activity.startTime).getMonth() ==
+                            this.selectedDay.name.getDate() + this.selectedDay.name.getMonth()) {
+                            this.selectedDay.action.push(activity);
+                            this.selectedDay.action.sort(function (a, b) {
+                                return (a.startTime.valueOf() + 24 * 60 * 60 * 1000) - (b.startTime.valueOf() + 24 * 60 * 60 * 1000);
+                            });
+                        }
                     });
-                }
             });
 
         this.subThree = tripService.movement$.subscribe(
@@ -324,16 +331,26 @@ export class TripPlanningComponent implements OnInit, OnDestroy {
     }
     
     deleteMovements(id:number){
+        this.httpService.getMovement(id)
+            .subscribe((data) => {
+                this.movementToDelete = data;
+            });
         this.httpService.deleteMovement(id)
             .subscribe((data) => {
                 console.log(data);
+                this.selectedDay.action.splice(this.selectedDay.action.indexOf(this.movementToDelete));
             })
     }
 
     deleteActivity(id:number){
+        this.httpService.getActivity(id)
+            .subscribe((data) => {
+                this.activityToDelete = data;
+            });
         this.httpService.deleteActivity(id)
             .subscribe((data) => {
                 console.log(data);
+                this.selectedDay.action.splice(this.selectedDay.action.indexOf(this.activityToDelete));
             })
     }
 

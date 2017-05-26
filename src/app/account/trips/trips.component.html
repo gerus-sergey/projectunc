@@ -10,7 +10,7 @@
                 <div class="panel trip-panel row">
                     <div class="trip-pic col-md-3" style="padding-left: 0px">
                         <div class="trippic-wrapper">
-                            <img class="img-responsive img-trips" src="{{trip?.img}}" alt="">
+                            <img class="img-responsive img-trips" src="{{trip?.photo}}" alt="">
                         </div>
                     </div>
                     <div class="col-md-7">
@@ -18,7 +18,7 @@
                         <h4>{{trip?.startDate | date :'dd.MM.yyyy' }} - {{trip?.endDate | date :'dd.MM.yyyy'}}</h4>
                     </div>
                     <div class="col-md-2" style="text-align: center; padding-top: 35px;">
-                        <button (click)="deleteTrip(trip?.id)" type="button" class="btn btn-primary btn-trips">
+                        <button (click)="deleteTrip(trip?.id)" type="button" class="btn btn-primary btn-trips" >
                             <i class="fa  fa-times fa-lg" aria-hidden="true"></i>
                         </button>
                     </div>

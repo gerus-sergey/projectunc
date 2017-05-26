@@ -172,6 +172,20 @@ export class HttpService {
             });
     }
 
+    getActivity(id) {
+        return this.http.get(this.host + 'activities/' + id)
+            .catch((error:any) => {
+                return Observable.throw(error);
+            });
+    }
+
+    getMovement(id) {
+        return this.http.get(this.host + 'movements/' + id)
+            .catch((error:any) => {
+                return Observable.throw(error);
+            });
+    }
+
     getHomeTrips() {
         return this.http.get(this.host + 'travels')
             .catch((error:any) => {

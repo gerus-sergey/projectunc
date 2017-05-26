@@ -5,7 +5,7 @@
         <div class="panel trip-panel">
           <div class="trip-pic">
             <div class="trippic-wrapper">
-              <img class="img-responsive" src="{{trip?.photo}}" alt="">
+              <a routerLink="/trip-info/{{trip?.id}}"> <img class="img-responsive" src="{{trip?.photo}}"></a>
             </div>
           </div>
           <h3><a routerLink="/trip-info/{{trip?.id}}">{{trip?.name}}</a></h3>
