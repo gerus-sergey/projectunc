@@ -4,6 +4,7 @@ import {Subscription} from "rxjs/Rx";
 import {Response} from "@angular/http";
 import {HttpService} from "../../services/http.service";
 import {Trip} from "../../models/trips.interface";
+import {Router} from '@angular/router';
 
 
 @Component({
@@ -18,6 +19,7 @@ export class TripsComponent implements OnInit, OnDestroy {
     profileTripsComplited:Trip[] = [];
     public id:number;
     private routeSubscription:Subscription;
+    private trip: Trip;
 
     constructor(private route:ActivatedRoute, private httpService:HttpService) {
         this.routeSubscription = route.params.subscribe(params=>this.id = params['id']);
@@ -39,9 +41,16 @@ export class TripsComponent implements OnInit, OnDestroy {
     }
 
     deleteTrip(id:number) {
+        this.httpService.getTrip(id)
+            .subscribe((data) => {
+                this.trip = data;
+            });
+        console.log(this.trip);
         this.httpService.deleteTrip(id)
             .subscribe((data) => {
                 console.log(data);
+                this.profileTripsActive.splice(this.profileTripsActive.indexOf(this.trip));
+                this.profileTripsComplited.splice(this.profileTripsActive.indexOf(this.trip));
             });
     }
 

@@ -26,4 +26,5 @@ export class HomeTripsComponent implements OnInit {
         });
       
   }
+
 }

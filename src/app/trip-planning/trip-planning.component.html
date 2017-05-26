@@ -144,7 +144,7 @@
                                         <i *ngIf="action.activityType.name == 'sight'"
                                            class="fa fa-map-marker fa-lg"
                                            aria-hidden="true"></i>
-                                        <button [hidden]="flag" type="button" class="btn btn-primary btn-action" (click)="deleteActivity(action?.id)">
+                                        <button [hidden]="flag" type="button" class="btn btn-primary btn-action" (click)="deleteActivity(action.id)">
                                             <i class="fa  fa-times fa-lg " aria-hidden="true"></i>
                                         </button>
                                     </div>
@@ -266,7 +266,7 @@
                                             <i *ngIf="action.transport.name == 'bus'" class="fa fa-bus fa-lg"
                                                aria-hidden="true"></i>
                                             <button [hidden]="flag" type="button"
-                                                    class="btn btn-primary btn-action" (click)="deleteMovements(action?.id)">
+                                                    class="btn btn-primary btn-action" (click)="deleteMovements(action.id)">
                                                 <i class="fa  fa-times fa-lg" aria-hidden="true"></i>
                                             </button>
                                         </div>
