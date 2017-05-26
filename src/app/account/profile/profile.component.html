@@ -1,27 +1,265 @@
-<div class="container">
+<div class="container" style="min-height: 700px">
     <div class="row">
         <div class="profile-menu col-md-3">
             <div class="sidebar-img">
-                <label for="userAvatar" class="user-avatar">
-                    <img src="assets/img/trips/2.jpg" class="img-circle image" >
+                <label for="photo" class="user-avatar">
+                    <img src="{{pathToPhoto}}" class="img-circle image">
                     <span>Click here to upload</span>
                 </label>
                 <h3 class="text-center" *ngIf="userProfile">{{userProfile.lastName}} {{userProfile.firstName}}</h3>
             </div>
-                <div  class="sidebar-profile">
+            <div class="sidebar-profile">
                 <ul class="nav nav-pills nav-stacked">
-                    <li class="active"><a routerLink="/account/{{id}}/profile/account">Account</a></li>
-                    <li><a routerLink="/account/{{id}}/profile/password">Password</a></li>
-                    <li><a routerLink="/account/{{id}}/profile/email">Email</a></li>
+                    <li class="active"><a href="#profile" data-toggle="tab">Account</a></li>
+                    <li><a href="#password" data-toggle="tab">Password</a></li>
+                    <li><a href="#email" data-toggle="tab">Email</a></li>
                 </ul>
-                    <form style="visibility: hidden">
-                  <input type="file" id="userAvatar">
-                </form>
             </div>
         </div>
 
         <div class="profile-info col-md-9">
-            <router-outlet></router-outlet>
+            <div class="tab-content">
+                <div class="tab-pane active" id="profile">
+                    <div class="container-fluid">
+                        <form class="form-horizontal" *ngIf="userProfile" #f="ngForm" novalidate
+                              (ngSubmit)="updateUser(f.value, f.valid)">
+                            <div class="form-group">
+                                <h4 class=" profile-label">Lastname</h4>
+                                <div class="input-group profile-input">
+                                    <input id="foobar" type="text" #lastname="ngModel" class="form-control"
+                                           name="lastName"
+                                           [(ngModel)]="userProfile.lastName" minlength="2" maxlength="8" required>
+                                    <div class="input-group-btn profile-input-button">
+                                        <button class="btn btn-default profile-button-edit" type="button"
+                                                onclick="document.getElementById('foobar').removeAttribute('disabled')">
+                                            <i
+                                                    class="fa fa-pencil fa-lg icon-edit"
+                                                    aria-hidden="true"></i></button>
+                                    </div>
+
+                                </div><!-- /input-group -->
+                            </div>
+                            <div class="form-group">
+                                <h4 class=" profile-label">Firstname</h4>
+                                <div class="input-group profile-input">
+                                    <input type="text" maxlength="20" required class="form-control"
+                                           name="firstName"
+                                           [(ngModel)]="userProfile.firstName">
+                                    <div class="input-group-btn profile-input-button">
+                                        <button class="btn btn-default profile-button-edit" type="button"
+                                                onclick="document.getElementById('foobar').setAttribute('disabled', 'disabled');">
+                                            <i
+                                                    class="fa fa-pencil fa-lg icon-edit"
+                                                    aria-hidden="true"></i></button>
+                                    </div>
+                                </div><!-- /input-group -->
+                            </div>
+                            <div class="form-group">
+                                <h4 class=" profile-label">Day of birth</h4>
+                                <div class="input-group profile-input">
+                                    <input type="date" required class="form-control" name="birthday"
+                                           [(ngModel)]="userProfile.birthday">
+                                    <div class="input-group-btn profile-input-button">
+                                        <button class="btn btn-default profile-button-edit" type="button"
+                                                onclick="this.form.birthday.disabled = 0"><i
+                                                class="fa fa-pencil fa-lg icon-edit"
+                                                aria-hidden="true"></i></button>
+                                    </div>
+                                </div><!-- /input-group -->
+                            </div>
+                            <div class="form-group">
+                                <h4 class=" profile-label">Gender</h4>
+                                <div class="input-group profile-input">
+                                    <select [(ngModel)]="userProfile.gender.id" required name="gender"
+                                            class="form-control form-input">
+                                        <option [value]="userProfile.gender.id" hidden>{{userProfile.gender.gender}}
+                                        </option>
+                                        <option value="1">Male</option>
+                                        <option value="2">Female</option>
+                                    </select>
+                                    <div class="input-group-btn profile-input-button">
+                                        <button class="btn btn-default profile-button-edit" type="button"
+                                                onclick="this.form.gender.disabled = 0"><i
+                                                class="fa fa-pencil fa-lg icon-edit"
+                                                aria-hidden="true"></i></button>
+                                    </div>
+                                </div><!-- /input-group -->
+                            </div>
+
+
+                            <div class="form-group">
+                                <h4 class=" profile-label">Country</h4>
+                                <div class="input-group profile-input">
+                                    <select class="form-control form-input" name="country"
+                                            (change)="setCountryId(userProfile.city.state.country.name)"
+                                            [(ngModel)]="userProfile.city.state.country.name" #country="ngModel"
+                                            required>
+
+                                        <option hidden>
+                                            {{userProfile.city.state.country.name}}
+                                        </option>
+
+                                        <option value="{{country?.id}}" *ngFor="let country of listCities">
+                                            {{country?.name}}
+                                        </option>
+
+                                    </select>
+
+                                    <div class="input-group-btn profile-input-button">
+                                        <button class="btn btn-default profile-button-edit" type="button"
+                                                onclick="this.form.country.disabled = 0"><i
+                                                class="fa fa-pencil fa-lg icon-edit"
+                                                aria-hidden="true"></i></button>
+                                    </div>
+                                </div><!-- /input-group -->
+                            </div>
+
+
+                            <div class="form-group">
+                                <h4 class=" profile-label">State</h4>
+                                <div class="input-group profile-input">
+
+                                    <select class="form-control form-input location" name="state"
+                                            (change)="setStateId(userProfile.city.state.name)"
+                                            [(ngModel)]="userProfile.city.state.name" #state="ngModel" required>
+
+                                        <option hidden>
+                                            {{userProfile.city.state.name}}
+                                        </option>
+
+                                        <option value="{{state?.id}}"
+                                                *ngFor="let state of listStateOfTheCountry">
+                                            {{state?.name}}
+                                        </option>
+                                    </select>
+
+                                    <div class="input-group-btn profile-input-button">
+                                        <button class="btn btn-default profile-button-edit" type="button"
+                                                onclick="this.form.state.disabled = 0"><i
+                                                class="fa fa-pencil fa-lg icon-edit"
+                                                aria-hidden="true"></i></button>
+                                    </div>
+                                </div><!-- /input-group -->
+                            </div>
+
+
+                            <div class="form-group">
+                                <h4 class=" profile-label">City</h4>
+                                <div class="input-group profile-input">
+
+                                    <select class="form-control form-input location" name="city"
+                                            [ngModel]="userProfile.city.name" #city="ngModel" required>
+                                        <option hidden>
+                                            {{userProfile.city.name}}
+                                        </option>
+                                        <option value="{{city?.id}}"
+                                                *ngFor="let city of (listCityesOfTheState | slice:listCityesOfTheState.length - listCityesOfTheState.length)">
+                                            {{city?.name}}
+                                        </option>
+                                    </select>
+                                    <div class="input-group-btn profile-input-button">
+                                        <button class="btn btn-default profile-button-edit" type="button"
+                                                onclick="this.form.city.disabled = 0"><i
+                                                class="fa fa-pencil fa-lg icon-edit"
+                                                aria-hidden="true"></i></button>
+                                    </div>
+                                </div><!-- /input-group -->
+                            </div>
+
+
+                            <div class="form-group">
+                                <h4 class=" profile-label">Info</h4>
+                                <div class="input-group profile-input">
+                        <textarea required class="form-control" rows="7" maxlength="150"
+                                  style="width: 400px; resize: none" name="info" [(ngModel)]="userProfile.info">
+                            </textarea>
+                                    <div class="input-group-btn profile-input-button">
+                                        <button class="btn btn-default profile-button-edit" type="button"
+                                                onclick="this.form.info.disabled = 0" style="height: 148.5px"><i
+                                                class="fa fa-pencil fa-lg icon-edit" aria-hidden="true"></i></button>
+                                    </div>
+                                </div><!-- /input-group -->
+                            </div>
+                            <div class="form-group" style="padding-top: 10px">
+                                <button type="submit" class="btn btn-primary">Save changes</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="tab-pane" id="password">
+                    <div style="top: 50%;left: 50%; transform: translate(-50%,5%);z-index: inherit; position: absolute" class="alert alert-danger" *ngIf="confPass">
+                        <a class="close" data-dismiss="alert"> &times;</a>
+                        You signed out &nbsp;
+                    </div>
+                    <div class="container-fluid">
+                        <form class="form-horizontal" #f2="ngForm" novalidate (ngSubmit)="updatePassword(f2.value, f2.valid)">
+                            <div class="form-group">
+                                <h4 class=" profile-label">Current password</h4>
+                                <div class="profile-password">
+                                    <input type="password" [(ngModel)]="userPassword.oldPassword" style="float: left; width: 139px; margin-right: 10px" maxlength="10" minlength="6"
+                                           required class="form-control" name="oldPassword">
+                                    <button type="button" style="float: left" class="btn btn-primary">Forgot password
+                                    </button>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <h4 class=" profile-label">New password</h4>
+                                <div class="profile-password">
+                                    <input type="password" [(ngModel)]="userPassword.password" minlength="6" maxlength="10" required class="form-control" name="password" validateEqual="confirmPassword" reverse="true"  #password="ngModel">
+                                    <small [hidden]="password.valid ||  (password.pristine && !f.submitted)">
+                                        Password mismatch(at least six characters)
+                                    </small>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <h4 class=" profile-label">Confirm password</h4>
+                                <div class="profile-password">
+                                    <input type="password" [(ngModel)]="userPassword.confirmPassword" maxlength="10" required class="form-control" name="confirmPassword" validateEqual="password"  #confirmPassword="ngModel">
+                                    <small [hidden]="confirmPassword.valid || (confirmPassword.pristine && !f.submitted)">
+                                        Password is required
+                                    </small>
+                                </div>
+                            </div>
+
+                            <div class="form-group" style="padding-top: 10px">
+                                <button type="submit" class="btn btn-primary">Update password</button>
+                            </div>
+                        </form>
+                    </div>
+
+                </div>
+
+                <div class="tab-pane" id="email">
+                    <div class="container-fluid">
+                        <form class="form-horizontal" #f="ngForm" novalidate>
+                            <div class="form-group">
+                                <h4 class=" profile-label">E-mail</h4>
+                                <div class="profile-email">
+                                    <input type="password" style="float: left; margin-right: 10px" maxlength="10"
+                                           required
+                                           class="form-control" name="oldPassword">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="checkbox">
+                                    <label>
+                                        <input type="checkbox">Inform about the invitation to travel
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="form-group" style="padding-top: 10px">
+                                <button type="button" class="btn btn-primary">Save changes</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
         </div>
+
+        <form style="visibility: hidden">
+            <input type="file" id="photo" (change)="upload()">
+        </form>
     </div>
 </div>

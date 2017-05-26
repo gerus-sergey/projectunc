@@ -1,34 +1,44 @@
-<div class="container">
-  <ul class="gn-menu-main" style="border-bottom: 1px solid #c6d0da">
-    <li class="gn-trigger">
-      <a class="gn-icon gn-icon-menu"><span>Menu</span></a>
+<div id="sidebar" class="container" >
+  <div style="top: 50%;left: 50%; transform: translate(-50%,5%);z-index: inherit; position: absolute" class="alert alert-danger" *ngIf="signOutSuccess">
+    <a class="close" data-dismiss="alert"> &times;</a>
+    You signed out &nbsp;
+  </div>
+
+  <ul class="gn-menu-main" style="border-bottom: 1px solid #c6d0da" >
+    <li id="menu" class="gn-trigger">
+      <div [hidden]="signOutMenu">
+        <a style="padding-left: 13px;" class="gn-icon gn-icon-menu"><span>Menu</span></a>
+      </div>
       <nav class="gn-menu-wrapper" style="border-right:1px solid #c6d0da">
         <div class="gn-scroller">
           <ul class="gn-menu">
             <li><a href="#"> <i class="fa fa-home fa-2x i-position" aria-hidden="true" style="position: relative"></i>Home</a></li>
-            <li><a routerLink="/account/{{id}}/profile/account"><i class="fa fa-user fa-2x i-position" aria-hidden="true" style=" margin:0 18px 0 17px;"></i>Profile</a></li>
+            <li><a routerLink="/account/{{id}}/profile"><i class="fa fa-user fa-2x i-position" aria-hidden="true" style=" margin:0 18px 0 17px;"></i>Profile</a></li>
             <li><a routerLink="account/{{id}}/trips/"><i class="fa fa-map-marker fa-2x i-position" aria-hidden="true" style=" margin:0 20px 0 20px;"></i>Trips</a></li>
-            <li><a routerLink="map"><i class="fa fa-map fa-2x i-position" aria-hidden="true" style="margin-right: 15px;" ></i>Map</a></li>
-            <li><a routerLink="account/{{id}}/album"><i class="fa fa-picture-o fa-2x i-position" aria-hidden="true"></i>Photos</a></li>
-            <li (click)="showMsgDialog = !showMsgDialog" data-toggle="modal"><a><i class="fa fa-envelope fa-2x i-position" aria-hidden="true"></i>Messages</a></li>
+           <!--// <li (click)="showMsgDialog = !showMsgDialog" data-toggle="modal"><a><i class="fa fa-envelope fa-2x i-position" aria-hidden="true"></i>Messages</a></li>-->
             <li><a (click)="logout()"><i class="fa fa-sign-out fa-2x i-position" aria-hidden="true"></i>Log out</a></li>
           </ul>
         </div><!-- /gn-scroller -->
       </nav>
     </li>
-    <li style="float: right"><a routerLink="/registered"><span>Sign up</span></a></li>
-    <li style="float: right"><a routerLink="/login"><span>Sign in</span></a></li>
 
+    <li style="border: none">
+      <img src="assets/img/logo.png">
+    </li>
+
+    <li id="reg" style="float: right; border: none"><a routerLink="/registered"><span>Sign up</span></a></li>
+    <li id="log" style="float: right; border: none"><a routerLink="/login"><span>Sign in</span></a></li>
   </ul>
 
 </div><!-- /container -->
 
-<!--SightsDialog-->
-<app-dialog [(visible)]="showMsgDialog">
-  <div class="modal-content">
-    <app-messages></app-messages>
-    <div class="modal-footer">
-      <button type="button" class="btn btn-primary" (click)="showMsgDialog = !showMsgDialog">Close</button>
-    </div>
-  </div>
-</app-dialog>
+
+<!--&lt;!&ndash;SightsDialog&ndash;&gt;-->
+<!--<app-dialog [(visible)]="showMsgDialog">-->
+  <!--<div class="modal-content">-->
+    <!--<app-messages></app-messages>-->
+    <!--<div class="modal-footer">-->
+      <!--<button type="button" class="btn btn-primary" (click)="showMsgDialog = !showMsgDialog">Close</button>-->
+    <!--</div>-->
+  <!--</div>-->
+<!--</app-dialog>-->

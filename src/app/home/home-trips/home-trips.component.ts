@@ -20,11 +20,16 @@ export class HomeTripsComponent implements OnInit {
         .subscribe((resp: Response) => {
           let tripList = resp.json();
           for(let index in tripList){
-            console.log(tripList[index]);
             let trip = tripList[index];
             this.homeTrips.push(trip);
           }
         });
+      
   }
-
+    sortTrip(){
+        this.homeTrips.sort(function (a, b) {
+            return a.id - b.id;
+        });
+        console.log(this.homeTrips);
+    }
 }

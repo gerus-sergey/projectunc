@@ -1,12 +1,13 @@
     <div>
     <ul class="nav nav-tabs nav-justified">
-      <li class="active" style="cursor: pointer"><a routerLink="/trip-planning/{{tripPlanId}}/day/{{id}}/transport/flight"><span>Flight</span></a></li>
-      <li style="cursor: pointer"><a routerLink="/trip-planning/{{tripPlanId}}/day/{{id}}/transport/rail"><span>Rail</span></a></li>
-      <li style="cursor: pointer"><a routerLink="/trip-planning/{{tripPlanId}}/day/{{id}}/transport/bus"><span>Bus</span></a></li>
-      <li style="cursor: pointer"><a routerLink="/trip-planning/{{tripPlanId}}/day/{{id}}/transport/car"><span>Car Rental</span></a></li>
-      <li style="cursor: pointer"><a routerLink="/trip-planning/{{tripPlanId}}/day/{{id}}/transport/car"><span>Other</span></a></li>
+      <li class="active" style="cursor: pointer"><a routerLink="/trip-planning/{{tripPlanId}}/transport/flight"><span>Flight</span></a></li>
+      <li style="cursor: pointer"><a routerLink="/trip-planning/{{tripPlanId}}/transport/rail"><span>Rail</span></a></li>
+      <li style="cursor: pointer"><a routerLink="/trip-planning/{{tripPlanId}}/transport/bus" ><span>Bus</span></a></li>
+      <li style="cursor: pointer"><a routerLink="/trip-planning/{{tripPlanId}}/transport/car" ><span>Car Rental</span></a></li>
     </ul>
+
+
     </div>
-    <div class="modal-body">
+    <div class="modal-body" style="margin: 15px">
       <router-outlet></router-outlet>
     </div>

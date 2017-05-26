@@ -10,7 +10,10 @@
 input.form-control {
     width: 250px;
 }
-
-.from-to {
-    margin-top: 20px;
+small{
+    position: absolute;
+    color: red;
 }
+input.ng-touched.ng-invalid {border:solid red 1.5px;}
+
+

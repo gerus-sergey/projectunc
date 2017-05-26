@@ -1,0 +1,104 @@
+.panel.trip-panel {
+  padding: 7px;
+  margin: 2px;
+  background-color: #edeef0;
+}
+
+.trip-pic img {
+  border-radius: 2px;
+}
+.flex {
+  padding: 5px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+.flex-itm {
+  display: flex;
+  flex: 1 1 auto;
+  width: 33.3%;
+  margin-bottom: 10px;
+  padding-left: 10px;
+}
+
+.profile-label{
+  float: left;
+}
+.profile-input{
+  width: 70%;
+  padding-left: 20px;
+  margin-left: 120px;
+}
+.profile-input-button{
+  display: none;
+}
+.profile-input:hover .profile-input-button{
+  display: block;
+}
+.icon-edit{
+  margin-left: 0;
+  margin-right: 0;
+}
+.profile-button-edit{
+  height: 34px;
+}
+
+.container {
+  background-color: white;
+  margin-top: 80px;
+  width: 90%;
+  margin-bottom: 20px;
+  z-index: 10;
+  border-radius: 0.5rem;
+  height: 100%;
+  padding: 40px;
+}
+
+.profile-info {
+  padding-right: 40px;
+}
+
+.sidebar-profile {
+  width: 200px;
+  padding-top: 20px;
+}
+
+.sidebar-img {
+  width: 200px;
+  display: inline-block;
+  text-align: center;
+}
+
+.image {
+  width: 100%;
+  height: 100%;
+}
+
+.user-avatar {
+  -webkit-border-radius: 100%;
+  -moz-border-radius: 100%;
+  border-radius: 100%;
+  width: 140px;
+  height: 140px;
+  background-color: grey;
+  position: relative;
+  overflow: hidden;
+}
+
+.user-avatar span {
+  display: none;
+}
+
+.user-avatar:hover span {
+  position: absolute;
+  background-color: rgba(0,0,0,0.4);
+  color: #fff;
+  font-size: 12px;
+  text-align: center;
+  top: 0;
+  left: 0;
+  right: 0;
+  line-height: 140px;
+  display: block;
+}
+

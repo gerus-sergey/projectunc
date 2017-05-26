@@ -1,14 +1,14 @@
 import { Observable } from 'rxjs/Observable';
 import * as io from 'socket.io-client';
+import {chatMessage} from "../models/chatMessage.inerface";
 
 export class ChatService {
 
   private url = 'http://localhost:5000';
   private socket;
-
-
-  sendMessage(message){
-    this.socket.emit('add-message', message);
+  
+  sendMessage(chatMessage:chatMessage){
+    this.socket.emit('add-message', chatMessage);
   }
 
   getMessages() {
@@ -20,7 +20,7 @@ export class ChatService {
       return () => {
         this.socket.disconnect();
       };
-    })
+    });
     return observable;
   }
 }

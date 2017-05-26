@@ -6,7 +6,6 @@ import {HttpService} from "../../services/http.service";
 import {Trip} from "../../models/trips.interface";
 
 
-
 @Component({
     selector: 'app-trips',
     templateUrl: './trips.component.html',
@@ -17,13 +16,13 @@ export class TripsComponent implements OnInit, OnDestroy {
 
     profileTripsActive:Trip[] = [];
     profileTripsComplited:Trip[] = [];
-    public id: number;
+    public id:number;
     private routeSubscription:Subscription;
-    
+
     constructor(private route:ActivatedRoute, private httpService:HttpService) {
         this.routeSubscription = route.params.subscribe(params=>this.id = params['id']);
     }
-  
+
     ngOnInit() {
         this.httpService.getTravelsToUser(this.route.parent.snapshot.params["id"])
             .subscribe((resp:Response) => {
@@ -38,6 +37,14 @@ export class TripsComponent implements OnInit, OnDestroy {
                 }
             });
     }
+
+    deleteTrip(id:number) {
+        this.httpService.deleteTrip(id)
+            .subscribe((data) => {
+                console.log(data);
+            });
+    }
+
     ngOnDestroy() {
         this.routeSubscription.unsubscribe();
     }

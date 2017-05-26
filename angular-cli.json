@@ -27,7 +27,9 @@
         "css/normalize.css",
         "styles.css",
         "css/basic.css",
-        "css/dropzone.css"
+        "css/dropzone.css",
+        "css/bootstrap-datepicker3.min.css",
+        "css/bootstrap-timepicker.min.css"
       ],
       "scripts": [
         "js/jquery-3.2.0.min.js",
@@ -37,7 +39,9 @@
         "js/bootstrap.min.js",
         "js/dropzone.js",
         "js/moment.js",
-        "js/dropzone-amd-module.js"
+        "js/dropzone-amd-module.js",
+        "js/bootstrap-datepicker.min.js",
+        "js/bootstrap-timepicker.js"
       ],
       "environments": {
         "source": "environments/environment.ts",

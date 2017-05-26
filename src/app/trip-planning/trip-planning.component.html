@@ -3,29 +3,36 @@
 
         <div class="planning col-md-3">
             <div class="sidebar-img">
-                <label for="tripAvatar" class="trip-avatar">
+                <label for="tripAvatar" class="trip-avatar trip-avatar">
                     <img src="assets/img/trips/2.jpg" class="img-circle image">
                     <span>Click here to upload</span>
                 </label>
             </div>
 
-            <div class="sidebar-planning">
-                <ul class="nav nav-pills nav-stacked">
-                    <li class="active"><a routerLink="/trip-planning/{{id}}/trip-info">Trip info
-                        <i class="fa fa-caret-right" style="float: right"></i>
-                    </a></li>
-                    <li *ngFor="let day of days; let index = i">
-                        <a routerLink="/trip-planning/{{id}}/day/{{day.id}}">
-                             {{day.name | date:"dd.MM.yyyy"}}
-                            <i class="fa fa-caret-right" style="float: right"></i>
-                        </a>
-                    </li>
-                </ul>
-            </div>
 
             <div>
-                <button class="btn btn-primary day" (click)="addDay()" style="width: 198px;">
+                <button (click)="setVisible()" style="height: 40px;" class="btn btn-primary button-menu">Trip info
+                    <i class="fa fa-caret-right" style="float: right;padding-top: 4px;"></i></button>
+                <div class="sidebar-planning">
+                    <ul class="nav nav-pills nav-stacked">
+                        <div *ngFor="let day of days;">
+                            <button [class.selected]="day === selectedDay" (click)="onSelect(day)"
+                                    (click)="setVisible2()"
+                                    class="btn btn-default button-menu" [disabled]="flagOne">
+                                {{day.name | date:"dd.MM.yyyy"}}
+                            </button>
+                        </div>
+                    </ul>
+                </div>
+            </div>
+            <div style="padding-top: 2px; padding-left: 6px">
+                <button [disabled]="flag" [disabled]="flagOne" class="btn btn-primary day" (click)="addDay()"
+                        style="width: 90px;">
                     Add day
+                </button>
+                <button [disabled]="flag" [disabled]="flagOne" class="btn btn-primary day" (click)="delete() "
+                        style="width: 90px;">
+                    Delete day
                 </button>
             </div>
             <form style="visibility: hidden">
@@ -34,11 +41,412 @@
         </div>
 
         <div class="planning-info col-md-6 col-xs-9">
-            <router-outlet></router-outlet>
-        </div>
 
+            <div *ngIf="visible">
+                <div class="container-fluid" style="margin-top: 25px">
+                    <div>
+                        <form class="form-horizontal" #f="ngForm" *ngIf="trip" novalidate
+                              (ngSubmit)="addOrUpdateTrip(f.value, f.valid)">
+
+                            <div class="form-group">
+                                <h4 class="trip-label">Trip name</h4>
+                                <div class="trip-input">
+                                    <input [disabled]="flag" type="text" style="width: 70%" minlength="2" maxlength="20"
+                                           required class="form-control" name="name"
+                                           placeholder="Trip name" [(ngModel)]="trip.name" #name="ngModel">
+                                </div>
+                                <small
+                                        [hidden]="name.valid || (name.pristine && !f.submitted)  || name.untouched">
+                                    Name trip is required (minimum 2 characters).
+                                </small>
+                            </div>
+                            <div class="form-group">
+                                <h4 class=" trip-label">Start date</h4>
+                                <div class="trip-input" style="margin-left: 115px">
+
+                                    <datetime [timepicker]="false" [datepicker]="{ icon: 'fa fa-calendar' }" (ngModelChange)="handleDateFromChange($event)"
+                                              [(ngModel)]="trip.startDate"  name="startDate"
+                                              #startDate="ngModel"></datetime>
+
+                                </div><!-- /input-group -->
+                                <small
+                                        [hidden]="startDate.valid || (startDate.pristine && !f.submitted)">
+                                    Date trip is required.
+                                </small>
+                            </div>
+                            <div class="form-group">
+                                <h4 class=" trip-label">End date</h4>
+                                <div class="trip-input" style="margin-left: 115px">
+
+                                    <datetime [timepicker]="false" [datepicker]="{ icon: 'fa fa-calendar' }"
+                                              [(ngModel)]="trip.endDate" name="endDate" #endDate="ngModel"></datetime>
+                                </div><!-- /input-group -->
+                                <small
+                                        [hidden]="endDate.valid || (endDate.pristine && !f.submitted)">
+                                    Date trip is required.
+                                </small>
+                            </div>
+                            <div class="form-group">
+                                <h4 class=" trip-label">Info</h4>
+                                <div class="trip-input">
+                    <textarea [disabled]="flag" class="form-control" rows="7" maxlength="150" placeholder="Info"
+                              style="width: 400px; resize: none" name="info" [(ngModel)]="trip.info" #info="ngModel">
+                    </textarea>
+                                </div><!-- /input-group -->
+                                <small
+                                        [hidden]="info.valid || (info.pristine && !f.submitted)">
+                                    Date trip is required.
+                                </small>
+                            </div>
+                            <div class="input-group info">
+                                <button [disabled]="flag" type="submit" class="btn btn-primary">Save</button>
+                            </div>
+                        </form>
+                    </div>
+
+
+                </div>
+            </div>
+
+            <div *ngIf="visible2">
+                <div *ngIf="selectedDay">
+                    <div>
+                        <button [hidden]="flag" class="btn btn-primary pull-right" (click)="staticModal.show()">
+                            New event
+                            <span class="caret"></span>
+                        </button>
+                        <h3 style="text-align: center">Day {{selectedDay.id}} : {{selectedDay.name | date
+                            :'fullDate'}}</h3>
+                    </div>
+                    <div class="activities">
+                        <div class="panel-group" style="margin-bottom: 10px" id="accordion"
+                             *ngFor="let action of selectedDay.action; let i = index">
+                            <div *ngIf="isActivity(action)" class="panel panel-default">
+                                <div class="panel-heading" style="min-height: 55px">
+
+                                    <div class="col-md-8" style="padding-top: 10px">
+                                        <h4 class="panel-title">
+                                            <a data-toggle="collapse" data-parent="#accordion" href="#{{i+1}}">
+                                                Start time: {{action?.startTime | date :'HH:mm'}}
+                                                Name: {{action?.name}}
+                                            </a>
+
+                                        </h4>
+                                    </div>
+                                    <div class="col-md-4" style="text-align: right">
+                                        <i *ngIf="action.activityType.name == 'lodging'" class="fa fa-bed fa-lg"
+                                           aria-hidden="true"></i>
+                                        <i *ngIf="action.activityType.name == 'sight'"
+                                           class="fa fa-map-marker fa-lg"
+                                           aria-hidden="true"></i>
+                                        <button [hidden]="flag" type="button" class="btn btn-primary btn-action">
+                                            <i class="fa  fa-times fa-lg " aria-hidden="true"></i>
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <div id="{{i+1}}" class="panel-collapse collapse">
+                                    <div class="panel-body">
+                                        <form class="form-horizontal" #someForm="ngForm"
+                                              (ngSubmit)="updateActivity(someForm,action?.id, action?.activityType.id)"
+                                        >
+
+                                            <div class="form-group">
+                                                <div class="col-md-3">
+                                                    <h4>Name: </h4>
+                                                </div>
+                                                <div class="col-md-9">
+                                                    <input [disabled]="flag" [ngModel]="action?.name"
+                                                           class="form-control"
+                                                           type="text" id="name" name="name">
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <div class="col-md-3">
+                                                    <h4>Start date:</h4>
+                                                </div>
+                                                <div class="col-md-9">
+                                                    <div style="padding-left: 15px">
+                                                        <datetime [(ngModel)]="action.startTime" id="startTime"
+                                                                  name="startTime"
+                                                                  style="margin-bottom:5px"
+                                                                  [timepicker]="{ icon: 'fa fa-clock-o' }"
+                                                                  [datepicker]="{ icon: 'fa fa-calendar' }"></datetime>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <div class="col-md-3">
+                                                    <h4>End date:</h4>
+                                                </div>
+                                                <div class="col-md-9">
+                                                    <div style="padding-left: 15px">
+                                                        <datetime [(ngModel)]="action.endTime" id="endTime"
+                                                                  name="endTime"
+                                                                  [timepicker]="{ icon: 'fa fa-clock-o' }"
+                                                                  [datepicker]="{ icon: 'fa fa-calendar' }"></datetime>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <div class="col-md-3">
+                                                    <h4>Address:</h4>
+                                                </div>
+                                                <div class="col-md-9">
+                                                    <input [disabled]="flag" [ngModel]="action?.address"
+                                                           class="form-control"
+                                                           type="text" id="address" name="address">
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <div class="col-md-3">
+                                                    <h4>Price:</h4>
+                                                </div>
+                                                <div class="col-md-9">
+                                                    <input [disabled]="flag" [ngModel]="action?.price"
+                                                           class="form-control"
+                                                           type="text" id="price"
+                                                           name="price">
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <div class="col-md-3">
+                                                    <h4>Description:</h4>
+                                                </div>
+                                                <div class="col-md-9">
+                                                    <input [disabled]="flag" [ngModel]="action?.description"
+                                                           class="form-control"
+                                                           type="text"
+                                                           id="description"
+                                                           name="description">
+                                                </div>
+                                            </div>
+
+
+                                            <button [hidden]="flag" type="submit" class="btn btn-primary">Save
+                                                changes
+                                            </button>
+
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div *ngIf="isMovement(action)" class="panel panel-default">
+                                <div class="panel-heading" style="min-height: 55px">
+                                    <div class="col-md-8" style="padding-top: 10px">
+                                        <h4 class="panel-title">
+                                            <a data-toggle="collapse" data-parent="#accordion" href="#{{i+1}}">
+                                                Start time: {{action?.startTime | date :'HH:mm' }}
+                                                Start address: {{action?.startAddress}}
+                                            </a>
+
+
+                                        </h4>
+                                    </div>
+                                    <div class="col-md-4" style="text-align: right">
+                                        <div>
+                                            <i *ngIf="action.transport.name == 'car'" class="fa fa-car fa-lg"
+                                               aria-hidden="true"></i>
+                                            <i *ngIf="action.transport.name == 'plane'" class="fa fa-plane fa-lg"
+                                               aria-hidden="true"></i>
+                                            <i *ngIf="action.transport.name == 'rail'" class="fa fa-train fa-lg"
+                                               aria-hidden="true"></i>
+                                            <i *ngIf="action.transport.name == 'bus'" class="fa fa-bus fa-lg"
+                                               aria-hidden="true"></i>
+                                            <button [hidden]="flag" type="button"
+                                                    class="btn btn-primary btn-action">
+                                                <i class="fa  fa-times fa-lg" aria-hidden="true"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div id="{{i+1}}" class="panel-collapse collapse">
+                                    <div class="panel-body">
+                                        <form class="form-horizontal" #movementForm="ngForm"
+                                              (ngSubmit)="updateMovement(movementForm, action?.id, action?.transport.id)"
+                                        >
+
+                                            <div class="form-group">
+                                                <div class="col-md-3">
+                                                    <h4>Start date:</h4>
+                                                </div>
+                                                <div class="col-md-9">
+                                                <div style="padding-left: 15px">
+                                                    <datetime [(ngModel)]="action.startTime" id="startTime"
+                                                              name="startTime"
+                                                              [timepicker]="{ icon: 'fa fa-clock-o' }"
+                                                              [datepicker]="{ icon: 'fa fa-calendar' }"></datetime>
+                                                </div>
+                                            </div>
+                                                </div>
+
+                                            <div class="form-group">
+                                                <div class="col-md-3">
+                                                    <h4>End date:</h4>
+                                                </div>
+                                                <div class="col-md-9">
+                                                    <div style="padding-left: 15px">
+                                                        <datetime [(ngModel)]="action.endTime" id="endTime"
+                                                                  name="endTime"
+                                                                  [timepicker]="{ icon: 'fa fa-clock-o' }"
+                                                                  [datepicker]="{ icon: 'fa fa-calendar' }"></datetime>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <div class="col-md-3">
+                                                    <h4>Start address:</h4>
+                                                </div>
+                                                <div class="col-md-9">
+                                                    <input [disabled]="flag" [ngModel]="action?.startAddress"
+                                                           class="form-control"
+                                                           type="text" id="startAddress" name="startAddress">
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <div class="col-md-3">
+                                                    <h4>Destination address:</h4>
+                                                </div>
+                                                <div class="col-md-9">
+                                                    <input [disabled]="flag" [ngModel]="action?.destinationAddress"
+                                                           class="form-control"
+                                                           type="text" id="destinationAddress"
+                                                           name="destinationAddress">
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <div class="col-md-3">
+                                                    <h4>Price:</h4>
+                                                </div>
+                                                <div class="col-md-9">
+                                                    <input [disabled]="flag" [ngModel]="action?.price"
+                                                           class="form-control"
+                                                           type="text" id="price"
+                                                           name="price">
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <div class="col-md-3">
+                                                    <h4>Distance:</h4>
+                                                </div>
+                                                <div class="col-md-9">
+                                                    <input [disabled]="flag" [ngModel]="action?.distance"
+                                                           class="form-control"
+                                                           type="text" id="distance"
+                                                           name="distance">
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <div class="col-md-3">
+                                                    <h4>Description:</h4>
+                                                </div>
+                                                <div class="col-md-9">
+                                                    <input [ngModel]="action?.description" class="form-control"
+                                                           type="text"
+                                                           id="description"
+                                                           name="description">
+                                                </div>
+                                            </div>
+
+                                            <button type="submit" class="btn btn-primary">Save changes</button>
+
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
         <div class="col-md-3 col-xs-12">
+            <button class="btn btn-primary" (click)="showUsersDialog = !showUsersDialog" data-toggle="modal">
+                Participants of trip
+            </button>
             <app-chat></app-chat>
         </div>
     </div>
+
+
+    <app-dialog [(visible)]="showUsersDialog">
+        <div class="modal-content">
+            <app-participants></app-participants>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" (click)="showUsersDialog = !showUsersDialog">Close
+                </button>
+            </div>
+        </div>
+    </app-dialog>
+
+    <div class="newEvent">
+        <div class="modal fade" bsModal #staticModal="bs-modal" [config]="{backdrop: false}" tabindex="-1"
+             role="dialog"
+             aria-labelledby="mySmallModalLabl" aria-hidden="true">
+
+            <div class="model-dialog modal-sm">
+                <div class="modal-content">
+                    <div class="btn-group-vertical">
+                        <button class="btn" (click)="showDialogWin = !showDialogWin; staticModal.hide()"
+                                routerLink="/trip-planning/{{tripId}}/transport/flight"
+                                data-toggle="modal">
+                            Transport
+                        </button>
+                        <button class="btn" (click)="showDialogWin = !showDialogWin; staticModal.hide()"
+                                routerLink="/trip-planning/{{tripId}}/lodging" data-toggle="modal">
+                            Lodging
+                        </button>
+                        <button class="btn" (click)="showSightsDialog = !showSightsDialog; staticModal.hide()"
+                                routerLink="/trip-planning/{{tripId}}/sights" data-toggle="modal">
+                            Sights
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!--Dialog-->
+
+    <app-dialog [(visible)]="showDialogWin">
+        <div class="modal-content">
+            <router-outlet></router-outlet>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" (click)="showDialogWin = !showDialogWin; backClick()">
+                    Close
+                </button>
+                <button type="button" class="btn btn-primary" (click)="showDialogWin = !showDialogWin; backClick()">
+                    Submit
+                </button>
+            </div>
+        </div>
+    </app-dialog>
+
+    <!--SightsDialog-->
+    <app-dialog [(visible)]="showSightsDialog">
+        <div class="modal-content" style="width: 190%;height: 550px; max-height: 650px;margin-left: -45%;">
+            <app-sights></app-sights>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary"
+                        (click)="showSightsDialog = !showSightsDialog; backClick()">Close
+                </button>
+                <button type="button" class="btn btn-primary"
+                        (click)="showSightsDialog = !showSightsDialog; backClick()">Submit
+                </button>
+            </div>
+        </div>
+    </app-dialog>
 </div>

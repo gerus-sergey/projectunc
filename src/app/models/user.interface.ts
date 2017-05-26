@@ -5,7 +5,7 @@ import {Country} from "./country.interface";
 
 export class User {
   constructor(id:number, lastName:string, firstName:string, birthday:string, email:string, password:string,
-              gender:Gender, city:City, info:string) {
+              gender:Gender, city:City, info:string, photo:string) {
       this.id = id;
       this.lastName = lastName;
       this.firstName = firstName;
@@ -13,9 +13,10 @@ export class User {
       this.email = email;
       this.password = password;
       this.gender = gender;
-          this.city = city;
-          this.info = info;
-      }
+      this.city = city;
+      this.info = info;
+      this.userPhoto = photo;
+  }
 
   id:number;
   lastName:string;
@@ -28,5 +29,5 @@ export class User {
   state:State;
   city:City;
   info:string;
-  genders:string;
+    userPhoto:string;
 }

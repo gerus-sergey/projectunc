@@ -1,9 +1,9 @@
 
-<div class="container">
+<div class="container"style="min-height: 700px">
     <div  class="row">
         <div class="col-md-6">
             <div>
-                <button routerLink="/trip-planning/0/trip-info" style="position: absolute; margin-left: 8px" type="button" class="btn btn-primary  btn-lg">New trip</button>
+                <button routerLink="/trip-planning/0" style="position: absolute; margin-left: 8px" type="button" class="btn btn-primary  btn-lg">New trip</button>
                  <h2 class="title">Active trips</h2>
             </div>
             <div *ngFor="let trip of (profileTripsActive | slice:profileTripsActive.length - profileTripsActive.length)">
@@ -14,11 +14,11 @@
                         </div>
                     </div>
                     <div class="col-md-7">
-                        <h3><a routerLink="/trip-planning/{{trip?.id}}/trip-info">{{trip?.name}}</a></h3>
-                        <h4>{{trip?.startDate}} - {{trip?.endDate}}</h4>
+                        <h3><a routerLink="/trip-planning/{{trip?.id}}">{{trip?.name}}</a></h3>
+                        <h4>{{trip?.startDate | date :'dd.MM.yyyy' }} - {{trip?.endDate | date :'dd.MM.yyyy'}}</h4>
                     </div>
                     <div class="col-md-2" style="text-align: center; padding-top: 35px;">
-                        <button type="button" class="btn btn-primary btn-trips">
+                        <button (click)="deleteTrip(trip?.id)" type="button" class="btn btn-primary btn-trips">
                             <i class="fa  fa-times fa-lg" aria-hidden="true"></i>
                         </button>
                     </div>
@@ -35,11 +35,11 @@
                         </div>
                     </div>
                     <div class="col-md-7">
-                        <h3><a routerLink="/trip-planning/{{trip?.id}}/trip-info">{{trip?.name}}</a></h3>
-                        <h4>{{trip?.startDate}} - {{trip?.endDate}}</h4>
+                        <h3><a routerLink="/trip-planning/{{trip?.id}}">{{trip?.name}}</a></h3>
+                        <h4>{{trip?.startDate | date :'dd.MM.yyyy'}} - {{trip?.endDate | date :'dd.MM.yyyy'}}</h4>
                     </div>
                     <div class="col-md-2" style="text-align: center; padding-top: 35px;">
-                        <button type="button" class="btn btn-primary btn-trips">
+                        <button (click)="deleteTrip(trip?.id)" type="button" class="btn btn-primary btn-trips">
                             <i class="fa  fa-times fa-lg" aria-hidden="true"></i>
                         </button>
                     </div>

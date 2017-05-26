@@ -1,4 +1,9 @@
+
   <div class="container">
+      <div class="alert alert-danger" *ngIf="signInSuccess">
+          <a class="close" data-dismiss="alert">&times;</a>
+          Entered incorrect password or email
+      </div>
     <div class="col-md-12">
         <form class="form-horizontal" #f="ngForm" novalidate (ngSubmit)="signInUser(f.value, f.valid)">
             <div class="form-group">

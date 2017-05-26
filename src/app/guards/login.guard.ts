@@ -10,7 +10,7 @@ export class LoginGuard implements CanActivate{
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) : Observable<boolean> | boolean{
 
     if(localStorage.getItem("id") != "null"){
-       this.reg = true;;
+       this.reg = true;
     }else{
        this.reg = false;
         confirm('Вы не зарегистрированы!');

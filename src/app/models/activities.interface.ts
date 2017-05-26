@@ -1,16 +1,35 @@
+import {Trip} from "./trips.interface";
+import {Coordinates} from "./coordinates.interface";
+import {ActivityType} from "./activityType.interface";
 /**
  * Created by Сергей on 04.05.2017.
  */
-export class Activities{
-    id:number;
-    name:string;
-    start_time:Date;
-    end_time:Date;
-    
-    constructor(id:number, name:string, start_time:Date, end_time:Date) {
+export class Activities {
+
+
+    constructor(id:number, travel:Trip, name:string, address:string, description:string, price:number, ticket:string, coordinates:Coordinates, startTime:Date, endTime:Date, activityType:ActivityType) {
         this.id = id;
+        this.travel = travel;
         this.name = name;
-        this.start_time = start_time;
-        this.end_time = end_time;
+        this.address = address;
+        this.description = description;
+        this.price = price;
+        this.ticket = ticket;
+        this.coordinates = coordinates;
+        this.startTime = startTime;
+        this.endTime = endTime;
+        this.activityType = activityType;
     }
+
+    id:number;
+    travel:Trip;
+    name:string;
+    address:string;
+    description:string;
+    price:number;
+    ticket:string;
+    coordinates:Coordinates;
+    startTime:Date;
+    endTime:Date;
+    activityType: ActivityType;
 }

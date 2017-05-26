@@ -57,3 +57,39 @@
     display: block;
 }
 
+.profile-label{
+    float: left;
+}
+.profile-input{
+    width: 70%;
+    padding-left: 20px;
+    margin-left: 120px;
+}
+.profile-input-button{
+    display: none;
+}
+.profile-input:hover .profile-input-button{
+    display: block;
+}
+.icon-edit{
+    margin-left: 0;
+    margin-right: 0;
+}
+.profile-button-edit{
+    height: 34px;
+}
+
+.profile-password{
+    width: 300px;
+    margin-left: 150px;
+    padding-left: 20px;
+}
+.profile-email{
+    width: 300px;
+    margin-left: 70px;
+    padding-left: 20px;
+}
+small{
+    color:red;
+}
+input.ng-touched.ng-invalid {border:solid red 1.5px;}

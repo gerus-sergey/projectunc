@@ -1,0 +1,22 @@
+<div class="modal-body">
+  <div >
+    <header style="color: blue; text-align: center; font-size: x-large; padding: 10px">Participants</header>
+    <table class="table table-hover">
+      <tr>
+        <td>Participant name</td>
+        <td>Role to trip</td>
+        <td></td>
+      </tr>
+      <tr  *ngFor="let participant of participants">
+        <td>{{participant?.user.lastName}} {{participant?.user.firstName}}</td>
+        <td>{{participant?.role.name}}</td>
+        <td><button  routerLink="/user/{{participant?.user.id}}" class="btn btn-info">Account</button></td>
+      </tr>
+    </table>
+    <div class="send-email">
+      <input type="text" placeholder="Email" #ivitation (keyup.enter)="sendEmail(ivitation.value)" >
+      <button class="btn btn-primary" (click)="sendEmail(ivitation.value)">Invite user</button>
+    </div>
+    <!--<button class="btn btn-primary">Invite user</button>-->
+  </div>
+</div>

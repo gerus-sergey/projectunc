@@ -1,15 +1,7 @@
-
-
-  <div class="modal-body" style="height: 90%;display: inline-flex;width: 100%;">
-   <div style="background-color: plum; width: 25%;">
-    <h3>Sights</h3>
-    <div class="list-of-sights">
-      <ul *ngFor="let p of places">
-        <li>{{p.country}}, {{p.state}}, {{p.city}} - {{p.sight}}
-          <button class="btn btn-primary pull-right"><i class="fa fa-2x fa-remove"></i></button>
-        </li>
-      </ul>
+<div class="modal-body" style="height: 85%;display: inline-flex;width: 100%;">
+    <div style="width: 100%">
+        <input id="pac-input" class="controls" type="text" placeholder="Enter sight">
+        <div id="googleMap" style="width:1170px;height:100%;"></div>
     </div>
-   </div>
-    <div class="map" style="background-color: #5993cd;width: 75%;">Map</div>
-  </div>
+</div>
+

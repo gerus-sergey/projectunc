@@ -1,24 +1,137 @@
 <div class="container">
     <div class="row">
-            <div class="profile-menu col-md-3">
-                <div class="sidebar-img">
-                    <label  class="user-avatar">
-                        <img src="assets/img/trips/2.jpg" class="img-circle image" >
+        <div class="profile-menu col-md-3">
+            <div class="sidebar-img">
+                <label class="user-avatar">
+                    <img src="assets/img/trips/2.jpg" class="img-circle image">
 
-                    </label>
-                    <h3 class="text-center" *ngIf="user">{{user.lastName}} {{user.firstName}}</h3>
+                </label>
+                <h3 class="text-center" *ngIf="user">{{userAccount.lastName}} {{userAccount.firstName}}</h3>
+            </div>
+            <div class="sidebar-profile">
+                <ul class="nav nav-pills nav-stacked">
+                    <li class="active"><a href="#profile" data-toggle="tab">Account</a></li>
+                    <li><a href="#trips" data-toggle="tab">Trips</a></li>
+                    <li><a href="#albums" data-toggle="tab">Albums</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="profile-info col-md-9">
+            <div class="tab-content">
+                <div class="tab-pane active" id="profile">
+                    <div class="container-fluid">
+                        <form class="form-horizontal" *ngIf="userAccount">
+                            <div class="form-group">
+                                <h4 class=" profile-label">Last name</h4>
+                                <div class="profile-input">
+                                    <input type="text" disabled class="form-control" name="lastName"
+                                           [(ngModel)]="userAccount.lastName">
+                                </div><!-- /input-group -->
+                            </div>
+
+                            <div class="form-group">
+                                <h4 class=" profile-label">First name</h4>
+                                <div class="profile-input">
+                                    <input type="text" disabled class="form-control" name="firstName"
+                                           [(ngModel)]="userAccount.firstName">
+                                </div><!-- /input-group -->
+                            </div>
+
+                            <div class="form-group">
+                                <h4 class=" profile-label">Day of birth</h4>
+                                <div class="profile-input">
+                                    <input type="text" disabled class="form-control" name="birthday"
+                                           [(ngModel)]="userAccount.birthday">
+                                </div><!-- /input-group -->
+                            </div>
+
+                            <div class="form-group">
+                                <h4 class=" profile-label">Gender</h4>
+                                <div class="profile-input">
+                                    <input type="text" disabled class="form-control" name="Sex"
+                                           [(ngModel)]="userAccount.gender.gender">
+                                </div><!-- /input-group -->
+                            </div>
+
+                            <div class="form-group">
+                                <h4 class=" profile-label">Country</h4>
+                                <div class="profile-input">
+                                    <input type="text" disabled class="form-control" name="country"
+                                           [(ngModel)]="userAccount.city.state.country.name">
+                                </div><!-- /input-group -->
+                            </div>
+
+                            <div class="form-group">
+                                <h4 class=" profile-label">State</h4>
+                                <div class="profile-input">
+                                    <input type="text" disabled class="form-control" name="state"
+                                           [(ngModel)]="userAccount.city.state.name">
+                                </div><!-- /input-group -->
+                            </div>
+
+                            <div class="form-group">
+                                <h4 class=" profile-label">City</h4>
+                                <div class="profile-input">
+                                    <input type="text" disabled class="form-control" name="city"
+                                           [(ngModel)]="userAccount.city.name">
+                                </div><!-- /input-group -->
+                            </div>
+
+                            <div class="form-group">
+                                <h4 class=" profile-label">Info</h4>
+                                <div class="profile-input">
+                        <textarea disabled class="form-control" rows="7" maxlength="150"
+                                  style="width: 400px; resize: none" name="info" [(ngModel)]="userAccount.info">
+                            </textarea>
+                                </div><!-- /input-group -->
+                            </div>
+                        </form>
+                    </div>
                 </div>
-                <div class="sidebar-profile">
-                    <ul class="nav nav-pills nav-stacked">
-                        <li class="active"><a routerLink="/user/{{id}}/user-account">Account</a></li>
-                        <li><a routerLink="/user/{{id}}/user-trips">Trips</a></li>
-                        <li><a routerLink="/user/{{id}}/user-albums">Albums</a></li>
-                    </ul>
+                <div class="tab-pane" id="trips">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="flex">
+                                <div class="flex-itm" *ngFor="let trip of (trips | slice:trips.length - trips.length)">
+                                    <div class="panel trip-panel">
+                                        <div class="trip-pic">
+                                            <div class="trippic-wrapper">
+                                                <img class="img-responsive" src="{{trip?.img}}" alt="">
+                                            </div>
+                                        </div>
+                                        <h3><a href="#">{{trip?.name}}</a></h3>
+                                        <h4>{{trip?.startDate}} - {{trip?.endDate}}</h4>
+                                        <p>Status: {{trip?.active}}</p>
+                                        <p>{{trip?.info}}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-pane" id="albums">
+                    <div class="container-fluid">
+                        <div class="row ">
+                            <div class="flex">
+                                <div class="flex-itm"
+                                     *ngFor="let album of (albums | slice:albums.length - albums.length)">
+                                    <div class="panel trip-panel">
+                                        <div class="trip-pic">
+                                            <div class="trippic-wrapper">
+                                                <img class="img-responsive" src="{{album?.img}}" alt="">
+                                            </div>
+                                        </div>
+                                        <h3><a href="#">{{album?.name}}</a></h3>
+                                        <h4>{{album?.date_of_creation}}</h4>
+                                        <p>{{album?.description}}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
-
-            <div class="profile-info col-md-9">
-                <router-outlet></router-outlet>
-            </div>
+        </div>
     </div>
 </div>
