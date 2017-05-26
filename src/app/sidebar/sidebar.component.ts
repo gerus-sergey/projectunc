@@ -1,10 +1,13 @@
-import {Component, OnInit, ElementRef} from '@angular/core';
+import {Component, OnInit, ElementRef, OnDestroy} from '@angular/core';
 import { LocalStorageService } from 'angular-2-local-storage';
 import {User} from '../models/user.interface';
 import {HttpService} from '../services/http.service';
 import {Response} from '@angular/http';
-import {Router} from '@angular/router';
-
+import { Country } from '../models/country.interface';
+import {Location} from '@angular/common';
+import {ActivatedRoute, Router} from '@angular/router';
+import {Subscription} from 'rxjs/Subscription';
+// import { Ng2SearchPipe } from 'ng2-search-filter';
 
 declare var gnMenu: any;
 
@@ -14,20 +17,29 @@ declare var gnMenu: any;
   templateUrl: './sidebar.component.html',
   styleUrls: ['./sidebar.component.css']
 })
-export class SidebarComponent implements OnInit {
+export class SidebarComponent implements OnInit, OnDestroy {
   public id: number;
   public items: User[]= [];
   user: User;
-  signOutSuccess: boolean = false;
-  signOutMenu: boolean = false;
+  term: User;
+  public userId: number;
+  private routeSubscription: Subscription;
 
-  constructor(private route:Router, private sidebarEl: ElementRef, private httpService: HttpService, private localStorageService: LocalStorageService) {
+
+  constructor(private _location: Location, private routing: Router,  private route: ActivatedRoute, private sidebarEl: ElementRef, private httpService: HttpService, private localStorageService: LocalStorageService) {
+    this.routeSubscription = this.route.params.subscribe(params => this.id = params['id']);
     httpService.id$.subscribe(
         id => {
           this.id = id;
-          this.signOutMenu = false;
-          console.log(this.signOutMenu);
+          document.getElementById('reg').style.display = 'none';
+          document.getElementById('log').style.display = 'none';
+          document.getElementById('menu').style.display = 'block';
+          document.getElementById('srch').style.display = 'block';
         });
+  }
+
+  ngOnDestroy() {
+    this.routeSubscription.unsubscribe();
   }
 
   ngOnInit() {
@@ -36,29 +48,44 @@ export class SidebarComponent implements OnInit {
     console.log(localStorage.getItem('id'));
 
     this.httpService.getAllUsers()
-      .subscribe((resp: Response) => {
-        const userList = resp.json();
-        for (const index in userList){
-          const user = userList[index];
-          this.items.push(user);
-        }
-      });
-    
-    if(localStorage.getItem('id') == 'null'){
-      this.signOutMenu = true;
-    }else{
-      this.signOutMenu = false;
+        .subscribe((resp: Response) => {
+          const userList = resp.json();
+          for (const index in userList){
+            const user = userList[index];
+            this.items.push(user);
+          }
+        });
+
+
+    if (localStorage.getItem('id') !== 'null' ){
+      document.getElementById('reg').style.display = 'none';
+      document.getElementById('log').style.display = 'none';
+      document.getElementById('menu').style.display = 'block';
+      document.getElementById('srch').style.display = 'block';
+    }else {
+      document.getElementById('menu').style.display = 'none';
+      document.getElementById('srch').style.display = 'none';
+      document.getElementById('reg').style.display = 'block';
+      document.getElementById('log').style.display = 'block';
     }
+    return this.id;
+
+
   }
 
   logout() {
-    this.signOutSuccess = true;
-    this.signOutMenu = true;
     this.id = null;
-    localStorage.setItem('id',null);
-    this.route.navigateByUrl("/");
+    document.getElementById('menu').style.display = 'none';
+    document.getElementById('srch').style.display = 'none';
+    document.getElementById('reg').style.display = 'block';
+    document.getElementById('log').style.display = 'block';
+    localStorage.setItem('id', null);
     console.log(localStorage.getItem('id'));
   }
 
+  goToUser(uid) {
+    this.routing.navigateByUrl('/user/' + uid);
+    console.log(uid);
+  }
 
 }

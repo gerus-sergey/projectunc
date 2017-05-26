@@ -1,0 +1,139 @@
+.container {
+  background-color: white;
+  margin-top: 80px;
+  width: 90%;
+  margin-bottom: 20px;
+  z-index: 10;
+  border-radius: 0.5rem;
+  padding: 40px;
+}
+
+.planning-info {
+}
+
+.sidebar-planning {
+  max-height: 280px;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  width: 200px
+}
+
+.sidebar-planning::-webkit-scrollbar{
+  width: 2px;
+}
+
+.sidebar-planning::-webkit-scrollbar-thumb {
+  border: none;
+  background-color: transparent;
+  max-height: 5px;
+}
+
+.sidebar-planning:hover::-webkit-scrollbar-thumb{
+  border: none;
+  background-color: blue;
+  max-height: 20px;
+}
+
+.sidebar-planning::-webkit-scrollbar-track{
+  border: none;
+  background-color: transparent;
+}
+
+
+.sidebar-img {
+  width: 200px;
+  display: inline-block;
+  text-align: center;
+}
+
+.image {
+  width: 100%;
+  height: 100%;
+}
+
+.trip-avatar {
+  -webkit-border-radius: 100%;
+  -moz-border-radius: 100%;
+  border-radius: 100%;
+  width: 140px;
+  height: 140px;
+  background-color: grey;
+  position: relative;
+  overflow: hidden;
+}
+
+.trip-avatar span {
+  display: none;
+}
+
+.trip-avatar:hover span {
+  position: absolute;
+  background-color: rgba(0,0,0,0.4);
+  color: #fff;
+  font-size: 12px;
+  text-align: center;
+  top: 0;
+  left: 0;
+  right: 0;
+  line-height: 140px;
+  display: block;
+}
+
+.nav-stacked li {
+  float: none;
+  text-align: center;
+}
+
+.button-menu{
+  width: 198px;
+  margin-top: 2px;
+}
+.selected {
+  background-color: #CFD8DC !important;
+  color: black;
+}
+
+textarea {
+  overflow: auto;
+  vertical-align: top;
+  width: 667px;
+}
+.trip-label{
+  float: left;
+}
+.trip-input{
+  margin-left: 100px;
+}
+small{
+  margin-left: 20px;
+  color: red;
+}
+input.ng-touched.ng-invalid {border:solid red 1.5px;}
+
+.modal-sm {
+  width: 170px;
+  margin: 100px 400px auto auto;
+  float: right;
+}
+.btn-group-vertical>.btn {
+  position: relative;
+  background: transparent;
+  width: 170px;
+}
+
+.trippanel i.fa-close {
+  font-size: 1em;
+  margin: 0 0 0 70px;
+}
+.activities{
+  margin-top: 20px;
+}
+.btn-action{
+  padding-left: 0px;
+  padding-right: 0px;
+  width: 40px;
+  visibility: hidden;
+}
+.panel:hover .btn-action{
+  visibility: visible;
+}

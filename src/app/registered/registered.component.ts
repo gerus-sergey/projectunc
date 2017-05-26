@@ -119,7 +119,7 @@ export class RegisteredComponent implements OnInit {
           console.log( this.receivedUser);
           this.route.navigateByUrl("/account/" + this.receivedUser.id + "/profile");
           if(this.remember) {
-            localStorage.setItem('id', this.receivedUser.id.toString());
+              localStorage.setItem('id', this.receivedUser.id.toString());
               this.httpService.setId(this.receivedUser.id);
           }else{
             localStorage.setItem('id', null);

@@ -322,6 +322,20 @@ export class TripPlanningComponent implements OnInit, OnDestroy {
         this.trip.endDate = this.days[this.days.length - 1].name;
         this.tripService.addOrUpdateTrip(this.trip);
     }
+    
+    deleteMovements(id:number){
+        this.httpService.deleteMovement(id)
+            .subscribe((data) => {
+                console.log(data);
+            })
+    }
+
+    deleteActivity(id:number){
+        this.httpService.deleteActivity(id)
+            .subscribe((data) => {
+                console.log(data);
+            })
+    }
 
     ngOnDestroy() {
         this.routeSubscription.unsubscribe();

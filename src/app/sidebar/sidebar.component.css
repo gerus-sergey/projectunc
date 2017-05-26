@@ -6,3 +6,19 @@
     position: relative;
     top: 5px;
 }
+
+#srch input {
+    width: 70px;
+    -webkit-transition: all .5s;
+    -moz-transition: all .5s;
+    transition: all .5s;
+}
+
+#srch input:focus {
+    width: 150px;
+}
+
+.list:focus{
+    display: block;
+}
+

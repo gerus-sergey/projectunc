@@ -155,6 +155,22 @@ export class HttpService {
     getAlbums() {
         return this.http.get(this.host + 'account/albums/4')
     }
+    
+    deleteMovement(id:number){
+        return this.http.delete(this.host + 'movements/' + id)
+            .map((resp:Response)=>resp.json())
+            .catch((error:any) => {
+                return Observable.throw(error);
+            });
+    }
+
+    deleteActivity(id:number){
+        return this.http.delete(this.host + 'activities/' + id)
+            .map((resp:Response)=>resp.json())
+            .catch((error:any) => {
+                return Observable.throw(error);
+            });
+    }
 
     getHomeTrips() {
         return this.http.get(this.host + 'travels')

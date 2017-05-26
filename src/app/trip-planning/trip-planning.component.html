@@ -3,8 +3,8 @@
 
         <div class="planning col-md-3">
             <div class="sidebar-img">
-                <label for="tripAvatar" class="trip-avatar trip-avatar">
-                    <img src="assets/img/trips/2.jpg" class="img-circle image">
+                <label for="photo" class="trip-avatar trip-avatar">
+                    <img src="{{pathToPhoto}}" class="img-circle image">
                     <span>Click here to upload</span>
                 </label>
             </div>
@@ -36,7 +36,7 @@
                 </button>
             </div>
             <form style="visibility: hidden">
-                <input type="file" id="tripAvatar">
+                <input type="file" id="photo" (change)="upload()">
             </form>
         </div>
 
@@ -139,7 +139,7 @@
                                         <i *ngIf="action.activityType.name == 'sight'"
                                            class="fa fa-map-marker fa-lg"
                                            aria-hidden="true"></i>
-                                        <button [hidden]="flag" type="button" class="btn btn-primary btn-action">
+                                        <button [hidden]="flag" type="button" class="btn btn-primary btn-action" (click)="deleteActivity(action?.id)">
                                             <i class="fa  fa-times fa-lg " aria-hidden="true"></i>
                                         </button>
                                     </div>
@@ -261,7 +261,7 @@
                                             <i *ngIf="action.transport.name == 'bus'" class="fa fa-bus fa-lg"
                                                aria-hidden="true"></i>
                                             <button [hidden]="flag" type="button"
-                                                    class="btn btn-primary btn-action">
+                                                    class="btn btn-primary btn-action" (click)="deleteMovements(action?.id)">
                                                 <i class="fa  fa-times fa-lg" aria-hidden="true"></i>
                                             </button>
                                         </div>

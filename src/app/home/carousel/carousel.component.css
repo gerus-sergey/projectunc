@@ -23,7 +23,7 @@
 }
 
 .carousel-indicators .active {
-    border-color: rgb(88, 209, 226);
+    border-color: grey;
 }
 
 .carousel-control {
@@ -40,4 +40,11 @@
     -moz-background-size: cover;
     background-size: cover;
     -o-background-size: cover;
+}
+
+.carousel-inner h2 {
+    font-size: 50px;
+    text-align: left;
+    margin-left: -30%;
+    margin-bottom: 100px;
 }

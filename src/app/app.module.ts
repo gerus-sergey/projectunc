@@ -47,6 +47,9 @@ import { Angular2SocialLoginModule } from 'angular2-social-login';
 import {HttpService} from "./services/http.service";
 import {DatepickerModule} from 'ng2-bootstrap';
 import { NKDatetimeModule } from 'ng2-datetime/ng2-datetime';
+import { TripInfoComponent } from './user/trip-info/trip-info.component';
+import { FilterComponent } from './filter/filter.component';
+
 const transportRoutes: Routes = [
   { path: 'flight', component: FlightDialogComponent},
   { path: 'rail', component: RailDialogComponent},
@@ -74,8 +77,9 @@ const appRoutes: Routes =[
   { path: 'trip-planning/:id', component: TripPlanningComponent, children: tripRoutes },
   { path: 'map', component: MapComponent},
   { path: 'login', component: SignInComponent},
+  { path: 'trip-info/:id', component: TripInfoComponent},
   { path: 'user/:id', component: UserComponent},
-  { path: '**', component: NotFoundComponent },
+  { path: '**', component: NotFoundComponent }
 ];
 
 let providers = {
@@ -113,9 +117,9 @@ let providers = {
     MapComponent,
     MessagesComponent,
     ParticipantsComponent,
-    CreatedTripComponent
-    // ,
-    // Ng2SearchPipe
+    CreatedTripComponent,
+    TripInfoComponent,
+    FilterComponent
 
   ],
   imports: [

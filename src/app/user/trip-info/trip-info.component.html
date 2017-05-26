@@ -1,0 +1,323 @@
+<div class="container">
+  <div class="row">
+
+    <div class="planning col-md-3">
+      <div class="sidebar-img">
+        <label class="trip-avatar trip-avatar">
+          <img src="{{pathToPhoto}}" class="img-circle image">
+          <span>Click here to upload</span>
+        </label>
+      </div>
+
+      <div>
+        <button (click)="setVisible()" style="height: 40px;" class="btn btn-primary button-menu">Trip info
+          <i class="fa fa-caret-right" style="float: right;padding-top: 4px;"></i></button>
+        <div class="sidebar-planning">
+          <ul class="nav nav-pills nav-stacked">
+            <div *ngFor="let day of days;">
+              <button [class.selected]="day === selectedDay" (click)="onSelect(day)"
+                      (click)="setVisible2()"
+                      class="btn btn-default button-menu" [disabled]="flagOne">
+                {{day.name | date:"dd.MM.yyyy"}}
+              </button>
+            </div>
+          </ul>
+        </div>
+      </div>
+      <div style="padding-top: 2px; padding-left: 6px">
+      </div>
+    </div>
+
+    <div class="planning-info col-md-6 col-xs-9">
+
+      <div *ngIf="visible">
+        <div class="container-fluid" style="margin-top: 25px">
+          <div>
+            <form class="form-horizontal" #f="ngForm" *ngIf="trip" novalidate>
+              <div class="form-group">
+                <h4 class="trip-label">Trip name</h4>
+                <div class="trip-input">
+                  <input [disabled]="flag" type="text" style="width: 70%" minlength="2" maxlength="20"
+                         required class="form-control" name="name"
+                         placeholder="Trip name" [(ngModel)]="trip.name" #name="ngModel">
+                </div>
+                <small
+                        [hidden]="name.valid || (name.pristine && !f.submitted)  || name.untouched">
+                  Name trip is required (minimum 2 characters).
+                </small>
+              </div>
+              <div class="form-group">
+                <h4 class=" trip-label">Start date</h4>
+                <div class="trip-input">
+                  <input [disabled]="flag" type="date" style="width: 70%" required
+                         class="form-control" name="startDate" [(ngModel)]="trip.startDate"
+                         #startDate="ngModel">
+
+
+                </div><!-- /input-group -->
+                <small
+                        [hidden]="startDate.valid || (startDate.pristine && !f.submitted)">
+                  Date trip is required.
+                </small>
+              </div>
+              <div class="form-group">
+                <h4 class=" trip-label">End date</h4>
+                <div class="trip-input">
+                  <input [disabled]="flag" type="date" style="width: 70%" class="form-control"
+                         name="endDate" [(ngModel)]="trip.endDate" #endDate="ngModel">
+                </div><!-- /input-group -->
+                <small
+                        [hidden]="endDate.valid || (endDate.pristine && !f.submitted)">
+                  Date trip is required.
+                </small>
+              </div>
+              <div class="form-group">
+                <h4 class=" trip-label">Info</h4>
+                <div class="trip-input">
+                    <textarea [disabled]="flag" class="form-control" rows="7" maxlength="150" placeholder="Info"
+                              style="width: 400px; resize: none" name="info" [(ngModel)]="trip.info" #info="ngModel">
+                    </textarea>
+                </div><!-- /input-group -->
+                <small
+                        [hidden]="info.valid || (info.pristine && !f.submitted)">
+                  Date trip is required.
+                </small>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+
+      <div *ngIf="visible2">
+        <div *ngIf="selectedDay">
+          <div>
+            <h3 style="text-align: center">Day {{selectedDay.id}} : {{selectedDay.name | date
+              :'fullDate'}}</h3>
+          </div>
+          <div class="activities">
+            <div class="panel-group" style="margin-bottom: 10px" id="accordion"
+                 *ngFor="let action of selectedDay.action; let i = index">
+              <div *ngIf="isActivity(action)" class="panel panel-default">
+                <div class="panel-heading" style="min-height: 55px">
+                  <div class="col-md-8" style="padding-top: 10px">
+                    <h4 class="panel-title">
+                      <a data-toggle="collapse" data-parent="#accordion" href="#{{i+1}}">
+                        Start time: {{action?.startTime | date :'HH:mm'}}
+                        Name: {{action?.name}}
+                      </a>
+
+                    </h4>
+                  </div>
+                  <div class="col-md-4" style="text-align: right">
+                    <i *ngIf="action.activityType.name == 'lodging'" class="fa fa-bed fa-lg"
+                       aria-hidden="true"></i>
+                    <i *ngIf="action.activityType.name == 'sight'"
+                       class="fa fa-map-marker fa-lg"
+                       aria-hidden="true"></i>
+                    <button [hidden]="flag" type="button" class="btn btn-primary btn-action">
+                      <i class="fa  fa-times fa-lg " aria-hidden="true"></i>
+                    </button>
+                  </div>
+                </div>
+
+                <div id="{{i+1}}" class="panel-collapse collapse">
+                  <div class="panel-body">
+                    <form class="form-horizontal" #someForm="ngForm">
+                      <div class="form-group">
+                        <div class="col-md-3">
+                          <h4>Name: </h4>
+                        </div>
+                        <div class="col-md-9">
+                          <input [disabled]="flag" [ngModel]="action?.name"
+                                 class="form-control"
+                                 type="text" id="name" name="name">
+                        </div>
+                      </div>
+
+                      <div class="form-group">
+                        <div class="col-md-3">
+                          <h4>Start date:</h4>
+                        </div>
+                        <div class="col-md-9">
+                          <input [disabled]="flag"
+                                 [ngModel]="action?.startTime| date :'dd.MM.yyyy HH:mm'"
+                                 class="form-control"
+                                 type="datetime-local" id="startTime" name="startTime">
+                        </div>
+                      </div>
+
+                      <div class="form-group">
+                        <div class="col-md-3">
+                          <h4>End date:</h4>
+                        </div>
+                        <div class="col-md-9">
+                          <input [disabled]="flag"
+                                 [ngModel]="action?.endTime| date :'dd.MM.yyyy HH:mm'"
+                                 class="form-control"
+                                 type="datetime-local" id="endTime" name="endTime">
+                        </div>
+                      </div>
+
+                      <div class="form-group">
+                        <div class="col-md-3">
+                          <h4>Address:</h4>
+                        </div>
+                        <div class="col-md-9">
+                          <input [disabled]="flag" [ngModel]="action?.address"
+                                 class="form-control"
+                                 type="text" id="address" name="address">
+                        </div>
+                      </div>
+
+                      <div class="form-group">
+                        <div class="col-md-3">
+                          <h4>Price:</h4>
+                        </div>
+                        <div class="col-md-9">
+                          <input [disabled]="flag" [ngModel]="action?.price"
+                                 class="form-control"
+                                 type="text" id="price"
+                                 name="price">
+                        </div>
+                      </div>
+
+                      <div class="form-group">
+                        <div class="col-md-3">
+                          <h4>Description:</h4>
+                        </div>
+                        <div class="col-md-9">
+                          <input [disabled]="flag" [ngModel]="action?.description"
+                                 class="form-control"
+                                 type="text"
+                                 id="description"
+                                 name="description">
+                        </div>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+
+
+              <div *ngIf="isMovement(action)" class="panel panel-default">
+                <div class="panel-heading" style="min-height: 55px">
+                  <div class="col-md-8" style="padding-top: 10px">
+                    <h4 class="panel-title">
+                      <a data-toggle="collapse" data-parent="#accordion" href="#{{i+1}}">
+                        Start time: {{action?.startTime | date :'HH:mm' }}
+                        Start address: {{action?.startAddress}}
+                      </a>
+
+
+                    </h4>
+                  </div>
+                  <div class="col-md-4" style="text-align: right">
+                    <div>
+                      <i *ngIf="action.transport.name == 'car'" class="fa fa-car fa-lg"
+                         aria-hidden="true"></i>
+                      <i *ngIf="action.transport.name == 'plane'" class="fa fa-plane fa-lg"
+                         aria-hidden="true"></i>
+                      <i *ngIf="action.transport.name == 'rail'" class="fa fa-train fa-lg"
+                         aria-hidden="true"></i>
+                      <i *ngIf="action.transport.name == 'bus'" class="fa fa-bus fa-lg"
+                         aria-hidden="true"></i>
+                    </div>
+                  </div>
+                </div>
+                <div id="{{i+1}}" class="panel-collapse collapse">
+                  <div class="panel-body">
+                    <form class="form-horizontal" #movementForm="ngForm">
+                      <div class="form-group">
+                        <div class="col-md-3">
+                          <h4>Start date:</h4>
+                        </div>
+                        <div class="col-md-9">
+                          <input [disabled]="flag"
+                                 [ngModel]="action?.startTime| date :'dd.MM.yyyy HH:mm'"
+                                 class="form-control"
+                                 type="datetime-local" id="startTime" name="startTime">
+                        </div>
+                      </div>
+
+                      <div class="form-group">
+                        <div class="col-md-3">
+                          <h4>End date:</h4>
+                        </div>
+                        <div class="col-md-9">
+                          <input [disabled]="flag"
+                                 [ngModel]="action?.endTime| date :'dd.MM.yyyy HH:mm'"
+                                 class="form-control"
+                                 type="datetime-local" id="endTime" name="endTime">
+                        </div>
+                      </div>
+
+                      <div class="form-group">
+                        <div class="col-md-3">
+                          <h4>Start address:</h4>
+                        </div>
+                        <div class="col-md-9">
+                          <input [disabled]="flag" [ngModel]="action?.startAddress"
+                                 class="form-control"
+                                 type="text" id="startAddress" name="startAddress">
+                        </div>
+                      </div>
+
+                      <div class="form-group">
+                        <div class="col-md-3">
+                          <h4>Destination address:</h4>
+                        </div>
+                        <div class="col-md-9">
+                          <input [disabled]="flag" [ngModel]="action?.destinationAddress"
+                                 class="form-control"
+                                 type="text" id="destinationAddress"
+                                 name="destinationAddress">
+                        </div>
+                      </div>
+
+                      <div class="form-group">
+                        <div class="col-md-3">
+                          <h4>Price:</h4>
+                        </div>
+                        <div class="col-md-9">
+                          <input [disabled]="flag" [ngModel]="action?.price"
+                                 class="form-control"
+                                 type="text" id="price"
+                                 name="price">
+                        </div>
+                      </div>
+
+                      <div class="form-group">
+                        <div class="col-md-3">
+                          <h4>Distance:</h4>
+                        </div>
+                        <div class="col-md-9">
+                          <input [disabled]="flag" [ngModel]="action?.distance"
+                                 class="form-control"
+                                 type="text" id="distance"
+                                 name="distance">
+                        </div>
+                      </div>
+
+                      <div class="form-group">
+                        <div class="col-md-3">
+                          <h4>Description:</h4>
+                        </div>
+                        <div class="col-md-9">
+                          <input [ngModel]="action?.description" class="form-control"
+                                 type="text"
+                                 id="description"
+                                 name="description">
+                        </div>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

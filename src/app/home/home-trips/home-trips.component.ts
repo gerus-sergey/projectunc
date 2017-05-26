@@ -26,10 +26,4 @@ export class HomeTripsComponent implements OnInit {
         });
       
   }
-    sortTrip(){
-        this.homeTrips.sort(function (a, b) {
-            return a.id - b.id;
-        });
-        console.log(this.homeTrips);
-    }
 }
