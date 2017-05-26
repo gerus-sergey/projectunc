@@ -26,8 +26,7 @@ export class Form{
 @Component({
   selector: 'app-registered',
   templateUrl: './registered.component.html',
-  styleUrls: ['./registered.component.css'],
-  providers: [HttpService]
+  styleUrls: ['./registered.component.css']
 })
 export class RegisteredComponent implements OnInit {
 
@@ -122,7 +121,7 @@ export class RegisteredComponent implements OnInit {
               localStorage.setItem('id', this.receivedUser.id.toString());
               this.httpService.setId(this.receivedUser.id);
           }else{
-            localStorage.setItem('id', null);
+              this.httpService.setId(this.receivedUser.id);
           }
         });
 

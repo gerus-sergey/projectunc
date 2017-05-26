@@ -69,8 +69,6 @@ export class SidebarComponent implements OnInit, OnDestroy {
       document.getElementById('log').style.display = 'block';
     }
     return this.id;
-
-
   }
 
   logout() {
