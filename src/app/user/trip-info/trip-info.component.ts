@@ -29,8 +29,8 @@ export class TripInfoComponent implements OnInit {
   private subTwo:any;
   private subThree:any;
   private selectedDay: Day;
-  private visible: boolean;
-  private visible2: boolean;
+  private visible: boolean = true;
+  private visible2: boolean = false;
   private activity: Activities[];
   private movement: Movement[];
 

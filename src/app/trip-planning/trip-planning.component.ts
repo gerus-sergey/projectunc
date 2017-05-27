@@ -47,8 +47,8 @@ export class TripPlanningComponent implements OnInit, OnDestroy {
     private routeSubscription:Subscription;
     public days:Day[];
     public trip:Trip;
-    flagOne = true;
-    flag = false;
+    flagOne:boolean = true;
+    flag:boolean = false;
     selectedDay:Day;
     visible:boolean = true;
     visible2:boolean = false;
@@ -129,9 +129,7 @@ export class TripPlanningComponent implements OnInit, OnDestroy {
 
         tripService.path$.subscribe(
             path => {
-                
                     this.pathToPhoto = path;
-                
             });
 
         this.subOne = tripService.nameDay$.subscribe(
@@ -147,19 +145,23 @@ export class TripPlanningComponent implements OnInit, OnDestroy {
                     .subscribe((data) => {
                         console.log(data);
                         activity.id = data.id;
-                        if (new Date(activity.startTime).getDate() + new Date(activity.startTime).getMonth() ==
-                            this.selectedDay.name.getDate() + this.selectedDay.name.getMonth()) {
-                            this.selectedDay.action.push(activity);
-                            this.selectedDay.action.sort(function (a, b) {
-                                return (a.startTime.valueOf() + 24 * 60 * 60 * 1000) - (b.startTime.valueOf() + 24 * 60 * 60 * 1000);
-                            });
-                        }
                     });
+                if (new Date(activity.startTime).getDate() + new Date(activity.startTime).getMonth() ==
+                    this.selectedDay.name.getDate() + this.selectedDay.name.getMonth()) {
+                    this.selectedDay.action.push(activity);
+                    this.selectedDay.action.sort(function (a, b) {
+                        return (a.startTime.valueOf() + 24 * 60 * 60 * 1000) - (b.startTime.valueOf() + 24 * 60 * 60 * 1000);
+                    });
+                }
             });
 
         this.subThree = tripService.movement$.subscribe(
             movement => {
-                this.tripService.setMovement(movement);
+                this.httpService.addMovement(movement, this.trip.id)
+                    .subscribe((data) => {
+                        console.log(data);
+                        movement.id = data.id;
+                    });
                 if (new Date(movement.startTime).getDate() + new Date(movement.startTime).getMonth() ==
                     this.selectedDay.name.getDate() + this.selectedDay.name.getMonth()) {
                     this.selectedDay.action.push(movement);
@@ -189,7 +191,7 @@ export class TripPlanningComponent implements OnInit, OnDestroy {
                     this.tripService.addTrip(this.trip);
                     this.tripService.setNameDay(this.days);
                     this.tripService.addOrUpdateTrip(this.trip);
-                    console.log(this.trip);
+                    //console.log(this.trip);
                 } else {
                     this.trip.days[0] = new Day(1, new Date(this.trip.startDate), []);
                     this.days.push(new Day(1, new Date(this.trip.startDate), []));

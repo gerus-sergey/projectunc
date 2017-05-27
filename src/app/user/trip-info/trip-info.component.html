@@ -5,7 +5,6 @@
       <div class="sidebar-img">
         <label class="trip-avatar trip-avatar">
           <img src="{{pathToPhoto}}" class="img-circle image">
-          <span>Click here to upload</span>
         </label>
       </div>
 
@@ -28,8 +27,7 @@
       </div>
     </div>
 
-    <div class="planning-info col-md-6 col-xs-9">
-
+    <div class="planning-info col-md-9 col-xs-9">
       <div *ngIf="visible">
         <div class="container-fluid" style="margin-top: 25px">
           <div>
@@ -37,51 +35,36 @@
               <div class="form-group">
                 <h4 class="trip-label">Trip name</h4>
                 <div class="trip-input">
-                  <input [disabled]="flag" type="text" style="width: 70%" minlength="2" maxlength="20"
-                         required class="form-control" name="name"
-                         placeholder="Trip name" [(ngModel)]="trip.name" #name="ngModel">
+                  <input disabled type="text" style="width: 70%"
+                          class="form-control" name="name"
+                         placeholder="Trip name" [(ngModel)]="trip.name">
                 </div>
-                <small
-                        [hidden]="name.valid || (name.pristine && !f.submitted)  || name.untouched">
-                  Name trip is required (minimum 2 characters).
-                </small>
               </div>
               <div class="form-group">
                 <h4 class=" trip-label">Start date</h4>
-                <div class="trip-input">
-                  <input [disabled]="flag" type="date" style="width: 70%" required
-                         class="form-control" name="startDate" [(ngModel)]="trip.startDate"
-                         #startDate="ngModel">
-
-
+                <div class="trip-input" style="margin-left: 115px">
+                  <datetime [readonly]="true" [timepicker]="false" [datepicker]="{ icon: 'fa fa-calendar' }"
+                            [(ngModel)]="trip.startDate"  name="startDate">
+                  </datetime>
                 </div><!-- /input-group -->
-                <small
-                        [hidden]="startDate.valid || (startDate.pristine && !f.submitted)">
-                  Date trip is required.
-                </small>
+
               </div>
               <div class="form-group">
                 <h4 class=" trip-label">End date</h4>
-                <div class="trip-input">
-                  <input [disabled]="flag" type="date" style="width: 70%" class="form-control"
-                         name="endDate" [(ngModel)]="trip.endDate" #endDate="ngModel">
+                <div class="trip-input" style="margin-left: 115px">
+                  <datetime [readonly]="true" [timepicker]="false" [datepicker]="{ icon: 'fa fa-calendar' }"
+                            [(ngModel)]="trip.endDate"  name="endDate">
+                  </datetime>
                 </div><!-- /input-group -->
-                <small
-                        [hidden]="endDate.valid || (endDate.pristine && !f.submitted)">
-                  Date trip is required.
-                </small>
+
               </div>
               <div class="form-group">
                 <h4 class=" trip-label">Info</h4>
                 <div class="trip-input">
-                    <textarea [disabled]="flag" class="form-control" rows="7" maxlength="150" placeholder="Info"
-                              style="width: 400px; resize: none" name="info" [(ngModel)]="trip.info" #info="ngModel">
+                    <textarea disabled class="form-control" rows="7" maxlength="150" placeholder="Info"
+                              style="width: 400px; resize: none" name="info" [(ngModel)]="trip.info">
                     </textarea>
                 </div><!-- /input-group -->
-                <small
-                        [hidden]="info.valid || (info.pristine && !f.submitted)">
-                  Date trip is required.
-                </small>
               </div>
             </form>
           </div>
@@ -108,15 +91,12 @@
 
                     </h4>
                   </div>
-                  <div class="col-md-4" style="text-align: right">
+                  <div class="col-md-4" style="text-align: right; margin-top:10px">
                     <i *ngIf="action.activityType.name == 'lodging'" class="fa fa-bed fa-lg"
                        aria-hidden="true"></i>
                     <i *ngIf="action.activityType.name == 'sight'"
                        class="fa fa-map-marker fa-lg"
                        aria-hidden="true"></i>
-                    <button [hidden]="flag" type="button" class="btn btn-primary btn-action">
-                      <i class="fa  fa-times fa-lg " aria-hidden="true"></i>
-                    </button>
                   </div>
                 </div>
 
@@ -128,7 +108,7 @@
                           <h4>Name: </h4>
                         </div>
                         <div class="col-md-9">
-                          <input [disabled]="flag" [ngModel]="action?.name"
+                          <input disabled [ngModel]="action?.name"
                                  class="form-control"
                                  type="text" id="name" name="name">
                         </div>
@@ -139,10 +119,13 @@
                           <h4>Start date:</h4>
                         </div>
                         <div class="col-md-9">
-                          <input [disabled]="flag"
-                                 [ngModel]="action?.startTime| date :'dd.MM.yyyy HH:mm'"
-                                 class="form-control"
-                                 type="datetime-local" id="startTime" name="startTime">
+                          <div style="padding-left: 15px">
+                            <datetime [(ngModel)]="action.startTime" id="startTime"
+                                      name="startTime"
+                                      style="margin-bottom:5px" [readonly]="true"
+                                      [timepicker]="{ icon: 'fa fa-clock-o' }"
+                                      [datepicker]="{ icon: 'fa fa-calendar' }"></datetime>
+                          </div>
                         </div>
                       </div>
 
@@ -151,10 +134,12 @@
                           <h4>End date:</h4>
                         </div>
                         <div class="col-md-9">
-                          <input [disabled]="flag"
-                                 [ngModel]="action?.endTime| date :'dd.MM.yyyy HH:mm'"
-                                 class="form-control"
-                                 type="datetime-local" id="endTime" name="endTime">
+                          <div style="padding-left: 15px">
+                            <datetime  [(ngModel)]="action.endTime" id="endTime"
+                                       name="endTime" [readonly]="true"
+                                       [timepicker]="{ icon: 'fa fa-clock-o' }"
+                                       [datepicker]="{ icon: 'fa fa-calendar' }"></datetime>
+                          </div>
                         </div>
                       </div>
 
@@ -163,7 +148,7 @@
                           <h4>Address:</h4>
                         </div>
                         <div class="col-md-9">
-                          <input [disabled]="flag" [ngModel]="action?.address"
+                          <input disabled [ngModel]="action?.address"
                                  class="form-control"
                                  type="text" id="address" name="address">
                         </div>
@@ -174,7 +159,7 @@
                           <h4>Price:</h4>
                         </div>
                         <div class="col-md-9">
-                          <input [disabled]="flag" [ngModel]="action?.price"
+                          <input disabled [ngModel]="action?.price"
                                  class="form-control"
                                  type="text" id="price"
                                  name="price">
@@ -186,7 +171,7 @@
                           <h4>Description:</h4>
                         </div>
                         <div class="col-md-9">
-                          <input [disabled]="flag" [ngModel]="action?.description"
+                          <input disabled [ngModel]="action?.description"
                                  class="form-control"
                                  type="text"
                                  id="description"
@@ -207,12 +192,10 @@
                         Start time: {{action?.startTime | date :'HH:mm' }}
                         Start address: {{action?.startAddress}}
                       </a>
-
-
                     </h4>
                   </div>
                   <div class="col-md-4" style="text-align: right">
-                    <div>
+                    <div style="margin-top:10px" >
                       <i *ngIf="action.transport.name == 'car'" class="fa fa-car fa-lg"
                          aria-hidden="true"></i>
                       <i *ngIf="action.transport.name == 'plane'" class="fa fa-plane fa-lg"
@@ -232,10 +215,13 @@
                           <h4>Start date:</h4>
                         </div>
                         <div class="col-md-9">
-                          <input [disabled]="flag"
-                                 [ngModel]="action?.startTime| date :'dd.MM.yyyy HH:mm'"
-                                 class="form-control"
-                                 type="datetime-local" id="startTime" name="startTime">
+                          <div style="padding-left: 15px">
+                            <datetime [(ngModel)]="action.startTime" id="startTime"
+                                      name="startTime"
+                                      style="margin-bottom:5px" [readonly]="true"
+                                      [timepicker]="{ icon: 'fa fa-clock-o' }"
+                                      [datepicker]="{ icon: 'fa fa-calendar' }"></datetime>
+                          </div>
                         </div>
                       </div>
 
@@ -244,10 +230,12 @@
                           <h4>End date:</h4>
                         </div>
                         <div class="col-md-9">
-                          <input [disabled]="flag"
-                                 [ngModel]="action?.endTime| date :'dd.MM.yyyy HH:mm'"
-                                 class="form-control"
-                                 type="datetime-local" id="endTime" name="endTime">
+                          <div style="padding-left: 15px">
+                            <datetime  [(ngModel)]="action.endTime" id="endTime"
+                                       name="endTime" [readonly]="true"
+                                       [timepicker]="{ icon: 'fa fa-clock-o' }"
+                                       [datepicker]="{ icon: 'fa fa-calendar' }"></datetime>
+                          </div>
                         </div>
                       </div>
 
@@ -256,7 +244,7 @@
                           <h4>Start address:</h4>
                         </div>
                         <div class="col-md-9">
-                          <input [disabled]="flag" [ngModel]="action?.startAddress"
+                          <input disabled [ngModel]="action?.startAddress"
                                  class="form-control"
                                  type="text" id="startAddress" name="startAddress">
                         </div>
@@ -267,7 +255,7 @@
                           <h4>Destination address:</h4>
                         </div>
                         <div class="col-md-9">
-                          <input [disabled]="flag" [ngModel]="action?.destinationAddress"
+                          <input disabled [ngModel]="action?.destinationAddress"
                                  class="form-control"
                                  type="text" id="destinationAddress"
                                  name="destinationAddress">
@@ -279,7 +267,7 @@
                           <h4>Price:</h4>
                         </div>
                         <div class="col-md-9">
-                          <input [disabled]="flag" [ngModel]="action?.price"
+                          <input disabled [ngModel]="action?.price"
                                  class="form-control"
                                  type="text" id="price"
                                  name="price">
@@ -291,7 +279,7 @@
                           <h4>Distance:</h4>
                         </div>
                         <div class="col-md-9">
-                          <input [disabled]="flag" [ngModel]="action?.distance"
+                          <input disabled [ngModel]="action?.distance"
                                  class="form-control"
                                  type="text" id="distance"
                                  name="distance">
@@ -303,10 +291,8 @@
                           <h4>Description:</h4>
                         </div>
                         <div class="col-md-9">
-                          <input [ngModel]="action?.description" class="form-control"
-                                 type="text"
-                                 id="description"
-                                 name="description">
+                          <input disabled [ngModel]="action?.description" class="form-control"
+                                 type="text" id="description" name="description">
                         </div>
                       </div>
                     </form>

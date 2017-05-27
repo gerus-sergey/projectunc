@@ -50,6 +50,8 @@ import { NKDatetimeModule } from 'ng2-datetime/ng2-datetime';
 import { TripInfoComponent } from './user/trip-info/trip-info.component';
 import { FilterComponent } from './filter/filter.component';
 import {TripGuard} from "./guards/trip.guard";
+import {InvitationInTripComponent} from "./user/invitation-in-trip/invitation-in-trip.component";
+
 
 const transportRoutes: Routes = [
   { path: 'flight', component: FlightDialogComponent},
@@ -75,11 +77,12 @@ const appRoutes: Routes =[
   { path: '', component: HomeComponent},
   { path: 'account/:id', component: AccountComponent, children: accountRoutes},
   { path: 'registered', component: RegisteredComponent},
-  { path: 'trip-planning/:id', component: TripPlanningComponent, children: tripRoutes, canActivate: [TripGuard]},
+  { path: 'trip-planning/:id', component: TripPlanningComponent, children: tripRoutes},
   { path: 'map', component: MapComponent},
   { path: 'login', component: SignInComponent},
   { path: 'trip-info/:id', component: TripInfoComponent},
   { path: 'user/:id', component: UserComponent},
+  { path: 'invitation/:id', component: InvitationInTripComponent, canActivate: [LoginGuard]},
   { path: '**', component: NotFoundComponent }
 ];
 
@@ -120,7 +123,8 @@ let providers = {
     ParticipantsComponent,
     CreatedTripComponent,
     TripInfoComponent,
-    FilterComponent
+    FilterComponent,
+    InvitationInTripComponent
 
   ],
   imports: [
@@ -140,7 +144,7 @@ let providers = {
     FacebookModule.forRoot(),
     Angular2SocialLoginModule
   ],
-  providers: [MainGuard, LoginGuard,TripService, HttpService, TripGuard],
+  providers: [MainGuard, LoginGuard,TripService, HttpService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

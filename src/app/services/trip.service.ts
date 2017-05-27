@@ -18,7 +18,7 @@ import {Router} from "@angular/router";
 export class TripService {
 
     trip:Trip;
-    idTrip:number
+    idTrip:number;
     role:number;
     idUser:number = parseInt(localStorage.getItem('id'));
 
@@ -103,6 +103,7 @@ export class TripService {
 
 
     addOrUpdateTrip(trip:Trip) {
+        //console.log(trip);
         this.httpService.addOrUpdateTrip(trip, this.idUser)
             .subscribe((data) => {
                 this.trip.id = data.id;
@@ -216,7 +217,6 @@ export class TripService {
     }
 
     setMovement(movement:Movement) {
-
         console.log(movement);
         this.httpService.addMovement(movement, this.trip.id)
             .subscribe((data) => {

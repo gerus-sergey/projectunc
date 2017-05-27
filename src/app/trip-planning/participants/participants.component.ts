@@ -4,6 +4,7 @@ import {TripService} from "../../services/trip.service";
 import {HttpService} from "../../services/http.service";
 import {ActivatedRoute} from '@angular/router';
 import { LocalStorageService } from 'angular-2-local-storage';
+import {Subscription} from "rxjs/Subscription";
 
 @Component({
   selector: 'app-participants',
@@ -15,9 +16,11 @@ export class ParticipantsComponent implements OnInit {
 
   participants: Participant[] = [];
   ivitation: string;
-  tripPlanId: number = this.route.parent.snapshot.params['id'];
+  tripPlanId: number;
+  private routeSubscription:Subscription;
 
   constructor(private tripService:TripService, private route: ActivatedRoute, private httpService: HttpService, private localStorageService: LocalStorageService) {
+    this.routeSubscription = route.params.subscribe(params=>this.tripPlanId = params['id']);
     tripService.participant$.subscribe(
         participant => {
           this.participants = participant;
@@ -33,9 +36,10 @@ export class ParticipantsComponent implements OnInit {
     if (ivitation){
       this.ivitation = ivitation;
       console.log(this.ivitation);
+      this.httpService.sendEmail(this.ivitation, this.tripPlanId, parseInt(localStorage.getItem('id')))
+          .subscribe((data) => {
+            console.log(data);
+          });
     }
-    this.httpService.sendEmail(this.ivitation, this.tripPlanId, parseInt(localStorage.getItem('id')));
-
   }
-
 }

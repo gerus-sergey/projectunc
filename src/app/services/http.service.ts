@@ -49,7 +49,7 @@ export class HttpService {
             });
     }
 
-    sendEmail(email: String, travelId: number, userId: number){
+    sendEmail(email: string, travelId: number, userId: number){
         return this.http.get(this.host + 'sendEmail/travel=' + travelId + '/user=' + userId + '/' + email)
             .map((resp: Response) => resp.json())
             .catch((error: any) => {
@@ -213,7 +213,7 @@ export class HttpService {
     }
 
     addOrUpdateTrip(obj:Trip, id:number) {
-        console.log(obj);
+        //console.log(obj);
         var csrf_token = jQuery("meta[name='_csrf']").attr("content");
         var csrf_token_name = jQuery("meta[name='_csrf_header']").attr("content");
         let headers = new Headers({
@@ -358,6 +358,23 @@ export class HttpService {
                 return Observable.throw(error);
             });
     }
+
+    acceptInviteUser(userId:number, travelId:number) {
+        var csrf_token = jQuery("meta[name='_csrf']").attr("content");
+        var csrf_token_name = jQuery("meta[name='_csrf_header']").attr("content");
+        let headers = new Headers({
+            'Content-Type': 'application/json;charset=utf-8'
+        });
+        if (csrf_token_name && csrf_token)
+            headers.set(csrf_token_name, csrf_token);
+
+        return this.http.post(this.host + 'userToTravels?travelId=' + travelId + '&userId=' + userId, {headers: headers})
+            .map((resp:Response)=>resp.json())
+            .catch((error:any) => {
+                return Observable.throw(error);
+            });
+    }
+
     private idSubject = new Subject<number>();
     id$ = this.idSubject.asObservable();
 

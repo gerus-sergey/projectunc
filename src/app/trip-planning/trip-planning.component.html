@@ -5,7 +5,7 @@
             <div class="sidebar-img">
                 <label for="photo" class="trip-avatar trip-avatar">
                     <img src="{{pathToPhoto}}" class="img-circle image">
-                    <span [hidden]="flagOne" >Click here to upload</span>
+                    <span *ngIf="flagOne" >Click here to upload</span>
                 </label>
             </div>
 
@@ -40,7 +40,7 @@
                 </button>
             </div>
             <form style="visibility: hidden">
-                <input [disabled]="flagOne" type="file" id="photo" (change)="upload()">
+                <input *ngIf="flagOne" type="file" id="photo" (change)="upload()">
             </form>
         </div>
 
@@ -250,6 +250,8 @@
                                             <a data-toggle="collapse" data-parent="#accordion" href="#{{i+1}}">
                                                 Start time: {{action?.startTime | date :'HH:mm' }}
                                                 Start address: {{action?.startAddress}}
+                                                id:{{action.id}}
+
                                             </a>
 
 
