@@ -3,17 +3,20 @@ import {Activities} from "../../models/activities.interface";
 import {TripService} from "../../services/trip.service";
 import {Coordinates} from "../../models/coordinates.interface";
 import {ActivityType} from "../../models/activityType.interface";
-
+import {Location} from '@angular/common';
+import {ActivatedRoute} from "@angular/router";
+import {Subscription} from "rxjs/Subscription";
 @Component({
     selector: 'app-lodging',
     templateUrl: './lodging.component.html',
     styleUrls: ['./lodging.component.css']
 })
 export class LodgingComponent implements OnInit {
-    
+    private tripId:number;
     lodging:Activities;
-    
-    constructor(private tripService:TripService) {
+    private routeSubscription:Subscription;
+    constructor(private route:ActivatedRoute,private _location:Location,private tripService:TripService) {
+        this.routeSubscription = route.parent.params.subscribe(params=>this.tripId = params['id']);
     }
 
     ngOnInit() {
@@ -51,6 +54,10 @@ export class LodgingComponent implements OnInit {
                 activityType:null
             }
         }
+    }
+
+    backClick() {
+        this._location.go("/trip-planning/" + this.tripId);
     }
     
 }

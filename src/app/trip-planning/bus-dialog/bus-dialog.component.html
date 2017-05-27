@@ -8,11 +8,8 @@
                        [(ngModel)]="bus.start_address"/>
 
                 <label>Departure Time</label>
-                
-                <datetime [(ngModel)]="bus.start_time" id="startTime"
-                          name="startTime" required
-                          [timepicker]="{ icon: 'fa fa-clock-o' }"
-                          [datepicker]="{ icon: 'fa fa-calendar' }"></datetime>
+                <input class="form-control" name="startTime" type="datetime-local" required
+                       placeholder="2017-05-29T10:25:OOZ" [(ngModel)]="bus.start_time"/>
             </div>
             <div class="form-group to">
 
@@ -26,25 +23,26 @@
             </div>
         </div>
 
-        <div class="price-dist">
-            <div class="form-group">
+        <div class="form-group">
+            <div>
                 <label>Price</label>
                 <input class="form-control" name="price" type="text" maxlength="5" placeholder="5200"
                        [(ngModel)]="bus.price"/>
             </div>
-            <div class="form-group">
+            <div>
                 <label>Distance</label>
                 <input class="form-control" name="distance" type="text" maxlength="5" placeholder="451"
                        [(ngModel)]="bus.distance"/>
             </div>
         </div>
 
-        <div class="bus-info">
+        <div class="form-group">
+            <label>Description</label>
             <textarea class="form-control" style="width: 400px; resize: none" maxlength="100" name="description"
                       [(ngModel)]="bus.description"></textarea>
         </div>
 
-        <div class="input-group">
+        <div class="form-group" style="margin-top: 10px; display:block">
             <button type="submit" class="btn btn-primary">Save</button>
         </div>
 

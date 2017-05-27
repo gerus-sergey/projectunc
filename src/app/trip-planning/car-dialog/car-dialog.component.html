@@ -1,35 +1,42 @@
-
 <div class="trip-car">
-  <div class="from-to">
-    <div class="form-group from">
-      <label>Pick-up Time</label>
-      <input class="form-control" name="pickup-time-date" placeholder="2017-05-29T10:25:OOZ"/>
-      <label>Address</label>
-      <input class="form-control" name="pickup-address" placeholder="Address"/>
-    </div>
-    <div class="form-group to">
-      <label>Drop-off Time</label>
-      <input class="form-control" name="dropoff-time-date" placeholder="2017-05-29T10:25:OOZ"/>
-      <label>Address</label>
-      <input class="form-control" name="dropoff-address" placeholder="Address"/>
-    </div>
-  </div>
+    <form class="form-horizontal" #f="ngForm" novalidate (ngSubmit)="addCar(f.value)">
 
-  <div class="station">
-    <div class="form-group">
-      <label>Company</label>
-      <input class="form-control" name="car-company" placeholder="company"/>
-    </div>
-    <div class="form-group">
-      <label>Car</label>
-      <input class="form-control" name="car-model-number" placeholder="model-number"/>
-    </div>
-  </div>
+        <div class="from-to">
+            <div class="form-group from">
+                <label>Pick-up Time</label>
+                <input class="form-control" name="startTime" type="datetime-local" required
+                       placeholder="2017-05-29T10:25:OOZ" [(ngModel)]="car.start_time"/>
+                <label>Address</label>
+                <input class="form-control" name="startAddress" type="text" maxlength="30" required placeholder="Address"
+                       [(ngModel)]="car.start_address"/>
+            </div>
 
-  <div class="price">
-    <div class="form-group">
-      <label>Price</label>
-      <input class="form-control" name="price" placeholder="5200"/>
-    </div>
-  </div>
+            <div class="form-group to">
+                <label>Drop-off Time</label>
+                <input class="form-control" name="endTime" type="datetime-local" required
+                       placeholder="2017-05-29T10:25:OOZ" [(ngModel)]="car.end_time"/>
+                <label>Address</label>
+                <input class="form-control" name="destinationAddress" type="text" maxlength="30" required
+                       placeholder="Address" [(ngModel)]="car.destination_address"/>
+            </div>
+        </div>
+
+        <div class="price">
+            <div class="form-group">
+                <label>Price</label>
+                <input class="form-control" name="price" type="text" maxlength="5" placeholder="5200"
+                       [(ngModel)]="car.price"/>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label>Description</label>
+            <textarea class="form-control" style="width: 400px; resize: none" maxlength="100" name="description"
+                      [(ngModel)]="car.description"></textarea>
+        </div>
+
+        <div class="form-group" style="margin-top: 10px; display:block">
+            <button type="submit" class="btn btn-primary">Save</button>
+        </div>
+    </form>
 </div>

@@ -22,7 +22,7 @@
             </div>
         </div>
 
-        <div class="price-dist">
+        <div class="form-group">
             <div >
                 <label>Price</label>
                 <input class="form-control" name="price" type="text" maxlength="5" placeholder="5200"
@@ -35,13 +35,13 @@
             </div>
         </div>
 
-        <div class="flight-info">
+        <div class="form-group flight-info">
             <label>Description</label>
             <textarea class="form-control" style="width: 400px; resize: none" maxlength="100" name="description"
                       [(ngModel)]="flight.description"></textarea>
         </div>
 
-        <div class="input-group">
+        <div class="form-group" style="margin-top: 10px; display:block">
             <button type="submit" class="btn btn-primary">Save</button>
         </div>
     </form>
