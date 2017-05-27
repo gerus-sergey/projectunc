@@ -1,4 +1,10 @@
 <div id="sidebar" class="container" >
+
+  <div style=" left: 50%; transform: translate(-50%,5%);z-index: inherit; position: fixed" class="alert alert-danger" *ngIf="signOutSuccess">
+    <a class="close" data-dismiss="alert"> &times;</a>
+    You signed out &nbsp;
+  </div>
+
   <ul class="gn-menu-main" style="border-bottom: 1px solid #c6d0da" >
     <li style="border: none"><img src="assets/img/logo.png"></li>
     <li id="menu" class="gn-trigger" style="float: right">
@@ -10,7 +16,7 @@
             <li><a routerLink="/account/{{id}}/profile"><i class="fa fa-user fa-2x i-position" aria-hidden="true" style=" margin:0 18px 0 17px;"></i>Profile</a></li>
             <li><a routerLink="account/{{id}}/trips/"><i class="fa fa-map-marker fa-2x i-position" aria-hidden="true" style=" margin:0 20px 0 20px;"></i>Trips</a></li>
             <!--<li><a routerLink="map"><i class="fa fa-map fa-2x i-position" aria-hidden="true" style="margin-right: 15px;" ></i>Map</a></li>-->
-            <li><a routerLink="account/{{id}}/album"><i class="fa fa-picture-o fa-2x i-position" aria-hidden="true"></i>Photos</a></li>
+            <!-- <li><a routerLink="account/{{id}}/album"><i class="fa fa-picture-o fa-2x i-position" aria-hidden="true"></i>Photos</a></li>-->
             <!--// <li (click)="showMsgDialog = !showMsgDialog" data-toggle="modal"><a><i class="fa fa-envelope fa-2x i-position" aria-hidden="true"></i>Messages</a></li>-->
             <li><a (click)="logout()"><i class="fa fa-sign-out fa-2x i-position" aria-hidden="true"></i>Log out</a></li>
           </ul>

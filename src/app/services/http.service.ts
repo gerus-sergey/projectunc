@@ -21,7 +21,7 @@ declare var jQuery:any;
 @Injectable()
 export class HttpService {
     host:string = "http://localhost:8181/";
-    //host:string = "http://jj-back-end-jj.7e14.starter-us-west-2.openshiftapps.com/";
+    //host:string = "http://jj2017.ddns.net/";
     constructor(private http:Http) {
     }
 
