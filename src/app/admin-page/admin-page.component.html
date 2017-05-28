@@ -1,0 +1,26 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h2>Users</h2>
+        </div>
+        <div>
+            <table class="table table-hover">
+                <tr>
+                    <td>User name</td>
+                        <td>User account</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr *ngFor="let user of allUsers">
+                    <td>{{user.lastName}} {{user.firstName}}</td>
+                    <td>
+                        <button routerLink="/user/{{user.id}}" class="btn btn-info">Account</button>
+                    </td>
+                    <td>
+                        <button (click) = ban(user.id) class="btn btn-danger">Ban</button>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
