@@ -19,8 +19,11 @@ import {Coordinates} from "../models/coordinates.interface";
 import {Location} from '@angular/common';
 import {Photo} from "../models/photo.interface";
 import {User} from "../models/user.interface";
-const URL = 'http://localhost:8181/fileUploadPage';
-declare var jQuery:any;
+
+
+
+
+
 
 @Component({
     selector: 'app-trip-planning',
@@ -61,7 +64,7 @@ export class TripPlanningComponent implements OnInit, OnDestroy {
     private photo:Photo;
     private userProfile:User;
 
-    isDisabled() : boolean{
+    isDisabled():boolean {
         return this.flagOne;
     }
 
@@ -282,15 +285,10 @@ export class TripPlanningComponent implements OnInit, OnDestroy {
     }
 
     upload() {
-        console.log("dsadsadsadsadsadsadsadsadsadsadsa");
-       var csrf_token = jQuery("meta[name='_csrf']").attr("content");
-       var csrf_token_name = jQuery("meta[name='_csrf_header']").attr("content");
-       //noinspection TypeScriptValidateTypes
-        let headers = new Headers({
 
-        });
-        if (csrf_token_name && csrf_token)
+
             headers.set(csrf_token_name, csrf_token);
+
 
         //locate the file element meant for the file upload.
         let inputEl:HTMLInputElement = this.el.nativeElement.querySelector('#photo');

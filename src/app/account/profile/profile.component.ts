@@ -159,12 +159,14 @@ export class ProfileComponent implements OnInit,OnDestroy {
         var csrf_token = jQuery("meta[name='_csrf']").attr("content");
         var csrf_token_name = jQuery("meta[name='_csrf_header']").attr("content");
 
-        //noinspection TypeScriptValidateTypes
         let headers = new Headers({
 
         });
         if (csrf_token_name && csrf_token)
           headers.set(csrf_token_name, csrf_token);
+
+
+
 
         //locate the file element meant for the file upload.
         let inputEl:HTMLInputElement = this.el.nativeElement.querySelector('#photo');
@@ -179,7 +181,9 @@ export class ProfileComponent implements OnInit,OnDestroy {
             //call the angular http method
             console.log();
             this.http
-                .post(URL, formData, {headers: headers})
+
+
+
                 .map((res:Response) => res.json()).subscribe((data) => {
                 this.pathToPhoto = data;
                 console.log(this.pathToPhoto);

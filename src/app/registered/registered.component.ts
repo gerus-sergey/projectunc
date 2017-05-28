@@ -38,7 +38,6 @@ export class RegisteredComponent implements OnInit {
   form:Form = new Form();
   remember:boolean = false;
 
-
   constructor(private route:Router, private httpService:HttpService,private localStorageService: LocalStorageService) {
   }
 
