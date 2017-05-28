@@ -6,8 +6,7 @@
   </div>
 
   <ul class="gn-menu-main" style="border-bottom: 1px solid #c6d0da" >
-    <li style="border: none"><img src="assets/img/logo.png"></li>
-    <li id="menu" class="gn-trigger" style="float: right">
+    <li id="menu" class="gn-trigger">
       <a class="gn-icon gn-icon-menu"><span>Menu</span></a>
       <nav class="gn-menu-wrapper" style="border-right:1px solid #c6d0da">
         <div class="gn-scroller">
@@ -23,16 +22,18 @@
         </div><!-- /gn-scroller -->
       </nav>
     </li>
-
+    <li style="border: none"><img src="assets/img/logo.png"></li>
     <li id="srch" style="float: right; border: none">
       <input type="text" id="search" placeholder="Search"  [(ngModel)] = "term" (click)="showList = !showList" style="border: none; outline: none;">
       <span class="fa fa-search"></span>
       <div *ngIf="showList">
-        <ul  *ngFor = "let item of items |filter:term | slice:0:5 " style="background: white">
+
+        <ul  *ngFor = "let item of items |filter:term | slice:0:5" style="background: white">
           <li>
-            <a (click)="showList = !showList; term = ''; goToUser(item.id); window.location.reload()">{{item.lastName}} {{item.firstName}}</a>
+            <a (click)="showList = !showList; term = ''; goToUser(item.id); window.location.reload()">{{item.firstName + ' ' + item.lastName}}</a>
           </li>
         </ul>
+
       </div>
     </li>
 

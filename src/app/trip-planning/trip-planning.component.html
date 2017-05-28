@@ -101,10 +101,14 @@
                                     Date trip is required.
                                 </small>
                             </div>
-                            <div class="input-group info">
+                            <div class="input-group info" style="float: left">
                                 <button [disabled]="flag" type="submit" class="btn btn-primary">Save</button>
                             </div>
+                            <div class="input-group info" style="">
+                                <button [disabled]="flag" (click) = "closeTrip()" class="btn btn-danger">Close trip</button>
+                            </div>
                         </form>
+
                     </div>
 
 

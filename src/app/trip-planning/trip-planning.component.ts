@@ -21,6 +21,7 @@ import {Photo} from "../models/photo.interface";
 import {User} from "../models/user.interface";
 const URL = 'http://localhost:8181/fileUploadPage';
 
+declare var jQuery:any;
 @Component({
     selector: 'app-trip-planning',
     templateUrl: './trip-planning.component.html',
@@ -78,6 +79,11 @@ export class TripPlanningComponent implements OnInit, OnDestroy {
         this.datepickerOpts = {
             startDate: dateFrom
         };
+    }
+
+    closeTrip(){
+        //console.log(this.trip);
+        this.tripService.closeTrip();
     }
 
     ngOnInit() {
@@ -150,7 +156,7 @@ export class TripPlanningComponent implements OnInit, OnDestroy {
 
         this.subTwo = tripService.activity$.subscribe(
             activity => {
-                //
+                this.trip.activities.push(activity);
                 this.httpService.addActivity(activity, this.trip.id)
                     .subscribe((data) => {
                         console.log(data);
@@ -167,6 +173,7 @@ export class TripPlanningComponent implements OnInit, OnDestroy {
 
         this.subThree = tripService.movement$.subscribe(
             movement => {
+                this.trip.movements.push(movement);
                 this.httpService.addMovement(movement, this.trip.id)
                     .subscribe((data) => {
                         console.log(data);
@@ -287,16 +294,12 @@ export class TripPlanningComponent implements OnInit, OnDestroy {
     }
 
     upload() {
-
         var csrf_token = jQuery("meta[name='_csrf']").attr("content");
         var csrf_token_name = jQuery("meta[name='_csrf_header']").attr("content");
-
         let headers = new Headers({
-
         });
         if (csrf_token_name && csrf_token)
             headers.set(csrf_token_name, csrf_token);
-
         //locate the file element meant for the file upload.
         let inputEl:HTMLInputElement = this.el.nativeElement.querySelector('#photo');
         //get the total amount of files attached to the file input.

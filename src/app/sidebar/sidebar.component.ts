@@ -1,4 +1,4 @@
-import {Component, OnInit, ElementRef, OnDestroy} from '@angular/core';
+import {Component, OnInit, ElementRef, OnDestroy, NgZone} from '@angular/core';
 import { LocalStorageService } from 'angular-2-local-storage';
 import {User} from '../models/user.interface';
 import {HttpService} from '../services/http.service';
@@ -26,7 +26,7 @@ export class SidebarComponent implements OnInit, OnDestroy {
   private routeSubscription: Subscription;
   signOutSuccess: boolean = false;
 
-  constructor(private _location: Location, private routing: Router,  private route: ActivatedRoute, private sidebarEl: ElementRef, private httpService: HttpService, private localStorageService: LocalStorageService) {
+  constructor(private zone: NgZone, private _location: Location, private routing: Router,  private route: ActivatedRoute, private sidebarEl: ElementRef, private httpService: HttpService, private localStorageService: LocalStorageService) {
     this.routeSubscription = this.route.params.subscribe(params => this.id = params['id']);
     httpService.id$.subscribe(
         id => {
@@ -43,6 +43,9 @@ export class SidebarComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
+
+   // localStorage.setItem('id', "2");
+
     new gnMenu(this.sidebarEl.nativeElement.querySelector('.gn-menu-main'));
     this.id = parseInt(localStorage.getItem('id'));
     console.log(localStorage.getItem('id'));
@@ -83,8 +86,12 @@ export class SidebarComponent implements OnInit, OnDestroy {
     console.log(localStorage.getItem('id'));
   }
 
+  
   goToUser(uid) {
     this.routing.navigateByUrl('/user/' + uid);
+    this.zone.runOutsideAngular(()=> {
+      location.reload();
+    })
     console.log(uid);
   }
 

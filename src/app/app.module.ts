@@ -51,6 +51,7 @@ import { TripInfoComponent } from './user/trip-info/trip-info.component';
 import { FilterComponent } from './filter/filter.component';
 import {TripGuard} from "./guards/trip.guard";
 import {InvitationInTripComponent} from "./user/invitation-in-trip/invitation-in-trip.component";
+import { AdminPageComponent } from './admin-page/admin-page.component';
 
 
 const transportRoutes: Routes = [
@@ -82,6 +83,7 @@ const appRoutes: Routes =[
   { path: 'login', component: SignInComponent},
   { path: 'trip-info/:id', component: TripInfoComponent},
   { path: 'user/:id', component: UserComponent},
+  { path: 'admin-page', component: AdminPageComponent},
   { path: 'invitation/:id', component: InvitationInTripComponent, canActivate: [LoginGuard]},
   { path: '**', component: NotFoundComponent }
 ];
@@ -124,7 +126,8 @@ let providers = {
     CreatedTripComponent,
     TripInfoComponent,
     FilterComponent,
-    InvitationInTripComponent
+    InvitationInTripComponent,
+    AdminPageComponent
 
   ],
   imports: [

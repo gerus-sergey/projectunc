@@ -29,6 +29,16 @@ export class TripService {
         this.trip = addTrip;
     }
 
+    closeTrip(){
+        this.trip.active = false;
+        //console.log(this.trip);
+        this.httpService.addOrUpdateTrip(this.trip, this.idUser)
+            .subscribe((data) => {
+                this.trip = data;
+               this.route.navigateByUrl("/trip-info/" + this.trip.id);
+            });
+    }
+
     addReadyTrip(idTrip:number) {
         this.idTrip = idTrip;
         this.httpService.getTrip(idTrip)

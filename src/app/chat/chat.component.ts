@@ -28,7 +28,7 @@ export class ChatComponent implements OnInit, OnDestroy {
     msg;
     date:Date;
     trip:Trip;
-    txtHTML: string;
+    txtHTML:string;
 
     constructor(private chatService:ChatService, private route:ActivatedRoute, private httpService:HttpService,
                 private localStorageService:LocalStorageService) {
@@ -43,7 +43,7 @@ export class ChatComponent implements OnInit, OnDestroy {
             sender: null,
             sendTime: null,
             body: ''
-        }
+        };
 
         this.httpService.getChatMessages(this.id)
             .subscribe((data) => {
@@ -72,17 +72,17 @@ export class ChatComponent implements OnInit, OnDestroy {
                     this.newMessage.text.sendTime, this.newMessage.text.body));
             }
 
-          if ( this.message.sender.id.toString() !== 'null') {
-            if (this.message.sender.id.toString() == localStorage.getItem('id')) {
-              // document.getElementById('sender').style.cssFloat = 'left';
-              document.getElementById('sender').style.background = 'dodgerblue';
-            }else {
-              // document.getElementById('sender').style.cssFloat = 'right';
-              document.getElementById('sender').style.background = 'palegoldenrod';
+            if (this.message.sender.id.toString() !== 'null') {
+                if (this.message.sender.id.toString() == localStorage.getItem('id')) {
+                    // document.getElementById('sender').style.cssFloat = 'left';
+                    document.getElementById('sender').style.background = 'dodgerblue';
+                } else {
+                    // document.getElementById('sender').style.cssFloat = 'right';
+                    document.getElementById('sender').style.background = 'palegoldenrod';
+                }
             }
-          }
-    
-          console.log(this.message.sender.id + ' ' + parseInt(localStorage.getItem('id')));
+
+            console.log(this.message.sender.id + ' ' + parseInt(localStorage.getItem('id')));
 
 
         });
@@ -91,14 +91,18 @@ export class ChatComponent implements OnInit, OnDestroy {
     }
 
     sendMessage() {
-        this.message = new chatMessage(null, this.trip, this.userProfile, new Date, this.msg);
-        this.httpService.sendChatMessage(this.message)
-            .subscribe((data) => {
-                console.log(data);
-            });
+        console.log(this.msg);
+        if (this.msg != "") {
+            this.message = new chatMessage(null, this.trip, this.userProfile, new Date, this.msg);
 
-        this.chatService.sendMessage(this.message);
-        this.msg = '';
+            this.httpService.sendChatMessage(this.message)
+                .subscribe((data) => {
+                    console.log(data);
+                });
+
+            this.chatService.sendMessage(this.message);
+            this.msg = '';
+        }
     }
 
     ngOnDestroy() {
