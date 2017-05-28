@@ -13,9 +13,9 @@
         <td><button  routerLink="/user/{{participant?.user.id}}" class="btn btn-info">Account</button></td>
       </tr>
     </table>
-    <div class="send-email">
-      <input type="text" placeholder="Email" #ivitation (keyup.enter)="sendEmail(ivitation.value)" >
-      <button class="btn btn-primary" (click)="sendEmail(ivitation.value)">Invite user</button>
+    <div [hidden]="flag" class="send-email">
+      <input class="form-control" style="width: 50%" type="email" placeholder="Email" #ivitation (keyup.enter)="sendEmail(ivitation.value)" >
+      <button style="margin-top:10px" class="btn btn-primary" (click)="sendEmail(ivitation.value)">Invite user</button>
     </div>
     <!--<button class="btn btn-primary">Invite user</button>-->
   </div>

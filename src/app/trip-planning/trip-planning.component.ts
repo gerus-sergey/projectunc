@@ -38,7 +38,7 @@ declare var jQuery:any;
 })
 export class TripPlanningComponent implements OnInit, OnDestroy {
     date:Date;
-    datepickerOpts: any = {
+    datepickerOpts:any = {
         format: 'd.MM.yyyy'
     };
     public uploader:FileUploader = new FileUploader(
@@ -68,9 +68,12 @@ export class TripPlanningComponent implements OnInit, OnDestroy {
     private pathToPhoto:string;
     private photo:Photo;
     private userProfile:User;
-    headers: Headers;
 
-    handleDateFromChange(dateFrom: Date) {
+    isDisabled() : boolean{
+        return this.flagOne;
+    }
+
+    handleDateFromChange(dateFrom:Date) {
         // update the model
         this.trip.startDate = dateFrom;
 
@@ -93,9 +96,9 @@ export class TripPlanningComponent implements OnInit, OnDestroy {
             activities: [null],
             movements: [null],
             participants: [null],
-            countries:[null],
-            album:null,
-            
+            countries: [null],
+            album: null,
+
         };
 
         this.httpService.getUser(parseInt(localStorage.getItem('id')))
@@ -124,7 +127,7 @@ export class TripPlanningComponent implements OnInit, OnDestroy {
         }
     }
 
-    constructor(private _location:Location,private httpService:HttpService, private route:ActivatedRoute, private tripService:TripService, private http:Http, private el:ElementRef) {
+    constructor(private _location:Location, private httpService:HttpService, private route:ActivatedRoute, private tripService:TripService, private http:Http, private el:ElementRef) {
         this.date = new Date();
 
         this.routeSubscription = route.params.subscribe(params=>this.tripId = params['id']);
@@ -139,7 +142,7 @@ export class TripPlanningComponent implements OnInit, OnDestroy {
 
         tripService.path$.subscribe(
             path => {
-                    this.pathToPhoto = path;
+                this.pathToPhoto = path;
             });
 
         this.subOne = tripService.nameDay$.subscribe(
@@ -307,12 +310,12 @@ export class TripPlanningComponent implements OnInit, OnDestroy {
         });
         if (csrf_token_name && csrf_token)
             headers.set(csrf_token_name, csrf_token);
-        
+
 >>>>>>> eeb8872a25a0e951183c8704d0dcf62c4b013107
         //locate the file element meant for the file upload.
-        let inputEl: HTMLInputElement = this.el.nativeElement.querySelector('#photo');
+        let inputEl:HTMLInputElement = this.el.nativeElement.querySelector('#photo');
         //get the total amount of files attached to the file input.
-        let fileCount: number = inputEl.files.length;
+        let fileCount:number = inputEl.files.length;
         //create a new fromdata instance
         let formData = new FormData();
         //check if the filecount is greater than zero, to be sure a file was selected.
@@ -352,13 +355,15 @@ export class TripPlanningComponent implements OnInit, OnDestroy {
     }
 
     delete() {
-        this.days.pop();
-        this.trip = this.tripService.getTrip();
-        this.trip.endDate = this.days[this.days.length - 1].name;
-        this.tripService.addOrUpdateTrip(this.trip);
+        if (this.days.length >= 2) {
+            this.days.pop();
+            this.trip = this.tripService.getTrip();
+            this.trip.endDate = this.days[this.days.length - 1].name;
+            this.tripService.addOrUpdateTrip(this.trip);
+        }
     }
-    
-    deleteMovements(id:number){
+
+    deleteMovements(id:number) {
         this.httpService.getMovement(id)
             .subscribe((data) => {
                 this.movementToDelete = data;
@@ -370,7 +375,7 @@ export class TripPlanningComponent implements OnInit, OnDestroy {
             })
     }
 
-    deleteActivity(id:number){
+    deleteActivity(id:number) {
         this.httpService.getActivity(id)
             .subscribe((data) => {
                 this.activityToDelete = data;

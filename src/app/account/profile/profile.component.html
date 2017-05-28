@@ -25,71 +25,56 @@
                               (ngSubmit)="updateUser(f.value, f.valid)">
                             <div class="form-group">
                                 <h4 class=" profile-label">Lastname</h4>
-                                <div class="input-group profile-input">
-                                    <input id="foobar" type="text" #lastname="ngModel" class="form-control"
+                                <div class=" profile-input">
+                                    <input id="foobar" type="text" #lastname="ngModel" class="form-control form-input"
                                            name="lastName"
                                            [(ngModel)]="userProfile.lastName" minlength="2" maxlength="8" required>
-                                    <div class="input-group-btn profile-input-button">
-                                        <button class="btn btn-default profile-button-edit" type="button"
-                                                onclick="document.getElementById('foobar').removeAttribute('disabled')">
-                                            <i
-                                                    class="fa fa-pencil fa-lg icon-edit"
-                                                    aria-hidden="true"></i></button>
-                                    </div>
-
+                                    <small [hidden]="lastname.valid || (lastname.pristine && !f.submitted)  || lastname.untouched">
+                                        Name user is required (minimum 2 characters).
+                                    </small>
                                 </div><!-- /input-group -->
                             </div>
                             <div class="form-group">
                                 <h4 class=" profile-label">Firstname</h4>
-                                <div class="input-group profile-input">
-                                    <input type="text" maxlength="20" required class="form-control"
-                                           name="firstName"
+                                <div class=" profile-input">
+                                    <input type="text" minlength="2" maxlength="20" required class="form-control"
+                                           name="firstName" #firstName="ngModel"
                                            [(ngModel)]="userProfile.firstName">
-                                    <div class="input-group-btn profile-input-button">
-                                        <button class="btn btn-default profile-button-edit" type="button"
-                                                onclick="document.getElementById('foobar').setAttribute('disabled', 'disabled');">
-                                            <i
-                                                    class="fa fa-pencil fa-lg icon-edit"
-                                                    aria-hidden="true"></i></button>
-                                    </div>
+                                    <small [hidden]="firstName.valid || (firstName.pristine && !f.submitted)  || firstName.untouched">
+                                        Name user is required (minimum 2 characters).
+                                    </small>
                                 </div><!-- /input-group -->
                             </div>
                             <div class="form-group">
                                 <h4 class=" profile-label">Day of birth</h4>
-                                <div class="input-group profile-input">
-                                    <input type="date" required class="form-control" name="birthday"
-                                           [(ngModel)]="userProfile.birthday">
-                                    <div class="input-group-btn profile-input-button">
-                                        <button class="btn btn-default profile-button-edit" type="button"
-                                                onclick="this.form.birthday.disabled = 0"><i
-                                                class="fa fa-pencil fa-lg icon-edit"
-                                                aria-hidden="true"></i></button>
-                                    </div>
+                                <div class=" profile-input">
+                                    <input type="date"  class="form-control" name="birthday"
+                                           [(ngModel)]="userProfile.birthday" #birthday="ngModel">
+                                    <small [hidden]="birthday.valid || (birthday.pristine && !f.submitted)  || birthday.untouched">
+                                        Date of birth user is required.
+                                    </small>
                                 </div><!-- /input-group -->
                             </div>
                             <div class="form-group">
                                 <h4 class=" profile-label">Gender</h4>
-                                <div class="input-group profile-input">
+                                <div class=" profile-input">
                                     <select [(ngModel)]="userProfile.gender.id" required name="gender"
-                                            class="form-control form-input">
+                                            class="form-control form-input" #gender="ngModel">
                                         <option [value]="userProfile.gender.id" hidden>{{userProfile.gender.gender}}
                                         </option>
                                         <option value="1">Male</option>
                                         <option value="2">Female</option>
                                     </select>
-                                    <div class="input-group-btn profile-input-button">
-                                        <button class="btn btn-default profile-button-edit" type="button"
-                                                onclick="this.form.gender.disabled = 0"><i
-                                                class="fa fa-pencil fa-lg icon-edit"
-                                                aria-hidden="true"></i></button>
-                                    </div>
+                                    <small [hidden]="gender.valid ||  (gender.pristine && !f.submitted) || gender.untouched">
+                                        Gender is required
+                                    </small>
                                 </div><!-- /input-group -->
                             </div>
 
 
                             <div class="form-group">
                                 <h4 class=" profile-label">Country</h4>
-                                <div class="input-group profile-input">
+                                <div class=" profile-input">
                                     <select class="form-control form-input" name="country"
                                             (change)="setCountryId(userProfile.city.state.country.name)"
                                             [(ngModel)]="userProfile.city.state.country.name" #country="ngModel"
@@ -104,20 +89,16 @@
                                         </option>
 
                                     </select>
-
-                                    <div class="input-group-btn profile-input-button">
-                                        <button class="btn btn-default profile-button-edit" type="button"
-                                                onclick="this.form.country.disabled = 0"><i
-                                                class="fa fa-pencil fa-lg icon-edit"
-                                                aria-hidden="true"></i></button>
-                                    </div>
+                                    <small [hidden]="country.valid ||  (country.pristine && !f.submitted)|| country.untouched ">
+                                        Country is required
+                                    </small>
                                 </div><!-- /input-group -->
                             </div>
 
 
                             <div class="form-group">
                                 <h4 class=" profile-label">State</h4>
-                                <div class="input-group profile-input">
+                                <div class=" profile-input">
 
                                     <select class="form-control form-input location" name="state"
                                             (change)="setStateId(userProfile.city.state.name)"
@@ -132,20 +113,16 @@
                                             {{state?.name}}
                                         </option>
                                     </select>
-
-                                    <div class="input-group-btn profile-input-button">
-                                        <button class="btn btn-default profile-button-edit" type="button"
-                                                onclick="this.form.state.disabled = 0"><i
-                                                class="fa fa-pencil fa-lg icon-edit"
-                                                aria-hidden="true"></i></button>
-                                    </div>
+                                    <small [hidden]="state.valid ||  (state.pristine && !f.submitted)">
+                                        State is required
+                                    </small>
                                 </div><!-- /input-group -->
                             </div>
 
 
                             <div class="form-group">
                                 <h4 class=" profile-label">City</h4>
-                                <div class="input-group profile-input">
+                                <div class=" profile-input">
 
                                     <select class="form-control form-input location" name="city"
                                             [ngModel]="userProfile.city.name" #city="ngModel" required>
@@ -157,27 +134,19 @@
                                             {{city?.name}}
                                         </option>
                                     </select>
-                                    <div class="input-group-btn profile-input-button">
-                                        <button class="btn btn-default profile-button-edit" type="button"
-                                                onclick="this.form.city.disabled = 0"><i
-                                                class="fa fa-pencil fa-lg icon-edit"
-                                                aria-hidden="true"></i></button>
-                                    </div>
+                                    <small [hidden]="city.valid ||  (city.pristine && !f.submitted)">
+                                        City is required
+                                    </small>
                                 </div><!-- /input-group -->
                             </div>
 
 
                             <div class="form-group">
                                 <h4 class=" profile-label">Info</h4>
-                                <div class="input-group profile-input">
+                                <div class=" profile-input">
                         <textarea required class="form-control" rows="7" maxlength="150"
-                                  style="width: 400px; resize: none" name="info" [(ngModel)]="userProfile.info">
+                                  style="  resize: none" name="info" [(ngModel)]="userProfile.info">
                             </textarea>
-                                    <div class="input-group-btn profile-input-button">
-                                        <button class="btn btn-default profile-button-edit" type="button"
-                                                onclick="this.form.info.disabled = 0" style="height: 148.5px"><i
-                                                class="fa fa-pencil fa-lg icon-edit" aria-hidden="true"></i></button>
-                                    </div>
                                 </div><!-- /input-group -->
                             </div>
                             <div class="form-group" style="padding-top: 10px">
@@ -187,16 +156,20 @@
                     </div>
                 </div>
                 <div class="tab-pane" id="password">
-                    <div style="top: 50%;left: 50%; transform: translate(-50%,5%);z-index: inherit; position: absolute" class="alert alert-danger" *ngIf="confPass">
+                    <div style="top: 50%;left: 50%; transform: translate(-50%,5%);z-index: inherit; position: absolute"
+                         class="alert alert-danger" *ngIf="confPass">
                         <a class="close" data-dismiss="alert"> &times;</a>
                         You signed out &nbsp;
                     </div>
                     <div class="container-fluid">
-                        <form class="form-horizontal" #f2="ngForm" novalidate (ngSubmit)="updatePassword(f2.value, f2.valid)">
+                        <form class="form-horizontal" #f2="ngForm" novalidate
+                              (ngSubmit)="updatePassword(f2.value, f2.valid)">
                             <div class="form-group">
                                 <h4 class=" profile-label">Current password</h4>
                                 <div class="profile-password">
-                                    <input type="password" [(ngModel)]="userPassword.oldPassword" style="float: left; width: 139px; margin-right: 10px" maxlength="10" minlength="6"
+                                    <input type="password" [(ngModel)]="userPassword.oldPassword"
+                                           style="float: left; width: 139px; margin-right: 10px" maxlength="10"
+                                           minlength="6"
                                            required class="form-control" name="oldPassword">
                                     <button type="button" style="float: left" class="btn btn-primary">Forgot password
                                     </button>
@@ -206,7 +179,9 @@
                             <div class="form-group">
                                 <h4 class=" profile-label">New password</h4>
                                 <div class="profile-password">
-                                    <input type="password" [(ngModel)]="userPassword.password" minlength="6" maxlength="10" required class="form-control" name="password" validateEqual="confirmPassword" reverse="true"  #password="ngModel">
+                                    <input type="password" [(ngModel)]="userPassword.password" minlength="6"
+                                           maxlength="10" required class="form-control" name="password"
+                                           validateEqual="confirmPassword" reverse="true" #password="ngModel">
                                     <small [hidden]="password.valid ||  (password.pristine && !f.submitted)">
                                         Password mismatch(at least six characters)
                                     </small>
@@ -216,7 +191,9 @@
                             <div class="form-group">
                                 <h4 class=" profile-label">Confirm password</h4>
                                 <div class="profile-password">
-                                    <input type="password" [(ngModel)]="userPassword.confirmPassword" maxlength="10" required class="form-control" name="confirmPassword" validateEqual="password"  #confirmPassword="ngModel">
+                                    <input type="password" [(ngModel)]="userPassword.confirmPassword" maxlength="10"
+                                           required class="form-control" name="confirmPassword" validateEqual="password"
+                                           #confirmPassword="ngModel">
                                     <small [hidden]="confirmPassword.valid || (confirmPassword.pristine && !f.submitted)">
                                         Password is required
                                     </small>

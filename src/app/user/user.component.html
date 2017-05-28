@@ -82,7 +82,7 @@
                                 <h4 class=" profile-label">Info</h4>
                                 <div class="profile-input">
                         <textarea disabled class="form-control" rows="7" maxlength="150"
-                                  style="width: 400px; resize: none" name="info" [(ngModel)]="userAccount.info">
+                                  style=" resize: none" name="info" [(ngModel)]="userAccount.info">
                             </textarea>
                                 </div><!-- /input-group -->
                             </div>
@@ -97,10 +97,10 @@
                                     <div class="panel trip-panel">
                                         <div class="trip-pic">
                                             <div class="trippic-wrapper">
-                                                <img class="img-responsive" src="{{trip?.img}}" alt="">
+                                                <img routerLink="/trip-info/{{trip?.id}}" class="img-responsive" src="{{trip?.img}}" alt="">
                                             </div>
                                         </div>
-                                        <h3><a href="#">{{trip?.name}}</a></h3>
+                                        <h3><a routerLink="/trip-info/{{trip?.id}}">{{trip?.name}}</a></h3>
                                         <h4>{{trip?.startDate}} - {{trip?.endDate}}</h4>
                                         <p>Status: {{trip?.active}}</p>
                                         <p>{{trip?.info}}</p>
