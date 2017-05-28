@@ -30,6 +30,7 @@ export class SignInComponent implements OnInit {
     }
 
     done:boolean = false;
+
     signInUser(model:UserSignIn, isValid:boolean) {
         if (isValid) {
             this.httpService.signInUser(model)
@@ -43,7 +44,6 @@ export class SignInComponent implements OnInit {
                     this.route.navigateByUrl("/account/" + this.receivedUser.id + "/profile");
                     localStorage.setItem('id', this.receivedUser.id.toString());
                     this.httpService.setId(this.receivedUser.id);
-                    console.log(data);
                 });
         }
     }

@@ -106,15 +106,14 @@ export class RegisteredComponent implements OnInit {
                 )
         }
     }
-
-
+    
     addOrUpdateUser(model:Form, isValid:boolean) {
         if (isValid) {
             this.userRegistered = new UserRegistered(null, model.firstName, model.lastName, model.email, model.password, new Gender(model.gender, ""), new City(model.city, ""), new Role(2,''));
 
             this.httpService.addUser(this.userRegistered)
                 .catch((error:any) => {
-                    confirm("Eror when registering");
+                    confirm("Error when registering");
                     return Observable.throw(error);
                 })
                 .subscribe((data) => {

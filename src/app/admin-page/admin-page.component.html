@@ -10,7 +10,7 @@
                     <td><h4><b>User name</b></h4></td>
                     <td><h4><b>User account</b></h4></td>
                     <td></td>
-
+                    <td></td>
                 </tr>
                 <tr *ngFor="let user of allUsers; let i = index">
                     <td>{{i+1}}</td>
@@ -20,6 +20,9 @@
                     </td>
                     <td>
                         <button (click)="ban(user.id)" class="btn btn-danger">Ban</button>
+                    </td>
+                    <td>
+                        <button (click)="unban(user.id)" class="btn btn-danger">Unban</button>
                     </td>
                 </tr>
             </table>

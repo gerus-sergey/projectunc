@@ -42,4 +42,17 @@ export class AdminPageComponent implements OnInit {
 
     }
 
+    unban(id:number) {
+        if (id != null) {
+            this.userBunning = this.allUsers[id];
+            this.userBunning.role = new Role(2, '');
+            console.log(this.userBunning);
+            this.httpService.addUser(this.userBunning)
+                .subscribe((data) => {
+                    console.log(data);
+                });
+        }
+
+    }
+
 }

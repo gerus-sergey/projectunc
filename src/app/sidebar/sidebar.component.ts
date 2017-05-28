@@ -22,8 +22,6 @@ export class SidebarComponent implements OnInit, OnDestroy {
     public id:number;
     public items:User[] = [];
     user:AdminUser;
-    term:User;
-    public userId:number;
     private routeSubscription:Subscription;
     signOutSuccess:boolean = false;
 
@@ -32,7 +30,6 @@ export class SidebarComponent implements OnInit, OnDestroy {
         httpService.id$.subscribe(
             id => {
                 this.id = id;
-
                 document.getElementById('reg').style.display = 'none';
                 document.getElementById('log').style.display = 'none';
                 document.getElementById('menu').style.display = 'block';
@@ -50,14 +47,15 @@ export class SidebarComponent implements OnInit, OnDestroy {
                 let user = resp.json();
                 if (user)
                     this.user = user;
-                if(this.user.role.id = 3){
-                    confirm('Вы забанены!');
-                    document.getElementById('menu').style.display = 'none';
-                    document.getElementById('srch').style.display = 'none';
-                    document.getElementById('reg').style.display = 'block';
-                    document.getElementById('log').style.display = 'block';
-                    localStorage.setItem('id', "null");
-                }
+                    if(this.user.role.id == 3){
+                        confirm('Вы забанены!');
+                        document.getElementById('menu').style.display = 'none';
+                        document.getElementById('srch').style.display = 'none';
+                        document.getElementById('reg').style.display = 'block';
+                        document.getElementById('log').style.display = 'block';
+                        localStorage.setItem('id', "null");
+                        this.httpService.setId(null);
+                    }
             });
 
         new gnMenu(this.sidebarEl.nativeElement.querySelector('.gn-menu-main'));
