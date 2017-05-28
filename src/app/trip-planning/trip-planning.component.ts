@@ -9,10 +9,7 @@ import {FileUploader} from 'ng2-file-upload/ng2-file-upload';
 import {Http, Response, Headers} from '@angular/http';
 import "rxjs/add/operator/do";
 import "rxjs/add/operator/map";
-<<<<<<< HEAD
 // import {Headers} from "ng2-file-upload/index";
-=======
->>>>>>> eeb8872a25a0e951183c8704d0dcf62c4b013107
 import {Movement} from "../models/movements.interface";
 import {Activities} from "../models/activities.interface";
 import {NgForm} from '@angular/forms';
@@ -22,14 +19,9 @@ import {Coordinates} from "../models/coordinates.interface";
 import {Location} from '@angular/common';
 import {Photo} from "../models/photo.interface";
 import {User} from "../models/user.interface";
-<<<<<<< HEAD
 const URL = 'http://localhost:8181/fileUploadPage';
 declare var jQuery:any;
-=======
->>>>>>> eeb8872a25a0e951183c8704d0dcf62c4b013107
 
-const URL = 'http://localhost:8181/fileUploadPage';
-declare var jQuery:any;
 @Component({
     selector: 'app-trip-planning',
     templateUrl: './trip-planning.component.html',
@@ -290,28 +282,16 @@ export class TripPlanningComponent implements OnInit, OnDestroy {
     }
 
     upload() {
-<<<<<<< HEAD
         console.log("dsadsadsadsadsadsadsadsadsadsadsa");
        var csrf_token = jQuery("meta[name='_csrf']").attr("content");
        var csrf_token_name = jQuery("meta[name='_csrf_header']").attr("content");
        //noinspection TypeScriptValidateTypes
-        this.headers = new Headers({
-
-        });
-        if (csrf_token_name && csrf_token)
-            this.headers.set(csrf_token_name, csrf_token);
-
-
-=======
-        var csrf_token = jQuery("meta[name='_csrf']").attr("content");
-        var csrf_token_name = jQuery("meta[name='_csrf_header']").attr("content");
         let headers = new Headers({
-            'Content-Type': 'application/json;charset=utf-8'
+
         });
         if (csrf_token_name && csrf_token)
             headers.set(csrf_token_name, csrf_token);
 
->>>>>>> eeb8872a25a0e951183c8704d0dcf62c4b013107
         //locate the file element meant for the file upload.
         let inputEl:HTMLInputElement = this.el.nativeElement.querySelector('#photo');
         //get the total amount of files attached to the file input.
@@ -325,11 +305,7 @@ export class TripPlanningComponent implements OnInit, OnDestroy {
             //call the angular http method
             this.http
             //post the form data to the url defined above and map the response. Then subscribe //to initiate the post. if you don't subscribe, angular wont post.
-<<<<<<< HEAD
-                .post(URL, formData, {headers:this.headers})
-=======
-                .post(URL, formData, {headers: headers})
->>>>>>> eeb8872a25a0e951183c8704d0dcf62c4b013107
+                .post(URL, formData, {headers:headers})
                 .map((res:Response) => res.json()).subscribe((data) => {
                 this.pathToPhoto = data;
                 this.trip = this.tripService.getTrip();

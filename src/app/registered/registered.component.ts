@@ -37,7 +37,6 @@ export class RegisteredComponent implements OnInit {
   listCityesOfTheState: City[]=[];
   form:Form = new Form();
   remember:boolean = false;
-  sha256 = require('js-sha256');
 
 
   constructor(private route:Router, private httpService:HttpService,private localStorageService: LocalStorageService) {
