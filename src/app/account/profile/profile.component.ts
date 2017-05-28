@@ -117,10 +117,11 @@ export class ProfileComponent implements OnInit,OnDestroy {
 
     updateUser(model:User, isValid:boolean) {
         console.log(model);
+        console.log(isValid);
         if (isValid) {
             if (isNaN(parseInt(model.city.toString()))) {
                 this.updateProfile = new User(this.userProfile.id, model.lastName, model.firstName, model.birthday,
-                    this.userProfile.email, this.userProfile.password, new Gender(model.gender, ""), this.userProfile.city, model.info, null);
+                    this.userProfile.email, this.userProfile.password, new Gender(model.gender, ""), new City(this.userProfile.city.id, "") , model.info, null);
                 console.log(this.updateProfile);
             } else {
                 this.updateProfile = new User(this.userProfile.id, model.lastName, model.firstName, model.birthday,
@@ -131,7 +132,7 @@ export class ProfileComponent implements OnInit,OnDestroy {
             this.httpService.updateUser(this.userProfile.id, this.updateProfile)
                 .subscribe((data) => {
                     console.log(data);
-                    // this.userProfile = data;
+                    this.userProfile = data;
                 });
         }
     }

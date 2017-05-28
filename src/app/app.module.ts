@@ -78,12 +78,12 @@ const appRoutes: Routes =[
   { path: '', component: HomeComponent},
   { path: 'account/:id', component: AccountComponent, children: accountRoutes},
   { path: 'registered', component: RegisteredComponent},
-  { path: 'trip-planning/:id', component: TripPlanningComponent, children: tripRoutes},
+  { path: 'trip-planning/:id', component: TripPlanningComponent, children: tripRoutes, canActivate: [LoginGuard]},
   { path: 'map', component: MapComponent},
   { path: 'login', component: SignInComponent},
-  { path: 'trip-info/:id', component: TripInfoComponent},
-  { path: 'user/:id', component: UserComponent},
-  { path: 'admin-page', component: AdminPageComponent},
+  { path: 'trip-info/:id', component: TripInfoComponent, canActivate: [LoginGuard]},
+  { path: 'user/:id', component: UserComponent, canActivate: [LoginGuard]},
+  { path: 'admin-page', component: AdminPageComponent, canActivate: [LoginGuard]},
   { path: 'invitation/:id', component: InvitationInTripComponent, canActivate: [LoginGuard]},
   { path: '**', component: NotFoundComponent }
 ];

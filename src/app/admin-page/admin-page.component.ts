@@ -3,6 +3,7 @@ import {User} from "../models/user.interface";
 import {HttpService} from "../services/http.service";
 import {Response} from '@angular/http';
 import {AdminUser} from "../models/adminUser";
+import {Role} from "../models/role.interface";
 
 @Component({
     selector: 'app-admin-page',
@@ -11,15 +12,16 @@ import {AdminUser} from "../models/adminUser";
 })
 export class AdminPageComponent implements OnInit {
     public allUsers:AdminUser[] = [];
-
+    userBunning:AdminUser;
+     i:number;
     constructor(private httpService:HttpService) {
     }
 
     ngOnInit() {
         this.httpService.getAllUsers()
-            .subscribe((resp: Response) => {
+            .subscribe((resp:Response) => {
                 const userList = resp.json();
-                for (const index in userList){
+                for (const index in userList) {
                     const user = userList[index];
                     this.allUsers.push(user);
                 }
@@ -27,11 +29,17 @@ export class AdminPageComponent implements OnInit {
 
     }
 
-    ban(id:number){
-        console.log(id);
-        console.log(this.allUsers);
-        
-        
+    ban(id:number) {
+        if (id != null) {
+            this.userBunning = this.allUsers[id];
+            this.userBunning.role = new Role(3, '');
+            console.log(this.userBunning);
+            this.httpService.addUser(this.userBunning)
+                .subscribe((data) => {
+                    console.log(data);
+                });
+        }
+
     }
 
 }

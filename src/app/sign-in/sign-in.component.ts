@@ -40,7 +40,7 @@ export class SignInComponent implements OnInit {
         if (isValid) {
             this.httpService.signInUser(model)
                 .catch((error:any) => {
-                    this.signInSuccess = true;
+                    confirm("Entered incorrect password or email");
                     return Observable.throw(error);
                 })
                 .subscribe((data) => {

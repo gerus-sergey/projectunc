@@ -28,7 +28,7 @@
                                 <div class=" profile-input">
                                     <input id="foobar" type="text" #lastname="ngModel" class="form-control form-input"
                                            name="lastName"
-                                           [(ngModel)]="userProfile.lastName" minlength="2" maxlength="8" required>
+                                           [(ngModel)]="userProfile.lastName" minlength="2" maxlength="15" required>
                                     <small [hidden]="lastname.valid || (lastname.pristine && !f.submitted)  || lastname.untouched">
                                         Name user is required (minimum 2 characters).
                                     </small>
@@ -37,7 +37,7 @@
                             <div class="form-group">
                                 <h4 class=" profile-label">Firstname</h4>
                                 <div class=" profile-input">
-                                    <input type="text" minlength="2" maxlength="20" required class="form-control"
+                                    <input type="text" minlength="2" maxlength="15" required class="form-control"
                                            name="firstName" #firstName="ngModel"
                                            [(ngModel)]="userProfile.firstName">
                                     <small [hidden]="firstName.valid || (firstName.pristine && !f.submitted)  || firstName.untouched">
@@ -78,7 +78,7 @@
                                     <select class="form-control form-input" name="country"
                                             (change)="setCountryId(userProfile.city.state.country.name)"
                                             [(ngModel)]="userProfile.city.state.country.name" #country="ngModel"
-                                            required>
+                                            >
 
                                         <option hidden>
                                             {{userProfile.city.state.country.name}}
@@ -102,7 +102,7 @@
 
                                     <select class="form-control form-input location" name="state"
                                             (change)="setStateId(userProfile.city.state.name)"
-                                            [(ngModel)]="userProfile.city.state.name" #state="ngModel" required>
+                                            [(ngModel)]="userProfile.city.state.name" #state="ngModel">
 
                                         <option hidden>
                                             {{userProfile.city.state.name}}
@@ -144,7 +144,7 @@
                             <div class="form-group">
                                 <h4 class=" profile-label">Info</h4>
                                 <div class=" profile-input">
-                        <textarea required class="form-control" rows="7" maxlength="150"
+                        <textarea  class="form-control" rows="7" maxlength="150"
                                   style="  resize: none" name="info" [(ngModel)]="userProfile.info">
                             </textarea>
                                 </div><!-- /input-group -->
