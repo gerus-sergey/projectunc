@@ -146,14 +146,14 @@ export class ProfileComponent implements OnInit,OnDestroy {
                 this.httpService.addUser(this.userProfile)
                     .subscribe((data) => {
                         console.log(data);
-                         this.userProfile = data;
+                        this.userProfile = data;
                     });
             }
         }
     }
-        // updateEmail(model:newEmail, isValid:boolean){
-        //
-        // }
+    // updateEmail(model:newEmail, isValid:boolean){
+    //
+    // }
 
     upload() {
         var csrf_token = jQuery("meta[name='_csrf']").attr("content");
@@ -163,10 +163,7 @@ export class ProfileComponent implements OnInit,OnDestroy {
 
         });
         if (csrf_token_name && csrf_token)
-          headers.set(csrf_token_name, csrf_token);
-
-
-
+            headers.set(csrf_token_name, csrf_token);
 
         //locate the file element meant for the file upload.
         let inputEl:HTMLInputElement = this.el.nativeElement.querySelector('#photo');
@@ -180,10 +177,7 @@ export class ProfileComponent implements OnInit,OnDestroy {
             formData.append('file', inputEl.files.item(0));
             //call the angular http method
             console.log();
-            this.http
-
-
-
+            this.http.post(URL, formData, {headers:headers})
                 .map((res:Response) => res.json()).subscribe((data) => {
                 this.pathToPhoto = data;
                 console.log(this.pathToPhoto);

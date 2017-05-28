@@ -19,11 +19,7 @@ import {Coordinates} from "../models/coordinates.interface";
 import {Location} from '@angular/common';
 import {Photo} from "../models/photo.interface";
 import {User} from "../models/user.interface";
-
-
-
-
-
+const URL = 'http://localhost:8181/fileUploadPage';
 
 @Component({
     selector: 'app-trip-planning',
@@ -36,6 +32,7 @@ export class TripPlanningComponent implements OnInit, OnDestroy {
     datepickerOpts:any = {
         format: 'd.MM.yyyy'
     };
+
     public uploader:FileUploader = new FileUploader(
         {
             url: URL
@@ -44,6 +41,7 @@ export class TripPlanningComponent implements OnInit, OnDestroy {
             // ]
             // itemAlias: 'photo'
         });
+
     private subOne:any;
     private subTwo:any;
     private subThree:any;
@@ -66,6 +64,10 @@ export class TripPlanningComponent implements OnInit, OnDestroy {
 
     isDisabled():boolean {
         return this.flagOne;
+    }
+
+    isDisabled2():boolean {
+        return this.flag;
     }
 
     handleDateFromChange(dateFrom:Date) {
@@ -286,9 +288,14 @@ export class TripPlanningComponent implements OnInit, OnDestroy {
 
     upload() {
 
+        var csrf_token = jQuery("meta[name='_csrf']").attr("content");
+        var csrf_token_name = jQuery("meta[name='_csrf_header']").attr("content");
 
+        let headers = new Headers({
+
+        });
+        if (csrf_token_name && csrf_token)
             headers.set(csrf_token_name, csrf_token);
-
 
         //locate the file element meant for the file upload.
         let inputEl:HTMLInputElement = this.el.nativeElement.querySelector('#photo');

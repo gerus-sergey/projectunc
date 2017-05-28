@@ -78,6 +78,7 @@ export class SidebarComponent implements OnInit, OnDestroy {
     document.getElementById('srch').style.display = 'none';
     document.getElementById('reg').style.display = 'block';
     document.getElementById('log').style.display = 'block';
+    this.routing.navigateByUrl("/");
     localStorage.setItem('id', null);
     console.log(localStorage.getItem('id'));
   }
