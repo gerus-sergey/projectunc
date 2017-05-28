@@ -32,25 +32,25 @@ export class CarDialogComponent implements OnInit {
         }
     }
 
-    addBus(model:Movement) {
-        // model.transport = new Transport(4, "car");
+    addCar(model:Movement) {
+        model.transport = new Transport(4, "car");
          console.log(model);
-        // this.tripService.setMovementSubject(new Movement(model.id, model.transport, model.travel, new Date(model.startTime), new Date(model.endTime),
-        //     model.startAddress, model.destinationAddress, model.price, model.distance, model.description, model.ticket, new Coordinates("point", 0, 0), new Coordinates("point", 0, 0)));
-        // this.car = {
-        //     id: null,
-        //     transport: null,
-        //     travel: null,
-        //     startTime: null,
-        //     endTime: null,
-        //     startAddress: '',
-        //     destinationAddress: '',
-        //     price: null,
-        //     distance: null,
-        //     description: '',
-        //     ticket: '',
-        //     start_coordinates: null,
-        //     destination_coordinates: null
-        // }
+        this.tripService.setMovementSubject(new Movement(model.id, model.transport, model.travel, new Date(model.startTime), new Date(model.endTime),
+            model.startAddress, model.destinationAddress, model.price, model.distance, model.description, model.ticket, new Coordinates("point", 0, 0), new Coordinates("point", 0, 0)));
+        this.car = {
+            id: null,
+            transport: null,
+            travel: null,
+            startTime: null,
+            endTime: null,
+            startAddress: '',
+            destinationAddress: '',
+            price: null,
+            distance: null,
+            description: '',
+            ticket: '',
+            start_coordinates: null,
+            destination_coordinates: null
+        }
     }
 }

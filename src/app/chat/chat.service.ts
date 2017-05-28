@@ -4,7 +4,7 @@ import {chatMessage} from "../models/chatMessage.inerface";
 
 export class ChatService {
 
-  private url = 'http://localhost:5000';
+  private url = 'http://jj2017.ddns.net:5000';
   private socket;
   
   sendMessage(chatMessage:chatMessage){

@@ -24,7 +24,7 @@ export class SidebarComponent implements OnInit, OnDestroy {
   term: User;
   public userId: number;
   private routeSubscription: Subscription;
-
+  signOutSuccess: boolean = false;
 
   constructor(private _location: Location, private routing: Router,  private route: ActivatedRoute, private sidebarEl: ElementRef, private httpService: HttpService, private localStorageService: LocalStorageService) {
     this.routeSubscription = this.route.params.subscribe(params => this.id = params['id']);
@@ -73,6 +73,7 @@ export class SidebarComponent implements OnInit, OnDestroy {
 
   logout() {
     this.id = null;
+    this.signOutSuccess = true;
     document.getElementById('menu').style.display = 'none';
     document.getElementById('srch').style.display = 'none';
     document.getElementById('reg').style.display = 'block';
