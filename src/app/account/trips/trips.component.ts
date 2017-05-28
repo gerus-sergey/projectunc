@@ -41,16 +41,18 @@ export class TripsComponent implements OnInit, OnDestroy {
     }
 
     deleteTrip(id:number) {
-        this.httpService.getTrip(id)
-            .subscribe((data) => {
-                this.trip = data;
-            });
-        console.log(this.trip);
         this.httpService.deleteTrip(id)
             .subscribe((data) => {
-                console.log(data);
-                this.profileTripsActive.splice(this.profileTripsActive.indexOf(this.trip));
-                this.profileTripsComplited.splice(this.profileTripsActive.indexOf(this.trip));
+                for(var i = 0; i < this.profileTripsActive.length; i++){
+                    if(this.profileTripsActive[i].id == id){
+                        this.profileTripsActive.splice(i, 1);
+                    }
+                }
+                for(var i = 0; i < this.profileTripsComplited.length; i++){
+                    if(this.profileTripsComplited[i].id == id){
+                        this.profileTripsComplited.splice(i, 1);
+                    }
+                }
             });
     }
 

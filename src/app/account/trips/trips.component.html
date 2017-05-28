@@ -6,7 +6,7 @@
                 <button routerLink="/trip-planning/0" style="position: absolute; margin-left: 8px" type="button" class="btn btn-primary  btn-lg">New trip</button>
                  <h2 class="title">Active trips</h2>
             </div>
-            <div *ngFor="let trip of (profileTripsActive | slice:profileTripsActive.length - profileTripsActive.length)">
+            <div *ngFor="let trip of profileTripsActive">
                 <div class="panel trip-panel row">
                     <div class="trip-pic col-md-3" style="padding-left: 0px">
                         <div class="trippic-wrapper">
@@ -27,7 +27,7 @@
         </div>
         <div class="col-md-6">
             <h2 class="title">Completed trips</h2>
-            <div *ngFor="let trip of (profileTripsComplited | slice:profileTripsComplited.length - profileTripsComplited.length )">
+            <div *ngFor="let trip of profileTripsComplited">
                 <div class="panel trip-panel row">
                     <div class="trip-pic col-md-3" style="padding-left: 0px">
                         <div class="trippic-wrapper">

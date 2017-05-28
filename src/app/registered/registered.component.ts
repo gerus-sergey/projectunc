@@ -37,6 +37,8 @@ export class RegisteredComponent implements OnInit {
   listCityesOfTheState: City[]=[];
   form:Form = new Form();
   remember:boolean = false;
+  sha256 = require('js-sha256');
+
 
   constructor(private route:Router, private httpService:HttpService,private localStorageService: LocalStorageService) {
   }
@@ -54,6 +56,7 @@ export class RegisteredComponent implements OnInit {
       state:'',
       city: ''
     }
+
 
     console.log(localStorage.getItem('id'));
 
@@ -115,7 +118,7 @@ export class RegisteredComponent implements OnInit {
         .subscribe((data) => {
          this.receivedUser = data;
           this.done = true;
-          console.log( this.receivedUser);
+        //  console.log( this.receivedUser);
           this.route.navigateByUrl("/account/" + this.receivedUser.id + "/profile");
           if(this.remember) {
               localStorage.setItem('id', this.receivedUser.id.toString());
@@ -125,7 +128,7 @@ export class RegisteredComponent implements OnInit {
           }
         });
 
-      console.log( this.userRegistered);
+    //  console.log( this.userRegistered);
     }
   }
 }
