@@ -10,6 +10,7 @@ import {Response} from "@angular/http";
 import {LocalStorageService} from 'angular-2-local-storage';
 import {State} from "../models/state.interface";
 import {Role} from "../models/role.interface";
+import {Observable} from "rxjs/Observable";
 
 export class Form {
     id:number;
@@ -112,6 +113,10 @@ export class RegisteredComponent implements OnInit {
             this.userRegistered = new UserRegistered(null, model.firstName, model.lastName, model.email, model.password, new Gender(model.gender, ""), new City(model.city, ""), new Role(2,''));
 
             this.httpService.addUser(this.userRegistered)
+                .catch((error:any) => {
+                    confirm("Eror when registering");
+                    return Observable.throw(error);
+                })
                 .subscribe((data) => {
                     this.receivedUser = data;
                     this.done = true;

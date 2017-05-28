@@ -52,7 +52,7 @@ export class ProfileComponent implements OnInit,OnDestroy {
     ngOnInit() {
         this.newEmail = {
             email:''
-        }
+        };
         this.userPassword = {
             oldPassword: '',
             password: '',
@@ -144,7 +144,8 @@ export class ProfileComponent implements OnInit,OnDestroy {
                 this.confPass = true
             }else{
                 this.userProfile.password = model.password;
-                this.httpService.addUser(this.userProfile)
+                
+                this.httpService.updUser(this.userProfile)
                     .subscribe((data) => {
                         console.log(data);
                         this.userProfile = data;
@@ -152,10 +153,7 @@ export class ProfileComponent implements OnInit,OnDestroy {
             }
         }
     }
-    // updateEmail(model:newEmail, isValid:boolean){
-    //
-    // }
-
+    
     upload() {
         var csrf_token = jQuery("meta[name='_csrf']").attr("content");
         var csrf_token_name = jQuery("meta[name='_csrf_header']").attr("content");

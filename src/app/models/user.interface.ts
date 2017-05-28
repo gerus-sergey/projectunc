@@ -28,6 +28,5 @@ export class User {
   country:Country;
   state:State;
   city:City;
-  info:string;
-    userPhoto:string;
+  info:string;userPhoto:string;
 }

@@ -90,11 +90,20 @@ export class HttpService {
             headers.set(csrf_token_name, csrf_token);
         return this.http.post(this.host + 'users', obj, {headers: headers})
             .map((resp:Response)=>resp.json())
-            .catch((error:any) => {
-                return Observable.throw(error);
-            });
     }
 
+    updUser(obj:User) {
+        var csrf_token = jQuery("meta[name='_csrf']").attr("content");
+        var csrf_token_name = jQuery("meta[name='_csrf_header']").attr("content");
+        let headers = new Headers({
+            'Content-Type': 'application/json;charset=utf-8'
+        });
+        if (csrf_token_name && csrf_token)
+            headers.set(csrf_token_name, csrf_token);
+        return this.http.post(this.host + 'users', obj, {headers: headers})
+            .map((resp:Response)=>resp.json())
+    }
+    
     updateUser(id:number, obj:User) {
         var csrf_token = jQuery("meta[name='_csrf']").attr("content");
         var csrf_token_name = jQuery("meta[name='_csrf_header']").attr("content");

@@ -26,16 +26,10 @@ export class SignInComponent implements OnInit {
         this.userSignIn = {
             email: '',
             password: ''
-        }
-        //localStorage.setItem('id','3');
-        //localStorage.getItem('id');
-
+        };
     }
 
     done:boolean = false;
-
-
-
     signInUser(model:UserSignIn, isValid:boolean) {
         if (isValid) {
             this.httpService.signInUser(model)
