@@ -53,6 +53,7 @@ import {TripGuard} from "./guards/trip.guard";
 import {InvitationInTripComponent} from "./user/invitation-in-trip/invitation-in-trip.component";
 import { AdminPageComponent } from './admin-page/admin-page.component';
 import {ImageUploadModule} from "angular2-image-upload";
+import { Ng2UploaderModule } from 'ng2-uploader';
 
 
 const transportRoutes: Routes = [
@@ -147,6 +148,7 @@ let providers = {
     }),
     ImageUploadModule.forRoot(),
     FacebookModule.forRoot(),
+    Ng2UploaderModule,
     Angular2SocialLoginModule
   ],
   providers: [MainGuard, LoginGuard,TripService, HttpService],

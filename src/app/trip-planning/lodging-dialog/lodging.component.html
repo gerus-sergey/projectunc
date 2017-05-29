@@ -30,6 +30,11 @@
                     <input class="form-control" type="datetime-local" name="endTime" placeholder="2017-05-29T10:25:OOZ"
                            [(ngModel)]="lodging.endTime" #endTime="ngModel"/>
                 </div>
+                <div>
+                    <label>Ticket</label>
+                    <input id = "photo" type="file" (change)="upload()"/>
+                    <a href="{{pathToTicket}}" target="_blank"><img src="{{pathToTicket}}" style="height: 50px; width: 100px"/></a>
+                </div>
             </div>
 
             <div class="price-dist">

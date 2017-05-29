@@ -36,6 +36,11 @@
                        [(ngModel)]="rail.distance"/>
             </div>
             <div>
+                <label>Ticket</label>
+                <input id = "photo" type="file" (change)="upload()"/>
+                <a target="_blank"><img src="{{pathToTicket}}" style="height: 50px; width: 100px"/></a>
+            </div>
+            <div>
                 <label>Description</label>
                 <textarea class="form-control" style="width: 400px; resize: none" maxlength="100" name="description"
                           [(ngModel)]="rail.description"></textarea>
