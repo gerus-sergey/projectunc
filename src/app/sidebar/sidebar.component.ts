@@ -34,6 +34,7 @@ export class SidebarComponent implements OnInit, OnDestroy {
                 document.getElementById('log').style.display = 'none';
                 document.getElementById('menu').style.display = 'block';
                 document.getElementById('srch').style.display = 'block';
+                document.getElementById('admin').style.display = 'none';
             });
     }
 
@@ -45,9 +46,10 @@ export class SidebarComponent implements OnInit, OnDestroy {
         this.httpService.getUser(localStorage.getItem('id'))
             .subscribe((resp:Response) => {
                 let user = resp.json();
-                if (user)
+                if (user) {
                     this.user = user;
-                    if(this.user.role.id == 3){
+                    console.log(this.user);
+                    if (this.user.role.id == 3) {
                         confirm('Вы забанены!');
                         document.getElementById('menu').style.display = 'none';
                         document.getElementById('srch').style.display = 'none';
@@ -56,6 +58,12 @@ export class SidebarComponent implements OnInit, OnDestroy {
                         localStorage.setItem('id', "null");
                         this.httpService.setId(null);
                     }
+                    if (this.user.role.id == 0) {
+                        document.getElementById('admin').style.display = 'block';
+                    } else {
+                        document.getElementById('admin').style.display = 'none';
+                    }
+                }
             });
 
         new gnMenu(this.sidebarEl.nativeElement.querySelector('.gn-menu-main'));
@@ -77,11 +85,13 @@ export class SidebarComponent implements OnInit, OnDestroy {
             document.getElementById('log').style.display = 'none';
             document.getElementById('menu').style.display = 'block';
             document.getElementById('srch').style.display = 'block';
+            document.getElementById('admin').style.display = 'none';
         } else {
             document.getElementById('menu').style.display = 'none';
             document.getElementById('srch').style.display = 'none';
             document.getElementById('reg').style.display = 'block';
             document.getElementById('log').style.display = 'block';
+            document.getElementById('admin').style.display = 'none';
         }
         return this.id;
     }

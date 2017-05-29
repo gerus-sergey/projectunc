@@ -7,17 +7,21 @@
             <table class="table table-hover" >
                 <tr>
                     <td><h4><b>№</b></h4></td>
+                    <td><h4><b>ID</b></h4></td>
                     <td><h4><b>User name</b></h4></td>
                     <td><h4><b>User account</b></h4></td>
+                    <td><h4><b>Status</b></h4></td>
                     <td></td>
                     <td></td>
                 </tr>
                 <tr *ngFor="let user of allUsers; let i = index">
                     <td>{{i+1}}</td>
+                    <td>{{user.id}}</td>
                     <td>{{user.lastName}} {{user.firstName}}</td>
                     <td>
                         <button routerLink="/user/{{user.id}}" class="btn btn-info">Account</button>
                     </td>
+                        <td>{{user.role.name}}</td>
                     <td>
                         <button (click)="ban(user.id)" class="btn btn-danger">Ban</button>
                     </td>

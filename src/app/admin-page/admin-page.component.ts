@@ -24,33 +24,42 @@ export class AdminPageComponent implements OnInit {
                 for (const index in userList) {
                     const user = userList[index];
                     this.allUsers.push(user);
+                    console.log(this.allUsers);
                 }
             });
 
     }
 
     ban(id:number) {
+        console.log(id);
         if (id != null) {
-            this.userBunning = this.allUsers[id];
-            this.userBunning.role = new Role(3, '');
-            console.log(this.userBunning);
-            this.httpService.addUser(this.userBunning)
-                .subscribe((data) => {
-                    console.log(data);
-                });
+            for (var i = 0; i < this.allUsers.length; i++) {
+                if (this.allUsers[i].id == id) {
+                    console.log(this.allUsers[i]);
+                    this.userBunning = this.allUsers[i];
+                    this.userBunning.role = new Role(3, '');
+                    this.httpService.addUser(this.userBunning)
+                        .subscribe((data) => {
+                            console.log(data);
+                        });
+                }
+            }
         }
-
     }
 
     unban(id:number) {
         if (id != null) {
-            this.userBunning = this.allUsers[id];
-            this.userBunning.role = new Role(2, '');
-            console.log(this.userBunning);
-            this.httpService.addUser(this.userBunning)
-                .subscribe((data) => {
-                    console.log(data);
-                });
+            for (var i = 0; i < this.allUsers.length; i++) {
+                if (this.allUsers[i].id == id) {
+                    console.log(this.allUsers[i]);
+                    this.userBunning = this.allUsers[i];
+                    this.userBunning.role = new Role(2, '');
+                    this.httpService.addUser(this.userBunning)
+                        .subscribe((data) => {
+                            console.log(data);
+                        });
+                }
+            }
         }
 
     }
