@@ -35,13 +35,14 @@
                 <input class="form-control" name="distance" type="text" maxlength="5" placeholder="451"
                        [(ngModel)]="rail.distance"/>
             </div>
+            <div>
+                <label>Description</label>
+                <textarea class="form-control" style="width: 400px; resize: none" maxlength="100" name="description"
+                          [(ngModel)]="rail.description"></textarea>
+            </div>
         </div>
 
-        <div class="form-group">
-            <label>Description</label>
-            <textarea class="form-control" style="width: 400px; resize: none" maxlength="100" name="description"
-                      [(ngModel)]="rail.description"></textarea>
-        </div>
+
 
         <div class="form-group" style="margin-top: 10px; display:block">
             <button type="submit" class="btn btn-primary">Save</button>

@@ -52,6 +52,7 @@ import { FilterComponent } from './filter/filter.component';
 import {TripGuard} from "./guards/trip.guard";
 import {InvitationInTripComponent} from "./user/invitation-in-trip/invitation-in-trip.component";
 import { AdminPageComponent } from './admin-page/admin-page.component';
+import {ImageUploadModule} from "angular2-image-upload";
 
 
 const transportRoutes: Routes = [
@@ -144,6 +145,7 @@ let providers = {
       //  storageType: 'localStorage'
       storageType: 'sessionStorage'
     }),
+    ImageUploadModule.forRoot(),
     FacebookModule.forRoot(),
     Angular2SocialLoginModule
   ],

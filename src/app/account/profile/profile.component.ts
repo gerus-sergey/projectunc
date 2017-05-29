@@ -121,11 +121,11 @@ export class ProfileComponent implements OnInit,OnDestroy {
         if (isValid) {
             if (isNaN(parseInt(model.city.toString()))) {
                 this.updateProfile = new User(this.userProfile.id, model.lastName, model.firstName, model.birthday,
-                    this.userProfile.email, this.userProfile.password, new Gender(model.gender, ""), new City(this.userProfile.city.id, "") , model.info, null);
+                    this.userProfile.email, this.userProfile.password, new Gender(model.gender, ""), new City(this.userProfile.city.id, "") , model.info, this.userProfile.userPhoto);
                 console.log(this.updateProfile);
             } else {
                 this.updateProfile = new User(this.userProfile.id, model.lastName, model.firstName, model.birthday,
-                    this.userProfile.email, this.userProfile.password, new Gender(model.gender, ""), new City(model.city.toString(), ""), model.info, null);
+                    this.userProfile.email, this.userProfile.password, new Gender(model.gender, ""), new City(model.city.toString(), ""), model.info, this.userProfile.userPhoto);
                 console.log(this.updateProfile);
             }
 

@@ -68,7 +68,7 @@
                                 <h4 class=" trip-label">Start date</h4>
                                 <div class="trip-input" style="margin-left: 115px">
 
-                                    <datetime [timepicker]="false" [datepicker]="{ icon: 'fa fa-calendar' }" (ngModelChange)="handleDateFromChange($event)"
+                                    <datetime [timepicker]="false" [datepicker]="{ icon: 'fa fa-calendar' }"
                                               [(ngModel)]="trip.startDate"  name="startDate"
                                               #startDate="ngModel"></datetime>
 
@@ -107,6 +107,7 @@
                             <div class="input-group info" style="">
                                 <button [disabled]="flag" (click) = "closeTrip()" class="btn btn-danger">Close trip</button>
                             </div>
+                            <image-upload [max]="100" [buttonCaption]="'Select Images!'">Upload</image-upload>
                         </form>
 
                     </div>

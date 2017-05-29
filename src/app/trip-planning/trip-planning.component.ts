@@ -177,7 +177,11 @@ export class TripPlanningComponent implements OnInit, OnDestroy {
                 this.httpService.addMovement(movement, this.trip.id)
                     .subscribe((data) => {
                         console.log(data);
-                        movement.id = data.id;
+                        this.httpService.getMovementToTrip(this.trip.id)
+                            .subscribe((data) => {
+                                console.log(data);
+                                movement.id = data[data.length - 1].id;
+                            });
                     });
                 if (new Date(movement.startTime).getDate() + new Date(movement.startTime).getMonth() ==
                     this.selectedDay.name.getDate() + this.selectedDay.name.getMonth()) {
@@ -187,7 +191,11 @@ export class TripPlanningComponent implements OnInit, OnDestroy {
                 this.selectedDay.action.sort(function (a, b) {
                     return (a.startTime.valueOf() + 24 * 60 * 60 * 1000) - (b.startTime.valueOf() + 24 * 60 * 60 * 1000);
                 });
+
+
             });
+
+
     }
 
     addOrUpdateTrip(model:Trip, isValid:boolean) {
@@ -348,14 +356,19 @@ export class TripPlanningComponent implements OnInit, OnDestroy {
     }
 
     deleteMovements(id:number) {
-        this.httpService.getMovement(id)
-            .subscribe((data) => {
-                this.movementToDelete = data;
-            });
         this.httpService.deleteMovement(id)
             .subscribe((data) => {
                 console.log(data);
-                this.selectedDay.action.splice(this.selectedDay.action.indexOf(this.movementToDelete));
+                for(var i = 0; i < this.selectedDay.action.length; i++){
+                    if(this.selectedDay.action[i].id == id){
+                        this.selectedDay.action.splice(i, 1);
+                    }
+                }
+                for(var i = 0; i < this.movement.length; i++){
+                    if(this.movement[i].id == id){
+                        this.movement.splice(i, 1);
+                    }
+                }
             })
     }
 
@@ -367,7 +380,16 @@ export class TripPlanningComponent implements OnInit, OnDestroy {
         this.httpService.deleteActivity(id)
             .subscribe((data) => {
                 console.log(data);
-                this.selectedDay.action.splice(this.selectedDay.action.indexOf(this.activityToDelete));
+                for(var i = 0; i < this.selectedDay.action.length; i++){
+                    if(this.selectedDay.action[i].id == id){
+                        this.selectedDay.action.splice(i, 1);
+                    }
+                }
+                for(var i = 0; i < this.activity.length; i++){
+                    if(this.activity[i].id == id){
+                        this.activity.splice(i, 1);
+                    }
+                }
             })
     }
 
